@@ -10,7 +10,7 @@
 <form>
 	<input type="text" placeholder="Username"></input>
 	<input type="password" placeholder="Password"></input>
-	<input type="submit">Submit</input>
+	<input type="submit">Submit!</input>
 </form>
 
 </body>
