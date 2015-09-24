@@ -5,7 +5,9 @@
 		<meta charset="utf-8"/>
 		<title>Dropzone simple example</title>
 		<script src="js/dropzone.js"></script>
+		<script src="js/materialize.min.js"></script>
 		<link rel="stylesheet" href="css/dropzone.css"/>
+		<link rel="stylesheet" href="css/materialize.min.css"/>
 	</head>
 	<body>
 		<form action="operaciones.php?op=uploadvideo" class="dropzone dz-clickable">
