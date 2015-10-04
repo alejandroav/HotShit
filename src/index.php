@@ -46,6 +46,9 @@
 				<?php include("pages/login.php"); ?>
 			</div>
 		</div>
+		<div class="isotipo"> 
+			You live it, WeZee it.
+		</div>
 		<div class="slider fullscreen">
 			<ul class="slides">
 				<li>
