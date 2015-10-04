@@ -1,9 +1,14 @@
+.chg_button {
+	position: absolute;
+	right: 0px;
+	margin: 10px;
+}
 .slider{
 	z-index: -3;
 	position:absolute;	
 }
 .fondo{
-	z-index:-2;
+	z-index:1;
 	position:fixed;
 	top:50%;
 	left:50%;
@@ -19,12 +24,12 @@
 	text-align:center;
 }
 .entrada{
-	z-index:-1;
+	z-index:2;
 	padding: 20px;
 	opacity:1;
 }
 .logo-arriba{
-	z-index:0;
+	z-index:3;
 	position:fixed;
 	top:30%;
 	left:50%;

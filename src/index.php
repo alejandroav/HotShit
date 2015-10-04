@@ -16,12 +16,18 @@
 				if (page == "login"){
 					page = "register";
 					$.ajax({
-						url: "pages/register.php"
+						url: "pages/register.php",
+						success: function(res) {
+							$("#formcontent").html(res);
+						}
 					});
 				} else if (page == "register"){
 					page = "login";
 					$.ajax({
-						url: "pages/login.php"
+						url: "pages/login.php",
+						success: function(res) {
+							$("#formcontent").html(res);
+						}
 					});
 				}
 			});
@@ -29,7 +35,7 @@
 		</script>
 	</head>
 	<body>
-		<div class="align-right">
+		<div class="chg_button">
 			<button class="btn waves-effect waves-light" type="submit" name="action" id="chg_button">Registrate</button>
 		</div>
 		<div class="logo-arriba">
