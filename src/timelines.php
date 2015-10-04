@@ -31,7 +31,7 @@
 		<div>
 			<div class="align-center">
 				<div style="padding:10px"></div>
-				<a href="#" class="waves-effect waves-light btn" style="background-color:#AEAEAE"><i class="material-icons left">Subir Video</i></a>
+				<center><a href="#" class="waves-effect waves-light btn" style="background-color:#AEAEAE"><i class="material-icons left">Subir Video</i></a><center>
 				<div style="padding:10px"></div>
 			</div>
 		</div>
