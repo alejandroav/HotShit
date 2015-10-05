@@ -27,7 +27,7 @@
 					console.log(res2);
 				}
 			};
-			$(".dropzone").dropzone(options);
+			$("#upload").dropzone(options);
 		</script>
 	</body>
 </html>

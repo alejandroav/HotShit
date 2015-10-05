@@ -29,10 +29,8 @@
 		?>
 		<?php include("pages/header.php"); ?>
 		<div>
-			<div class="align-center">
-				<div style="padding:10px"></div>
-				<center><a href="#" class="waves-effect waves-light btn" style="background-color:#AEAEAE"><i class="material-icons left">Subir Video</i></a><center>
-				<div style="padding:10px"></div>
+			<div class="align-center" style="padding: 20px;">
+				<?php include("pages/uploader.php"); ?>
 			</div>
 		</div>
 		<div class="z-depth-2" style="padding:20px;float:left;border:1px solid black">

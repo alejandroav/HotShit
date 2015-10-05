@@ -8,9 +8,6 @@
 						<img src="https://image.freepik.com/iconos-gratis/silueta-usuario-masculino_318-35708.jpg" alt="Contact Person">HotShit
 					</div>
 				</li>
-				<li>
-					<div style="margin-right:335px"></div>
-				</li>
 			</ul>	
 	   </div>
 	</nav>
