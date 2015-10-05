@@ -47,7 +47,7 @@
 			</div>
 		</div>
 		<div class="isotipo"> 
-			You live it, WeZee it.
+			You live it, <span style="color:yellow">WeZee</span> it.
 		</div>
 		<div class="slider fullscreen">
 			<ul class="slides">
