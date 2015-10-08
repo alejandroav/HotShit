@@ -34,9 +34,9 @@ if (!isset($_SESSION['userid']))
 													<a href='#'>Favoritos</a>
 													<a href='#'>Retweet</a>
 													</div>
-												</div>
+												</div>";
 							}
-				/*echo "</div></div></ul>";*/
+				echo "</div></div></ul>";
 			}
 		?>
 		<?php include("pages/header.php"); ?>
