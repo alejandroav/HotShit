@@ -19,18 +19,25 @@ if (!isset($_SESSION['userid']))
 	</head>
 	<body style="background-color:#FBFBFB">
 		<?php
-		function Video(){
-			echo "<ul>";
-			for ($x = 0; $x <= 9; $x++) {
-				echo "<il><div class='video1'>
-				<img src='http://static.elobservador.com.uy/adjuntos/184/imagenes/000/298/0000298815.png' alt='Video'  width='310px' height='206px'>
-				</div>
-				<div class='video2'>
-				<p><b> Titulo muy largo </b></p>
-				</div></il>";
+			function Video(){
+				echo "<ul>";
+				echo "<div style='float:left; padding: 2px'>
+							<div class='col s4'>
+							<h2>Titulo columna</h2>";
+							for ($x = 0; $x <= 9; $x++) {
+									echo "<div class='card green-white lighten-0'>
+													<div class='card-content black-text'>
+														<span class='card-title black-text'>Titulo tarjeta</span>
+														<p>Descripcion</p>
+													</div>
+													<div class='card-action'>
+													<a href='#'>Favoritos</a>
+													<a href='#'>Retweet</a>
+													</div>
+												</div>
+							}
+				/*echo "</div></div></ul>";*/
 			}
-			echo "</ul>";
-		}
 		?>
 		<?php include("pages/header.php"); ?>
 		<div>
@@ -48,15 +55,12 @@ if (!isset($_SESSION['userid']))
 					<p style="font-size:120%"><b>Estadisticas</b></p>
 				</div>
 				<div class="divider"></div>
-				<p>100 <span style="color:green">Me gustas</span></p>
-				<p>100 <span style="color:green">Reproducciones</span></p>
+				<p>CONTADOR <span style="color:green">Me gustas</span></p>
+				<p>CONTADOR <span style="color:green">Reproducciones</span></p>
 			</div>
 		</div>
-		<div style="float:left; padding:15px"></div>
-		<div class="z-depth-2" style="border:1px solid black; float:left;"><?php Video() ?></div>
-		<div style="float:left; padding:15px"></div>
-		<div class="z-depth-2" style="border:1px solid black; float:left;"><?php Video() ?></div>
-		<div style="float:left; padding:15px"></div>
-		<div class="z-depth-2" style="border:1px solid black; float:left;"><?php Video() ?></div>
+		<?php Video();?>
+		<?php Video();?>
+		<?php Video();?>
 	</body>
 </html>

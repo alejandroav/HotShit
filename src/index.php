@@ -1,3 +1,8 @@
+<?php
+session_start();
+if (isset($_USER['userid']))
+	header('Location: timelines.php');
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,7 +51,7 @@
 				<?php include("pages/login.php"); ?>
 			</div>
 		</div>
-		<div class="isotipo"> 
+		<div class="isotipo">
 			You live it, <span style="color:yellow">WeZee</span> it.
 		</div>
 		<div class="slider fullscreen">
