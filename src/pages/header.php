@@ -1,3 +1,4 @@
+
 <header>
 	<nav>
 		<div class="nav-wrapper" style="background-color:#FBFF93">
@@ -5,10 +6,13 @@
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li>
 					<div class="chip">
-						<img src="https://image.freepik.com/iconos-gratis/silueta-usuario-masculino_318-35708.jpg" alt="Contact Person">HotShit
+						<img src="uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="Contact Person"><?php echo $_SESSION['username']; ?>
 					</div>
 				</li>
-			</ul>	
+				<li>
+					<a href="operaciones.php?op=logout">SALIR</a>
+				</li>
+			</ul>
 	   </div>
 	</nav>
 </header>
