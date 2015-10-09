@@ -20,15 +20,20 @@
 			break;
 
 			case 'login':
+				// conectar a bd
 				$servername = "localhost";
 				$username = "root";
 				$password = "";
 				$db = "wezee";
 			  $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
+
+				// consultamos si existe un usuario con ese nombre/email y esa contraseña
 				$gsent = $conn->prepare("SELECT id,username,img from users where
 					(username = '".$_POST['user']."' OR email = '".$_POST['user']."') AND password = '".$_POST['password']."'");
 				$gsent->execute();
 				$result = $gsent->fetch(PDO::FETCH_ASSOC);
+
+				// si existe, cargamos sus datos en sesion y nos vamos al timeline
 				if (count($result)>0) {
 					session_start();
 					$_SESSION['userid'] = $result['id'];
@@ -38,7 +43,40 @@
 				}
 			break;
 
+			case 'register':
+				// conectar a bd
+				$servername = "localhost";
+				$username = "root";
+				$password = "";
+				$db = "wezee";
+			  $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
+
+				// comprobar que no se repite el email ni el usuario, FALLA
+				$gsent = $conn->prepare("SELECT count(id) from users where email = '".$_POST['email']."' or username='".
+				$_POST['user']."');");
+				$gsent->execute();
+				$res = $gsent->fetch(PDO::FETCH_ASSOC);
+
+				if ($res['count(id)']>0) {
+					header("Location: index.php?user=error");
+				}
+
+				// crear el usuario
+				$res = $conn-> exec("INSERT INTO users(username,email,password) VALUES ('".
+				$_POST['user']."','".
+				$_POST['email']."','".
+				$_POST['password']."');");
+
+				if ($res == 1) {
+					header("Location: index.php?user=created");
+				}
+				else {
+					header("Location: index.php?user=error");
+				}
+			break;
+
 			case 'logout':
+				// nos cargamos la sesion y volvemos al login
 				session_unset();
 				header('Location: index.php');
 			break;

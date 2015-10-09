@@ -8,7 +8,7 @@ if (isset($_USER['userid']))
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta charset="utf-8"/>
-		<title>HotShit</title>
+		<title>Wezee</title>
 		<script src="resources/js/jquery-2.1.4.min.js"></script>
 		<script src="resources/js/materialize.min.js"></script>
 		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
@@ -41,7 +41,7 @@ if (isset($_USER['userid']))
 	</head>
 	<body>
 		<div class="chg_button">
-			<button class="btn waves-effect waves-light" type="submit" name="action" id="chg_button">Registrate</button>
+			<button class="btn waves-effect waves-light" type="submit" name="action" id="chg_button">Sign in/Sign up</button>
 		</div>
 		<div class="logo-arriba">
 			<img src="resources/images/logo.png" width="142px" height="142px">

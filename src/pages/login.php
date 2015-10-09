@@ -2,6 +2,6 @@
 	<input type="text" name="user" placeholder="Username or email" required="required"/>
 	<input type="password" name="password" placeholder="Password" required="required"/>
 	<button class="btn waves-effect waves-light" type="submit" name="action">
-		Entrar <i class="material-icons right"></i>
+		Sign in <i class="material-icons right"></i>
 	</button>
 </form>
