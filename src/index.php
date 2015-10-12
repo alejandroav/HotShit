@@ -1,6 +1,9 @@
 <?php
 session_start();
-if (isset($_USER['userid']))
+						$_SESSION["userid"] = 1;
+						$_SESSION["username"] = "hola";
+						$_SESSION["userimg"] = "";
+if (isset($_SESSION['userid']))
 	header('Location: timelines.php');
 ?>
 <!DOCTYPE html>
@@ -16,7 +19,7 @@ if (isset($_USER['userid']))
 		<script>
 		$(document).ready(function(){
 			var page = "login";
-			$('.slider').slider({full_width: true});
+			$('.slider').slider({full_width: true, indicators: false});
 			$('#chg_button').click(function(){
 				if (page == "login"){
 					page = "register";

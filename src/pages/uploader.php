@@ -1,79 +1,26 @@
-<div id=""+id class="col s4 center-align">
-Arrastra aqui o haz click para subir tus archivos
+<div id="uploader" class="col s4 center-align uploader hide-on-med-and-down">
+Arrastra aqui o haz click para subir un video
 </div>
-<input type="file" style="display: none;" name=""+id id="uploader-input"/>
+<input type="file" class="hide-on-large-only" name="file" id="uploader-input" accept="video/*"/>
 <style>
-	#uploader {
+	.uploader {
 		border:2px dashed black;
 		color:#92AAB0;
 		padding: 10px;
 		cursor: pointer;
 		font-size: 100%;
 	}
-	#uploader.attention{
+	.uploader.attention{
 		border:2px dashed red;
 	}
-	#uploader.filecharged{
+	.uploader.filecharged{
 		border:2px solid red !important;
-	}
-	
-	.progressBar {
-		width: 200px;
-		height: 22px;
-		border: 1px solid #ddd;
-		border-radius: 5px; 
-		overflow: hidden;
-		display:inline-block;
-		margin:0px 10px 5px 5px;
-		vertical-align:top;
-	}
-	
-	.progressBar div {
-		height: 100%;
-		color: #fff;
-		text-align: right;
-		line-height: 22px; /* same as #progressBar height if we want text middle aligned */
-		width: 0;
-		background-color: #0ba1b5; border-radius: 3px; 
-	}
-	.statusbar {
-		border-top:1px solid #A9CCD1;
-		min-height:25px;
-		width:700px;
-		padding:10px 10px 0px 10px;
-		vertical-align:top;
-	}
-	.statusbar:nth-child(odd){
-		background:#EBEFF0;
-	}
-	.filename {
-		display:inline-block;
-		vertical-align:top;
-		width:250px;
-	}
-	.filesize {
-		display:inline-block;
-		vertical-align:top;
-		color:#30693D;
-		width:100px;
-		margin-left:10px;
-		margin-right:5px;
-	}
-	.abort{
-		background-color:#A8352F;
-		-moz-border-radius:4px;
-		-webkit-border-radius:4px;
-		border-radius:4px;display:inline-block;
-		color:#fff;
-		font-family:arial;font-size:13px;font-weight:normal;
-		padding:4px 15px;
-		cursor:pointer;
-		vertical-align:top;
 	}
 </style>
 <script>
+var circle = '<div class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 function sendFileToServer(formData,status) {
-	var uploadURL ="http://hayageek.com/examples/jquery/drag-drop-file-upload/upload.php";
+	var uploadURL ="operaciones.php?op=uploadvideo";
 	var jqXHR=$.ajax({
 		xhr: function() {
 			var xhrobj = $.ajaxSettings.xhr();
@@ -98,26 +45,22 @@ function sendFileToServer(formData,status) {
 		data: formData,
 		success: function(data){
 			status.setProgress(100);
-			$("#status1").append("File upload Done<br>");		
 		}
 	}); 
 
 	status.setAbort(jqXHR);
 }
 var rowCount=0;
-function statusBar(id) {
-	rowCount++;
-	var row="odd";
-	if(rowCount %2 ==0) row ="even";
-	$("#"+id).html("");
-	$("#"+id).removeClass();
-	$("#"+id).addClass("statusbar");
-	/*this.statusbar = $("<div class='statusbar "+row+"'></div>");
-	this.filename = $("<div class='filename'></div>").appendTo(this.statusbar);
-	this.size = $("<div class='filesize'></div>").appendTo(this.statusbar);
-	this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
-	this.abort = $("<div class='abort'>Abort</div>").appendTo(this.statusbar);
-	obj.after(this.statusbar);*/
+function StatusBar(id) {
+	this.obj = $("#"+id);
+	this.obj.unbind("click");
+	this.obj.removeClass("uploader");
+	this.obj.html('<div class="progress"><div class="determinate" style="width: 0%"></div></div>');
+	this.progressBar = $($("#"+id+" > .progress")[0]);
+	this.obj.append('<div class="percent">0%</div>');
+	this.percent = $($("#"+id+" > .percent")[0]);
+	this.obj.append('<button class="abort">X</button>');
+	this.abort = $($("#"+id+" > .abort")[0]);
 	this.setFileNameSize = function(name,size) {
 		var sizeStr="";
 		var sizeKB = size/1024;
@@ -127,32 +70,43 @@ function statusBar(id) {
 		} else {
 			sizeStr = sizeKB.toFixed(2)+" KB";
 		}
-		this.filename.html(name);
-		this.size.html(sizeStr);
+		//this.filename.html(name);
+		//this.size.html(sizeStr);
 	}
 	this.setProgress = function(progress) {	  
-		var progressBarWidth =progress*this.progressBar.width()/ 100;  
-		this.progressBar.find('div').animate({ width: progressBarWidth }, 10).html(progress + "% ");
+		var progressBarWidth = progress*this.progressBar.width()/ 100;  
+		this.progressBar.find('.determinate').animate({width: progressBarWidth}, 10);
+		this.percent.html(progress + "%");
 		if(parseInt(progress) >= 100) {
-			this.abort.hide();
+			this.obj.html("File upload Done");
+			
+			this.obj.hide(5000);
+			//Mostrar "popup" de configuracion de video
 		}
 	}
 	this.setAbort = function(jqxhr) {
-		var sb = this.statusbar;
-		this.abort.click(function() {
+		//console.log(this.abort);
+		this.abort.on("click", function() {
 			jqxhr.abort();
-			sb.hide();
+			obj.hide();
 		});
 	}
 }
 function handleFileUpload(files, id) {
 	if (files.length == 1) {
-		var fd = new FormData();
-		fd.append('file', files[0]);
-		var statusBar = new StatusBar(id);
-		//Convertir Div drag&drop en barra de subida
+		if (files[0].type.indexOf("video/") >= 0 && files[0].size > 1) {
+			var fd = new FormData();
+			fd.append('file', files[0]);
+			console.log(files[0]);
+			var statusBar = new StatusBar(id);
+			console.log(statusBar.abort);
+			//statusBar.setFileNameSize();
+			sendFileToServer(fd,statusBar);
+		} else {
+			//Mostrar error de el archivo es invalido
+		}
 	} else {
-		//Mostrar error
+		//Mostrar error de no se esta subiendo ningun archivo
 	}
 }
 function startUploadZone(id) {
@@ -206,5 +160,6 @@ function startUploadZone(id) {
 	});
 }
 $(document).ready(function() {
+	startUploadZone("uploader");
 });
 </script>

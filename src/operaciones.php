@@ -1,9 +1,9 @@
 <?php
+	session_start();
 	if (isset($_GET["op"]) && $_GET["op"]) {
 		switch($_GET["op"]){
 			case "uploadvideo":
-				require ("libs/ffmpeg.class.php");
-				$FFmpeg = new FFmpeg;
+				if (!isset($_SESSION['userid'])) else die (json_encode(array("status" => "ERROR", "msg" => "No esta logueado")));
 				$storeFolder = 'uploads';
 				if (!empty($_FILES)) {
 					$tempFile = $_FILES['file']['tmp_name'];
@@ -29,7 +29,7 @@
 
 				// consultamos si existe un usuario con ese nombre/email y esa contraseña
 				$gsent = $conn->prepare("SELECT id,username,img from users where
-					(username = '".$_POST['user']."' OR email = '".$_POST['user']."') AND password = '".$_POST['password']."'");
+					(username = '".$_POST['user']."' OR email = '".$_POST['user']."') AND password = '".hash("sha512", $_POST['password'])."'");
 				$gsent->execute();
 				$result = $gsent->fetch(PDO::FETCH_ASSOC);
 
@@ -66,7 +66,7 @@
 					$res = $conn-> exec("INSERT INTO users(username,email,password) VALUES ('".
 					$_POST['user']."','".
 					$_POST['email']."','".
-					$_POST['password']."');");
+					hash("sha512", $_POST['password'])."');");
 
 					if ($res == 1) {
 						header("Location: index.php?user=created");
