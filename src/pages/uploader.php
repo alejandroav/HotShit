@@ -44,6 +44,8 @@ function sendFileToServer(formData,status) {
 		cache: false,
 		data: formData,
 		success: function(data){
+			console.log(data);
+			//Comprobar que el video este convertido correctamente o mostrar error
 			status.setProgress(100);
 		}
 	}); 
