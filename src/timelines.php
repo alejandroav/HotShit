@@ -15,6 +15,19 @@ if (!isset($_SESSION['userid']))
 		<style>
 			div.video1{padding:20px;}
 			div.video2{float:left;margin-left:100px;}
+			.uploader {
+				border:2px dashed black;
+				color:#92AAB0;
+				padding: 10px;
+				cursor: pointer;
+				font-size: 100%;
+			}
+			.uploader.attention{
+				border:2px dashed red;
+			}
+			.uploader.filecharged{
+				border:2px solid red !important;
+			}
 		</style>
 	</head>
 	<body style="background-color:#FBFBFB">
@@ -64,5 +77,6 @@ if (!isset($_SESSION['userid']))
 		<?php Video();?>
 		<?php Video();?>
 		<?php Video();?>
+		<script src="resources/js/upload.js"></script>
 	</body>
 </html>

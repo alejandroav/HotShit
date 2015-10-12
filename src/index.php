@@ -1,8 +1,5 @@
 <?php
 session_start();
-						$_SESSION["userid"] = 1;
-						$_SESSION["username"] = "hola";
-						$_SESSION["userimg"] = "";
 if (isset($_SESSION['userid']))
 	header('Location: timelines.php');
 ?>
