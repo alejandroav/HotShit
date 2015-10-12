@@ -61,17 +61,19 @@
 					header("Location: index.php?user=error");
 				}
 
-				// crear el usuario
-				$res = $conn-> exec("INSERT INTO users(username,email,password) VALUES ('".
-				$_POST['user']."','".
-				$_POST['email']."','".
-				$_POST['password']."');");
-
-				if ($res == 1) {
-					header("Location: index.php?user=created");
-				}
 				else {
-					header("Location: index.php?user=error");
+					// crear el usuario
+					$res = $conn-> exec("INSERT INTO users(username,email,password) VALUES ('".
+					$_POST['user']."','".
+					$_POST['email']."','".
+					$_POST['password']."');");
+
+					if ($res == 1) {
+						header("Location: index.php?user=created");
+					}
+					else {
+						header("Location: index.php?user=error");
+					}
 				}
 			break;
 

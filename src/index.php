@@ -43,16 +43,18 @@ if (isset($_USER['userid']))
 		<div class="chg_button">
 			<button class="btn waves-effect waves-light" type="submit" name="action" id="chg_button">Sign in/Sign up</button>
 		</div>
-		<div class="logo-arriba">
-			<img src="resources/images/logo.png" width="142px" height="142px">
-		</div>
-		<div class="fondo">
-			<div class="entrada" id="formcontent">
-				<?php include("pages/login.php"); ?>
+		<div class="frente">
+			<div class="logo-arriba">
+				<img src="resources/images/logo.png" width="142px" height="142px">
 			</div>
-		</div>
-		<div class="isotipo">
-			You live it, <span style="color:yellow">WeZee</span> it.
+			<div class="fondo">
+				<div class="entrada" id="formcontent">
+					<?php include("pages/login.php"); ?>
+				</div>
+			</div>
+			<div class="isotipo">
+				You live it, <span style="color:yellow">WeZee</span> it.
+			</div>
 		</div>
 		<div class="slider fullscreen">
 			<ul class="slides">
@@ -70,5 +72,6 @@ if (isset($_USER['userid']))
 				</li>
 			</ul>
 		</div>
+
 	</body>
 </html>

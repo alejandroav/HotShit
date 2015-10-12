@@ -8,30 +8,14 @@
 	position:absolute;	
 }
 .fondo{
-	z-index:1;
+	z-index:2;
 	position:fixed;
 	top:50%;
 	left:50%;
-	margin-top:-100px;
+	margin-top:-125px;
 	margin-left:-150px;
 	width: 300px;
-	height: 200px;
-	overflow:hidden;
-	background-color:#999999;
-	border-radius: 25px;
-	opacity:0.9;
-	border: 4px solid #EEEE23;
-	text-align:center;
-}
-.fondo2{
-	z-index:1;
-	position:fixed;
-	top:50%;
-	left:50%;
-	margin-top:-100px;
-	margin-left:-150px;
-	width: 300px;
-	height: 300px;
+	height: 250px;
 	overflow:hidden;
 	background-color:#999999;
 	border-radius: 25px;
@@ -45,35 +29,43 @@
 	opacity:1;
 }
 .logo-arriba{
-	z-index:3;
+	z-index:1;
 	position:fixed;
-	top:30%;
+	top:28%;
 	left:50%;
 	margin-top:-75px;
 	margin-left:-75px;
+	over-flow:hidden;
 	width:150px;
 	height:150px;
 	border-radius: 75px;
 	border: 4px solid #EEEE23;
 }
 .isotipo{
-	z-index:2;
+	z-index:1;
 	position:fixed;
-	top:61%;
-	left:50%;
-	margin-left: -200px;
+	top:63%;
 	border:3px;
 	overflow:hidden;
 	border-bottom: 3px solid #999999
 	background-color:#999999;
 	text-align:center;
+	over-flow:hidden;
 
 	color:white;
 	text-family:bold;
 	text-size:200;
-	text-decoration:underline;
 	text-transform:capitalize;
 	font-size:300%;
+}
+.frente{
+	z-index:1;
+	position:absolute;
+	width:400px;
+	left:50%;
+	top:50%;
+	margin-left: -200px;
+	margin-top: -400px;
 }
 .isotipoPalabra{
 	color:yellow;
