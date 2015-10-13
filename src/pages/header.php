@@ -8,11 +8,6 @@
 			</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li>
-					<div class="chip">
-						CONTADOR likes / CONTADOR reproducciones
-					</div>
-				</li>
-				<li>
 					<a href="#">
 					<div class="chip">
 						<img src="uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="#"><?php echo $_SESSION['username']; ?>
