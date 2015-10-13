@@ -1,7 +1,11 @@
 <header>
 	<nav>
 		<div class="nav-wrapper" style="background-color:#FBFF93">
-			<a href="index.php" class="brand-logo" style="color:black;margin-left:15px">WeZee</a>
+			<a href="index.php" class="brand-logo" style="color:black;margin-left:15px">
+				<div style="color:yellow;padding:10px">
+					<img src="resources/images/zlogo.png" width="130px" height="50px">
+				</div>
+			</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li>
 					<div class="chip">
