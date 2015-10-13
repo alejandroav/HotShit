@@ -51,13 +51,18 @@
 				$db = "wezee";
 			  $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
 
-				// comprobar que no se repite el email ni el usuario, FALLA
-				$gsent = $conn->prepare("SELECT count(id) from users where email = '".$_POST['email']."' or username='".
+				// comprobar que no se repite el email ni el usuario
+				/*$gsent = $conn->prepare("SELECT id from users where email = '".$_POST['email']."' or username='".
 				$_POST['user']."');");
-				$gsent->execute();
-				$res = $gsent->fetch(PDO::FETCH_ASSOC);
+				$gsent->execute();*/
+				$query = "SELECT count(id) as c from users where email = '".$_POST['email']."' or username='".
+				$_POST['user']."';";
+				$resul;
 
-				if ($res['count(id)']>0) {
+				foreach($conn->query($query) as $row)
+					$resul = $row['c'];
+
+				if ($resul > 0) {
 					header("Location: index.php?user=error");
 				}
 
