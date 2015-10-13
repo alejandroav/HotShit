@@ -31,7 +31,7 @@ if (!isset($_SESSION['userid']))
 													</div>
 													<div class="card-action">
 													<a href="#">Favoritos</a>
-													<a href="#">Retweet</a>
+													<a href="#">ZeeIt</a>
 													</div>
 												</div>';
 							}
