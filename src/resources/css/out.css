@@ -31,9 +31,8 @@
 .logo-arriba{
 	z-index:1;
 	position:fixed;
-	top:28%;
 	left:50%;
-	margin-top:-75px;
+	margin-top:50px;
 	margin-left:-75px;
 	over-flow:hidden;
 	width:150px;
@@ -44,9 +43,9 @@
 .isotipo{
 	z-index:1;
 	position:fixed;
-	top:63%;
 	border:3px;
 	overflow:hidden;
+	margin-top:465px;
 	border-bottom: 3px solid #999999
 	background-color:#999999;
 	text-align:center;
@@ -60,12 +59,10 @@
 }
 .frente{
 	z-index:1;
-	position:absolute;
+	position:fixed;
 	width:400px;
 	left:50%;
-	top:50%;
 	margin-left: -200px;
-	margin-top: -400px;
 }
 .isotipoPalabra{
 	color:yellow;
