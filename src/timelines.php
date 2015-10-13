@@ -45,12 +45,12 @@ if (!isset($_SESSION['userid']))
 			<?php include("pages/uploader.php"); ?>
 		</div>
 		<div class="row">
-			<div class="col s2">
+			<div class="col s3">
 				<div class="align-center" style="padding:20px;">
 					<?php include("pages/sidebar.php");?>
 				</div>
 			</div>
-			<div class="col s10">
+			<div class="col s9">
 				<div class="align-center">
 					<?php Video();?>
 					<?php Video();?>

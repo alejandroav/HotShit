@@ -3,7 +3,7 @@
 	<?php
 		function suscriptores(){
 			for ($x = 0; $x <= 9; $x++) {
-				echo "<div style='padding:5px'>
+				echo "<div style='padding:2px'>
 					<img class='circle' src='uploads/userimg/1.bmp' alt='emoji' width='15'>
 					Usuario $x </img>
 					</div>";
@@ -18,14 +18,13 @@
 			}
 		}
 	?>
-	<div class="z-depth-2" style="padding:20px;border:1px solid light-grey;margin:10px;">
-		<div style="border:1px solid black">
-			<img src="uploads/userimg/<?php echo $_SESSION['userimg']; ?>" alt="Usuario" height="150"/>
+	<div class="z-depth-2" style="padding:5px;border:1px solid light-grey;margin:10px;border-radius:10px;">
+		<div class="profile_pic">
+			<img src="uploads/userimg/<?php echo $_SESSION['userimg']; ?>" alt="Usuario" height="150px">
 		</div>
-		<div style="padding:10px"></div>
-		<div style="background-color:#F9FE6F;padding:10px">
+		<div class="barra_lateral">
 			<div>
-				<p style="font-size:120%"><b>Suscripciones</b></p>	
+				<p style="font-size:120%;margin-bottom:-1px;"><b>Suscripciones</b></p>	
 			</div>
 			<div class="divider">
 			</div>
@@ -34,11 +33,9 @@
 			</div>
 		</div>
 		
-		<div style="padding:10px"></div>
-		
-		<div style="background-color:#F9FE6F;padding:10px">
+		<div class="barra_lateral">
 			<div>
-				<p style="font-size:120%"><b>Tags</b></p>	
+				<p style="font-size:120%;margin-bottom:-1px;"><b>Tags</b></p>	
 			</div>
 			<div class="divider">
 			</div>

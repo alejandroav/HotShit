@@ -18,3 +18,17 @@ div.video2{float:left;margin-left:100px;}
 .uploader.filecharged{
 	border:2px solid red !important;
 }
+.profile_pic{
+	border:1px solid grey;
+	margin:10px;
+	border-radius:20px;
+	width:150px;
+	height:150px;
+	left:50%;
+	margin-left:50px;
+}
+.barra_lateral{
+	background-color:#FFFFFF;
+	margin-top:5px;
+	margin-left:5px;
+}
