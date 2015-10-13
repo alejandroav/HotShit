@@ -20,7 +20,7 @@ if (!isset($_SESSION['userid']))
 				// imprimimos tarjetas con cada video.
 				// hay que pasar por parametro si queremos videos populares o tags populares
 				echo "<ul>";
-				echo "<div style='float:left;padding:5px'>
+				echo "<div style='padding:5px'>
 							<div class='col s4'>
 							<h2>Titulo columna</h2>";
 							for ($x = 0; $x <= 9; $x++) {
@@ -49,7 +49,7 @@ if (!isset($_SESSION['userid']))
 					</div>
 				</div>
 				<div class="col s9">
-					<div class="align-center" style="padding: 20px;">
+					<div class="align-center">
 							<?php Video();?>
 							<?php Video();?>
 							<?php Video();?>
