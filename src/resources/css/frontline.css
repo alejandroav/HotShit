@@ -7,7 +7,9 @@ div.video2{float:left;margin-left:100px;}
 	cursor: pointer;
 	font-size: 100%;
 	border-radius: 25px;
+	border-color: #EEEEEE;
 	margin: auto;
+	margin-top: 10px;
 	width: 40%;
 }
 .uploader.attention{

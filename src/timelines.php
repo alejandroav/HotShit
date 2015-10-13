@@ -40,40 +40,22 @@ if (!isset($_SESSION['userid']))
 		?>
 		<?php include("pages/header.php"); ?>
 		<div>
-		<table>
-			<tbody>
-			<tr>
-			<td>
-				<div class="align-center" style="padding: 20px;">
-					<?php include("pages/sidebar.php");?>
-				</div>
-			</td>
-			<td>
-				<div class="align-center" style="padding: 20px;">
-					<?php include("pages/uploader.php"); ?>
-				</div>
-			</td>
-			</tr>
-			</tbody>
-		</table>
+			<?php include("pages/uploader.php"); ?>
 		</div>
-		<!--<div class="z-depth-2" style="padding:20px;float:left;border:1px solid black">
-			<div style="border:1px solid black">
-				<img src="uploads/userimg/<?php echo $_SESSION['userimg']; ?>" alt="Usuario" height="130"/>
-			</div>
-			<div style="padding:10px"></div>
-			<div style="background-color:#F9FE6F;padding:10px">
-				<div class="align-center">
-					<p style="font-size:120%"><b>Estadisticas</b></p>
+		<div class="row">
+				<div class="col s3">
+					<div class="align-center" style="padding: 20px;">
+						<?php include("pages/sidebar.php");?>
+					</div>
 				</div>
-				<div class="divider"></div>
-				<p>CONTADOR <span style="color:green">Me gustas</span></p>
-				<p>CONTADOR <span style="color:green">Reproducciones</span></p>
-			</div>
-		</div>-->
-		<?php Video();?>
-		<?php Video();?>
-		<?php Video();?>
+				<div class="col s9">
+					<div class="align-center" style="padding: 20px;">
+							<?php Video();?>
+							<?php Video();?>
+							<?php Video();?>
+					</div>
+				</div>
+		</div>
 		<script src="resources/js/uploader.js"></script>
 	</body>
 </html>
