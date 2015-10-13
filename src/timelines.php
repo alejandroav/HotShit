@@ -12,23 +12,7 @@ if (!isset($_SESSION['userid']))
 		<script src="resources/js/jquery-2.1.4.min"></script>
 		<script src="resources/js/materialize.min.js"></script>
 		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
-		<style>
-			div.video1{padding:20px;}
-			div.video2{float:left;margin-left:100px;}
-			.uploader {
-				border:2px dashed black;
-				color:#92AAB0;
-				padding: 10px;
-				cursor: pointer;
-				font-size: 100%;
-			}
-			.uploader.attention{
-				border:2px dashed red;
-			}
-			.uploader.filecharged{
-				border:2px solid red !important;
-			}
-		</style>
+		<link rel="stylesheet" href="resources/css/frontline.css"/>
 	</head>
 	<body style="background-color:#FBFBFB">
 		<?php
@@ -40,22 +24,24 @@ if (!isset($_SESSION['userid']))
 							<div class='col s4'>
 							<h2>Titulo columna</h2>";
 							for ($x = 0; $x <= 9; $x++) {
-									echo "<div class='card green-white lighten-0'>
-													<div class='card-content black-text'>
-														<span class='card-title black-text'>Titulo tarjeta</span>
+									echo '<div class="card green-white lighten-0" style="background-color: rgb(255, 255, '.round($x*(255/9)).')">
+													<div class="card-content black-text">
+														<span class="card-title black-text">Titulo tarjeta</span>
 														<p>Descripcion</p>
 													</div>
-													<div class='card-action'>
-													<a href='#'>Favoritos</a>
-													<a href='#'>Retweet</a>
+													<div class="card-action">
+													<a href="#">Favoritos</a>
+													<a href="#">Retweet</a>
 													</div>
-												</div>";
+												</div>';
 							}
 				echo "</div></div></ul>";
 			}
 		?>
 		<?php include("pages/header.php"); ?>
 		<div>
+			<div>
+			</div>
 			<div class="align-center" style="padding: 20px;">
 				<?php include("pages/uploader.php"); ?>
 			</div>
@@ -77,6 +63,6 @@ if (!isset($_SESSION['userid']))
 		<?php Video();?>
 		<?php Video();?>
 		<?php Video();?>
-		<script src="resources/js/upload.js"></script>
+		<script src="resources/js/uploader.js"></script>
 	</body>
 </html>
