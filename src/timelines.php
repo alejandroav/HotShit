@@ -41,7 +41,7 @@ if (!isset($_SESSION['userid']))
 		<?php include("pages/header.php"); ?>
 		<div>
 			<div class="align-center" style="oadding: 20px;">
-				<?php include("pages/frontline.php");>
+				<?php include("pages/sidebar.php");?>
 			</div>
 			<div class="align-center" style="padding: 20px;">
 				<?php include("pages/uploader.php"); ?>
