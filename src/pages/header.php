@@ -13,9 +13,11 @@
 					</div>
 				</li>
 				<li>
+					<a href="#">
 					<div class="chip">
-						<img src="uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="Contact Person"><?php echo $_SESSION['username']; ?>
+						<img src="uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="#"><?php echo $_SESSION['username']; ?>
 					</div>
+					</a>
 				</li>
 				<li>
 					<a href="operaciones.php?op=logout">
