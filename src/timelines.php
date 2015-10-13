@@ -40,12 +40,22 @@ if (!isset($_SESSION['userid']))
 		?>
 		<?php include("pages/header.php"); ?>
 		<div>
-			<div class="align-center" style="oadding: 20px;">
-				<?php include("pages/sidebar.php");?>
-			</div>
-			<div class="align-center" style="padding: 20px;">
-				<?php include("pages/uploader.php"); ?>
-			</div>
+		<table>
+			<tbody>
+			<tr>
+			<td>
+				<div class="align-center" style="padding: 20px;">
+					<?php include("pages/sidebar.php");?>
+				</div>
+			</td>
+			<td>
+				<div class="align-center" style="padding: 20px;">
+					<?php include("pages/uploader.php"); ?>
+				</div>
+			</td>
+			</tr>
+			</tbody>
+		</table>
 		</div>
 		<!--<div class="z-depth-2" style="padding:20px;float:left;border:1px solid black">
 			<div style="border:1px solid black">
