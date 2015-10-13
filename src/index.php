@@ -11,6 +11,7 @@ if (isset($_SESSION['userid']))
 		<title>Wezee</title>
 		<script src="resources/js/jquery-2.1.4.min.js"></script>
 		<script src="resources/js/materialize.min.js"></script>
+		<link rel="stylesheet" href="resources/outdatedbrowser/outdatedBrowser.min.css">
 		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
 		<link rel="stylesheet" href="resources/css/out.css"/>
 		<script>
@@ -40,6 +41,7 @@ if (isset($_SESSION['userid']))
 		</script>
 	</head>
 	<body>
+		<div id="outdated"></div>
 		<div class="chg_button">
 			<button class="btn waves-effect waves-light" type="submit" name="action" id="chg_button">Sign in/Sign up</button>
 		</div>
@@ -72,6 +74,6 @@ if (isset($_SESSION['userid']))
 				</li>
 			</ul>
 		</div>
-
+		<script src="resources/outdatedbrowser/outdatedBrowser.min.js"></script>
 	</body>
 </html>
