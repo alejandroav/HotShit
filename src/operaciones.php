@@ -3,7 +3,7 @@
 	if (isset($_GET["op"]) && $_GET["op"]) {
 		switch($_GET["op"]){
 			case "uploadvideo":
-				if (!isset($_SESSION['userid'])) else die (json_encode(array("status" => "ERROR", "msg" => "No esta logueado")));
+				if (!isset($_SESSION['userid'])) die (json_encode(array("status" => "ERROR", "msg" => "No esta logueado")));
 				$storeFolder = 'uploads';
 				if (!empty($_FILES)) {
 					$tempFile = $_FILES['file']['tmp_name'];
