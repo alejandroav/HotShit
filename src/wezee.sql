@@ -24,8 +24,23 @@ CREATE TABLE IF NOT EXISTS `follows` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla wezee.follows: ~0 rows (aproximadamente)
+DELETE FROM `follows`;
 /*!40000 ALTER TABLE `follows` DISABLE KEYS */;
 /*!40000 ALTER TABLE `follows` ENABLE KEYS */;
+
+
+-- Volcando estructura para tabla wezee.likes
+CREATE TABLE IF NOT EXISTS `likes` (
+  `user` int(11) NOT NULL,
+  `video` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`user`,`video`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla wezee.likes: ~0 rows (aproximadamente)
+DELETE FROM `likes`;
+/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 
 
 -- Volcando estructura para tabla wezee.tags
@@ -36,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla wezee.tags: ~0 rows (aproximadamente)
+DELETE FROM `tags`;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 
@@ -49,11 +65,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `img` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`email`,`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla wezee.users: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla wezee.users: ~4 rows (aproximadamente)
+DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `email`, `password`, `username`, `img`) VALUES
+	(17, 'alejandroalarcon93@gmail.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'Jandor', NULL),
 	(14, 'prueba3@prueba.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User3', NULL),
 	(15, 'prueba5@gmail.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User5', NULL),
 	(16, 'prueba@prueba.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', NULL);
@@ -74,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `videos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla wezee.videos: ~0 rows (aproximadamente)
+DELETE FROM `videos`;
 /*!40000 ALTER TABLE `videos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `videos` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

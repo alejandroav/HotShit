@@ -29,6 +29,7 @@ if (isset($_SESSION['userid']))
 			<div class="fondo">
 				<div class="entrada" id="formcontent">
 					<?php include("pages/login.php"); ?>
+					<a href="pages/recover.php">Have you lost your password?</a>
 				</div>
 			</div>
 			<div class="isotipo">
