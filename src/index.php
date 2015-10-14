@@ -47,7 +47,7 @@ if (isset($_SESSION['userid']))
 		</div>
 		<div class="frente">
 			<div class="logo-arriba">
-				<img src="resources/images/logo.png" width="142px" height="142px">
+				<img src="resources/images/logo.png" width="143px" height="143px">
 			</div>
 			<div class="fondo">
 				<div class="entrada" id="formcontent">
