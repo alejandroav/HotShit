@@ -59,3 +59,14 @@ div.video2{float:left;margin-left:100px;}
 	margin-top: 5%;
 	background-color: white;
 }
+
+.boton_subir{
+	background-color:#FFF472;
+	color:black;
+	border:1px solid #A4A4A4
+}
+
+.boton_subir:hover{
+	background-color:#FBF12D;
+	font-size:130%;
+}

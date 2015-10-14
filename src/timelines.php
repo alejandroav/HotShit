@@ -1,5 +1,8 @@
 <?php
 session_start();
+   $_SESSION['userid'] = 0;
+     $_SESSION['username'] = "caca";
+     $_SESSION['userimg'] = "";
 if (!isset($_SESSION['userid']))
 	header('Location: index.php');
 ?>
@@ -16,7 +19,7 @@ if (!isset($_SESSION['userid']))
 		<link rel="stylesheet" href="resources/css/frontline.css"/>
 	</head>
 	<body style="background-color:#FBFBFB">
-		<?php include("pages/header.php"); ?>
+		<a name="top"><?php include("pages/header.php"); ?>
 		<div style="padding:10px">
 			<?php include("pages/uploader.php"); ?>
 		</div>		
@@ -30,6 +33,11 @@ if (!isset($_SESSION['userid']))
 			<div id="timelines" class="col s9 align-center">
 				<?php include("pages/timelines.php"); ?>
 			</div>
+		</div>
+		<div class="fixed-action-btn" style="bottom:45px; right:24px;">
+			<a href="#top">
+			 <i class="waves-effect waves-light btn boton_subir">Subir</i>
+			</a>
 		</div>
 		<div id="popup-background" class="popup-background">
 			<div id="popup" class="popup"></div>
