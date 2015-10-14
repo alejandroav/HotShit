@@ -1,8 +1,11 @@
 <?php
 	session_start();
 	include("config.php");
+	require("resources/libs/class.phpmailer.php");
+	require("resources/libs/class.smtp.php");
 	if (isset($_GET["op"]) && $_GET["op"]) {
-		switch($_GET["op"]){
+		switch($_GET["op"]) {
+
 			case "uploadvideo":
 				if (!isset($_SESSION['userid'])) die (json_encode(array("status" => "ERROR", "msg" => "No esta logueado")));
 				$storeFolder = 'uploads';
@@ -38,7 +41,7 @@
 					$_SESSION['userimg'] = $result['img'];
 					if ($_SESSION['userimg'] == "")
 						$_SESSION['userimg'] = 'nouser.jpg';
-						
+
 					header("Location: timelines.php");
 				}
 			break;
@@ -47,7 +50,7 @@
 				$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
 
 				// comprobar que no se repite el email ni el usuario
-				
+
 				$query = "SELECT count(id) as c from users where email = '".$_POST['email']."' or username='".$_POST['user']."';";
 				$resul = 0;
 
@@ -78,6 +81,139 @@
 				// nos cargamos la sesion y volvemos al login
 				session_unset();
 				header('Location: index.php');
+			break;
+
+			case 'recover':
+				// Connect to MySQL
+					$username = "root";
+					$password = "";
+					$host = "localhost";
+					$dbname = "wezee";
+				try {
+				$conn = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password);
+				}
+				catch(PDOException $ex)
+					{
+							$msg = "Failed to connect to the database";
+					}
+
+				// Was the form submitted?
+				if (isset($_POST["ForgotPassword"])) {
+
+					// Harvest submitted e-mail address
+					if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+						$email = $_POST["email"];
+
+					}else{
+						echo "email is not valid";
+						exit;
+					}
+
+					// Check to see if a user exists with this e-mail
+					$query = $conn->prepare('SELECT email FROM users WHERE email = :email');
+					$query->bindParam(':email', $email);
+					$query->execute();
+					$userExists = $query->fetch(PDO::FETCH_ASSOC);
+					$conn = null;
+
+					if ($userExists["email"])
+					{
+						// Create a unique salt. This will never leave PHP unencrypted.
+						$salt = "498#2D83B631%3800EBD!801600D*7E3CC13";
+
+						// Create the unique user password reset key
+						$password = hash('sha512', $salt.$userExists["email"]);
+
+						// Create a url which we will direct them to reset their password
+						$pwrurl = "www.wezee.es/reset_password.php?q=".$password;
+
+						// Mail them their key
+						$mailbody = "Dear user,\n\nIf this e-mail does not apply to you please ignore it. It appears that you have requested a password reset at our website www.wezee.es\n\n".
+						"To reset your password, please click the link below. If you cannot click it, please paste it into your web browser's address bar.\n\n" . $pwrurl . "\n\nThanks,\nThe Administration";
+						$mail = new PHPMailer;
+
+						//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+						$mail->isSMTP();                                      // Set mailer to use SMTP
+						$mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
+						$mail->SMTPAuth = true;                               // Enable SMTP authentication
+						$mail->Username = 'support@wezee.es';                 // SMTP username
+						$mail->Password = 'secret';                           // SMTP password
+						$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+						$mail->Port = 587;                                    // TCP port to connect to
+
+						$mail->setFrom('support@wezee.es', 'WeZee Support Department');
+						$mail->addAddress($userExists["email"]);     // Add a recipient
+						$mail->isHTML(true);                                  // Set email format to HTML
+
+						$mail->Subject = 'Wezee - Reset password';
+						$mail->Body    = $mailbody;
+
+						if(!$mail->send()) {
+						    echo 'Message could not be sent.';
+						    echo 'Mailer Error: ' . $mail->ErrorInfo;
+						} else {
+								echo "Your password recovery key has been sent to your e-mail address.";
+						}
+				}
+
+				else
+					echo "No user with that e-mail address exists.";
+				}
+			break;
+
+			case "reset":
+				// Connect to MySQL
+						$username = "root";
+						$password = "";
+						$host = "localhost";
+						$dbname = "wezee";
+				try {
+				$conn = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password);
+				//$conn = new PDO('mysql:host=localhost;dbname=test', 'root', '');
+				}
+				catch(PDOException $ex)
+						{
+								$msg = "Failed to connect to the database";
+						}
+
+				// Was the form submitted?
+				if (isset($_POST["ResetPasswordForm"]))
+				{
+					// Gather the post data
+					$email = $_POST["email"];
+					$password = $_POST["password"];
+					$confirmpassword = $_POST["confirmpassword"];
+					$hash = $_POST["q"];
+
+					// Use the same salt from the forgot_password.php file
+					$salt = "498#2D83B631%3800EBD!801600D*7E3CC13";
+
+					// Generate the reset key
+					$resetkey = hash('sha512', $salt.$email);
+
+					// Does the new reset key match the old one?
+					if ($resetkey == $hash)
+					{
+						if ($password == $confirmpassword)
+						{
+							//hash and secure the password
+							$password = hash('sha512', $password);
+
+							// Update the user's password
+								$query = $conn->prepare('UPDATE users SET password = :password WHERE email = :email');
+								$query->bindParam(':password', $password);
+								$query->bindParam(':email', $email);
+								$query->execute();
+								$conn = null;
+							echo "Your password has been successfully reset.";
+						}
+						else
+							echo "Your password's do not match.";
+					}
+					else
+						echo "Your password reset key is invalid.";
+				}
 			break;
 
 			default:

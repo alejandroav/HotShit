@@ -24,11 +24,12 @@ if (isset($_SESSION['userid']))
 		</div>
 		<div class="frente">
 			<div class="logo-arriba">
-				<img src="resources/images/logo.png" width="143px" height="143px">
+				<img src="resources/images/zlogo2.png" width="143px" height="143px">
 			</div>
 			<div class="fondo">
 				<div class="entrada" id="formcontent">
 					<?php include("pages/login.php"); ?>
+					<a href="pages/recover.php">Have you lost your password?</a>
 				</div>
 			</div>
 			<div class="isotipo">
