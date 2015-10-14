@@ -61,6 +61,8 @@ div.video2{float:left;margin-left:100px;}
 }
 
 .boton_subir{
+	padding:7px;
+	display:none;
 	background-color:#FFF472;
 	color:black;
 	border:1px solid #A4A4A4
