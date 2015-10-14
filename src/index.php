@@ -55,7 +55,7 @@ if (isset($_SESSION['userid']))
 				</div>
 			</div>
 			<div class="isotipo">
-				<div class="center hide-on-med-and-down">
+				<div class="right hide-on-med-and-down">
 					You live it, <span style="color:yellow">WeZee</span> it.
 				</div>
 			</div>
