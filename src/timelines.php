@@ -1,8 +1,5 @@
 <?php
 session_start();
-   $_SESSION['userid'] = 0;
-     $_SESSION['username'] = "caca";
-     $_SESSION['userimg'] = "";
 if (!isset($_SESSION['userid']))
 	header('Location: index.php');
 ?>
@@ -22,8 +19,8 @@ if (!isset($_SESSION['userid']))
 		<a name="top"><?php include("pages/header.php"); ?>
 		<div style="padding:10px">
 			<?php include("pages/uploader.php"); ?>
-		</div>		
-		
+		</div>
+
 		<div class="row">
 			<div class="col s3">
 				<div class="align-center" style="padding:20px;">
@@ -48,7 +45,7 @@ if (!isset($_SESSION['userid']))
 				var circle = '<div id="loadmore" class="preloader-wrapper active" style="margin-left: '+($("#timelines").width()/2)+'px;"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 				$("#timelines").append(circle);
 				$.ajax({
-					url: 'pages/timelines.php', 
+					url: 'pages/timelines.php',
 					success: function(res) {
 						$("#timelines").append(res);
 						$("#loadmore").remove();

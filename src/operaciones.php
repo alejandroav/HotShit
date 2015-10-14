@@ -135,12 +135,12 @@
 						//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
 						$mail->isSMTP();                                      // Set mailer to use SMTP
-						$mail->Host = 'vps88994.ovh.net';  // Specify main and backup SMTP servers
+						$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 						$mail->SMTPAuth = true;                               // Enable SMTP authentication
-						$mail->Username = '';                 // SMTP username
-						$mail->Password = '';                           // SMTP password
-						$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-						$mail->Port = 25;                                    // TCP port to connect to
+						$mail->Username = 'wezeevideo@gmail.com';                 // SMTP username
+						$mail->Password = 'sisisitotalmente';                           // SMTP password
+						$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+						$mail->Port = 465;                                    // TCP port to connect to
 
 						$mail->setFrom('support@wezee.es', 'WeZee Support Department');
 						$mail->addAddress($userExists["email"]);     // Add a recipient
