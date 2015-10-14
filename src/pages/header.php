@@ -4,6 +4,7 @@
 			<a href="index.php" class="brand-logo" style="color:black;margin-left:15px">
 				<div style="color:yellow;padding:10px">
 					<img src="resources/images/zlogo2.png" width="50px">
+					<img src="resources/images/zlogo.png" width="130px">
 				</div>
 			</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">

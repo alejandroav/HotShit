@@ -40,18 +40,12 @@ if (isset($_SESSION['userid']))
 		</div>
 		<div class="slider fullscreen">
 			<ul class="slides">
+				<?php for ($i = 1; $i <= 11; $i++)
+					echo "
 				<li>
-					<img src="resources/images/fondo1.jpg"/>
-				</li>
-				<li>
-					<img src="resources/images/fondo3.jpg"/>
-				</li>
-				<li>
-					<img src="resources/images/fondo4.jpg"/>
-				</li>
-				<li>
-					<img src="resources/images/fondo5.jpg"/>
-				</li>
+					<img src='resources/images/fondo".$i.".jpg'/>
+				</li>";
+				?>
 			</ul>
 		</div>
 		<script src="resources/js/jquery-2.1.4.min.js"></script>
