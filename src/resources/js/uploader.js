@@ -71,6 +71,8 @@ var rowCount=0;
 function StatusBar(id) {
 	this.obj = $("#"+id);
 	this.obj.unbind();
+	this.objmanual = $("#"+id+"-input");
+	this.objmanual.unbind();
 	this.obj.removeClass("uploader");
 	this.obj.html('<div class="progress"><div class="determinate" style="width: 0%; background-color: rgb(255, 255, 0);"></div></div>');
 	this.progressBar = $($("#"+id+" > .progress")[0]);
@@ -130,7 +132,7 @@ function handleFileUpload(files, id) {
 			statusBar.setFileNameSize(files[0].name, files[0].size);
 			sendFileToServer(fd,statusBar, id);
 		} else Materialize.toast('El formato del archivo no es valido', 5000);
-	} else Materialize.toast('Debe seleccionar al menos un archivo', 5000);
+	} else Materialize.toast('Debe seleccionar un archivo', 5000);
 }
 function startUploadZone(id) {
 	$("#"+id).on('click', function(e){
