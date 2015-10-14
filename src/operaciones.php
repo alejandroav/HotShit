@@ -39,6 +39,9 @@
 					$_SESSION['userid'] = $result['id'];
 					$_SESSION['username'] = $result['username'];
 					$_SESSION['userimg'] = $result['img'];
+					if ($_SESSION['userimg'] == "")
+						$_SESSION['userimg'] = 'nouser.jpg';
+						
 					header("Location: timelines.php");
 				}
 			break;
