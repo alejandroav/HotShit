@@ -23,7 +23,12 @@ if (!isset($_SESSION['userid']))
 				echo "<ul>";
 				echo "<div>
 						<div class='col s4'>
-						<h2>Titulo columna</h2>";
+						<h2>Titulo columna</h2>
+						<div class='search-wrapper' style='background-color:transparent;'>
+							<input id='search'>
+							<a href='#'> <img src='resources/images/busqueda.png' alt='lupa' width='20'/></a>
+							<div class='search-results'></div>
+						</div>";
 							for ($x = 0; $x <= 9; $x++) {
 									echo 
 										'<div class="card green-white lighten-0" style="background-color: rgb(255, 255, '.round($x*(255/9)).')">
@@ -32,7 +37,10 @@ if (!isset($_SESSION['userid']))
 												<p>Descripcion</p>
 											</div>
 											<div class="card-action">
-												<a href="#">Favoritos</a>
+												<div class="chip">
+													<img src="uploads/userimg/<?php echo $_SESSION["userimg"];?>" alt="#"><?php echo $_SESSION["username"]; ?>
+												</div>
+												<a href="#"><img class="responsive-img" src="resources/images/guiño.png" alt="favoritos" width="25"/></a>
 												<a href="#">ZeeIt</a>
 											</div>
 										</div>';
@@ -43,7 +51,8 @@ if (!isset($_SESSION['userid']))
 		<?php include("pages/header.php"); ?>
 		<div style="padding:10px">
 			<?php include("pages/uploader.php"); ?>
-		</div>
+		</div>		
+		
 		<div class="row">
 			<div class="col s3">
 				<div class="align-center" style="padding:20px;">
