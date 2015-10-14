@@ -85,14 +85,14 @@ function StatusBar(id) {
 		}
 		this.name.html(name);
 		this.size.html(sizeStr);
-		//console.log(name+ " "+sizeStr);
 	}
 	this.setProgress = function(progress) {	  
 		var progressBarWidth = progress*this.progressBar.width()/ 100;  
 		this.progressBar.find('.determinate').animate({width: progressBarWidth}, 10);
 		this.percent.html(progress + "%");
 		if(parseInt(progress) >= 100) {
-			Materialize.toast('Archivo subido correctamente!', 4000)
+			Materialize.toast('Archivo subido correctamente!', 4000);
+			$("popup").load("pages/test.html");
 			/*this.obj.html("File upload Done");
 			this.obj.hide(5000);*/
 			//Mostrar "popup" de configuracion de video
