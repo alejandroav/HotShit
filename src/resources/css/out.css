@@ -17,7 +17,7 @@
 	width: 300px;
 	height: 250px;
 	overflow:hidden;
-	background-color:#999999;
+	background-color:#AAAAAA;
 	border-radius: 25px;
 	opacity:0.9;
 	border: 4px solid #EEEE23;
@@ -34,7 +34,7 @@
 	left:50%;
 	margin-top:50px;
 	margin-left:-75px;
-	over-flow:hidden;
+	overflow:hidden;
 	width:150px;
 	height:150px;
 	border-radius: 75px;
@@ -46,14 +46,13 @@
 	border:3px;
 	overflow:hidden;
 	margin-top:465px;
-	border-bottom: 3px solid #999999
-	background-color:#999999;
+	text-shadow:#FFFF05;
 	text-align:center;
-	over-flow:hidden;
+	overflow:hidden;
 
 	color:white;
-	text-family:bold;
-	text-size:200;
+	font-family:bold;
+	font-size:200;
 	text-transform:capitalize;
 	font-size:300%;
 }
