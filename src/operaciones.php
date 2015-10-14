@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include("config.php");
 	if (isset($_GET["op"]) && $_GET["op"]) {
 		switch($_GET["op"]){
 			case "uploadvideo":
@@ -14,18 +15,14 @@
 					if (file_exists($tempFile)) {
 						exec("/bin/ffmpeg -i $tempFile -c:v libx264 -c:a aac -strict -2 $targetFile");
 						if (file_exists($targetFile) && filesize($targetFile) > 0) die (json_encode(array("status" => "OK", "msg" => "Original: ".$tempFile." Nuevo: ".$targetFile)));
-						else die (json_encode(array("status" => "ERROR", "msg" => "Error al copiar el archivo ".$targetFile)));
-					} else die (json_encode(array("status" => "ERROR", "msg" => "Error al subir el archivo ".$tempFile)));
+						else die (json_encode(array("status" => "ERROR", "msg" => "Error al copiar el archivo ".$name.".mp4")));
+					} else die (json_encode(array("status" => "ERROR", "msg" => "Error al subir el archivo ".$name.".mp4")));
 				} else die (json_encode(array("status" => "ERROR", "msg" => "Debe seleccionar algun archivo")));
 			break;
 
 			case 'login':
 				// conectar a bd
-				$servername = "localhost";
-				$username = "root";
-				$password = "";
-				$db = "wezee";
-			  $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
+				$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
 
 				// consultamos si existe un usuario con ese nombre/email y esa contraseña
 				$gsent = $conn->prepare("SELECT id,username,img from users where
@@ -47,20 +44,12 @@
 			break;
 
 			case 'register':
-				// conectar a bd
-				$servername = "localhost";
-				$username = "root";
-				$password = "";
-				$db = "wezee";
-			  $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
+				$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
 
 				// comprobar que no se repite el email ni el usuario
-				/*$gsent = $conn->prepare("SELECT id from users where email = '".$_POST['email']."' or username='".
-				$_POST['user']."');");
-				$gsent->execute();*/
-				$query = "SELECT count(id) as c from users where email = '".$_POST['email']."' or username='".
-				$_POST['user']."';";
-				$resul;
+				
+				$query = "SELECT count(id) as c from users where email = '".$_POST['email']."' or username='".$_POST['user']."';";
+				$resul = 0;
 
 				foreach($conn->query($query) as $row)
 					$resul = $row['c'];

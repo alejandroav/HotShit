@@ -38,7 +38,7 @@ if (!isset($_SESSION['userid']))
 											</div>
 											<div class="card-action">
 												<div class="chip">
-													<img src="uploads/userimg/<?php echo $_SESSION["userimg"];?>" alt="#"><?php echo $_SESSION["username"]; ?>
+													<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
 												</div>
 												<a href="#"><img class="responsive-img" src="resources/images/guiño.png" alt="favoritos" width="25"/></a>
 												<a href="#">ZeeIt</a>
@@ -66,6 +66,9 @@ if (!isset($_SESSION['userid']))
 					<?php Video();?>
 				</div>
 			</div>
+		</div>
+		<div class="popup-background">
+			<div id="popup" class="popup"></div>
 		</div>
 		<script src="resources/js/uploader.js"></script>
 	</body>

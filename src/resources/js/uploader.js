@@ -1,5 +1,13 @@
 var circle = '<div class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
-function sendFileToServer(formData,status) {
+function IsJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+function sendFileToServer(formData,status, id) {
 	var uploadURL ="operaciones.php?op=uploadvideo";
 	var jqXHR=$.ajax({
 		xhr: function() {
@@ -12,7 +20,7 @@ function sendFileToServer(formData,status) {
 						if (event.lengthComputable) {
 							percent = Math.ceil(position / total * 100);
 						}
-						status.setProgress(percent);
+						if (percent < 100) status.setProgress(percent);
 					}, false);
 				}
 			return xhrobj;
@@ -24,21 +32,37 @@ function sendFileToServer(formData,status) {
 		cache: false,
 		data: formData,
 		success: function(data){
-			console.log(data);
-			//Comprobar que el video este convertido correctamente o mostrar error
-			status.setProgress(100);
+			if (IsJsonString(data)){
+				data = $.parseJSON(data);
+				if (data.status == "OK") status.setProgress(100);
+				else {
+					Materialize.toast(data.msg, 10000);
+					restart(id);
+				}
+			} else Materialize.toast(data, 10000);
 		}
 	}); 
 
 	status.setAbort(jqXHR);
 }
+function restart(id){
+	var obj = $("#"+id);
+	var objmanual = $("#"+id+"-input");
+	objmanual.val("");
+	obj.addClass("uploader");
+	obj.html("Arrastra aqui o haz click para subir un video");
+	startUploadZone(id);
+}
 var rowCount=0;
 function StatusBar(id) {
 	this.obj = $("#"+id);
-	this.obj.unbind("click");
+	this.obj.unbind();
 	this.obj.removeClass("uploader");
-	this.obj.html('<div class="progress"><div class="determinate" style="width: 0%; background-color: rgb(0, 255, 255);"></div></div>');
+	this.obj.html('<div class="progress"><div class="determinate" style="width: 0%; background-color: rgb(255, 255, 0);"></div></div>');
 	this.progressBar = $($("#"+id+" > .progress")[0]);
+	
+	this.manualupload = $("#"+id+"-input");
+	this.manualupload.unbind();
 	
 	this.obj.prepend('<div class="percent">0%</div>');
 	this.percent = $($("#"+id+" .percent")[0]);
@@ -61,13 +85,14 @@ function StatusBar(id) {
 		}
 		this.name.html(name);
 		this.size.html(sizeStr);
-		console.log(name+ " "+sizeStr);
+		//console.log(name+ " "+sizeStr);
 	}
 	this.setProgress = function(progress) {	  
 		var progressBarWidth = progress*this.progressBar.width()/ 100;  
 		this.progressBar.find('.determinate').animate({width: progressBarWidth}, 10);
 		this.percent.html(progress + "%");
 		if(parseInt(progress) >= 100) {
+			Materialize.toast('Archivo subido correctamente!', 4000)
 			/*this.obj.html("File upload Done");
 			this.obj.hide(5000);*/
 			//Mostrar "popup" de configuracion de video
@@ -76,7 +101,7 @@ function StatusBar(id) {
 	this.setAbort = function(jqxhr) {
 		this.abort.on("click", function() {
 			jqxhr.abort();
-			obj.hide();
+			setTimeout(function() {restart(id);}, 100);
 		});
 	}
 }
@@ -87,7 +112,7 @@ function handleFileUpload(files, id) {
 			fd.append('file', files[0]);
 			var statusBar = new StatusBar(id);
 			statusBar.setFileNameSize(files[0].name, files[0].size);
-			sendFileToServer(fd,statusBar);
+			sendFileToServer(fd,statusBar, id);
 		} else {
 			//Mostrar error de el archivo es invalido
 		}
@@ -120,7 +145,7 @@ function startUploadZone(id) {
 		e.preventDefault();
 		handleFileUpload(e.originalEvent.dataTransfer.files, id);
 	});
-	$("#uploader-input").on('change', function (e) {
+	$("#"+id+"-input").on('change', function (e) {
 		$("#"+id).removeClass("attention");
 		$("#"+id).removeClass("filecharged");
 		e.preventDefault();
