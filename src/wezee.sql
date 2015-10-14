@@ -1,102 +1,81 @@
--- phpMyAdmin SQL Dump
--- version 4.5.0.2
--- http://www.phpmyadmin.net
---
--- Servidor: localhost
--- Tiempo de generación: 12-10-2015 a las 20:29:02
--- Versión del servidor: 5.5.44-0+deb8u1
--- Versión de PHP: 5.6.13-0+deb8u1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- --------------------------------------------------------
+-- Host:                         localhost
+-- Versión del servidor:         5.6.17 - MySQL Community Server (GPL)
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             9.3.0.4984
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
---
--- Base de datos: `wezee`
---
+-- Volcando estructura de base de datos para wezee
+CREATE DATABASE IF NOT EXISTS `wezee` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `wezee`;
 
--- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `tags`
---
-
-CREATE TABLE `tags` (
-  `video` int(11) NOT NULL COMMENT 'video id',
-  `tag` varchar(50) NOT NULL
+-- Volcando estructura para tabla wezee.follows
+CREATE TABLE IF NOT EXISTS `follows` (
+  `follower` int(11) NOT NULL DEFAULT '0',
+  `followed` int(11) NOT NULL DEFAULT '0',
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`follower`,`followed`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- Volcando datos para la tabla wezee.follows: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `follows` DISABLE KEYS */;
+/*!40000 ALTER TABLE `follows` ENABLE KEYS */;
 
---
--- Estructura de tabla para la tabla `users`
---
 
-CREATE TABLE `users` (
-  `id` int(10) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `handle` varchar(10) NOT NULL COMMENT '@handle',
-  `username` varchar(30) NOT NULL COMMENT 'public name'
+-- Volcando estructura para tabla wezee.tags
+CREATE TABLE IF NOT EXISTS `tags` (
+  `video` int(11) NOT NULL,
+  `tag` varchar(50) NOT NULL,
+  PRIMARY KEY (`video`,`tag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- Volcando datos para la tabla wezee.tags: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `tags` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 
---
--- Estructura de tabla para la tabla `videos`
---
 
-CREATE TABLE `videos` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL COMMENT 'video name',
-  `user` int(11) NOT NULL COMMENT 'user id',
-  `description` text,
-  `thumbnail` varchar(100) NOT NULL COMMENT 'location of thumbnail image',
-  `file` varchar(500) NOT NULL COMMENT 'video file location',
-  `trendlevel` double DEFAULT NULL
+-- Volcando estructura para tabla wezee.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `img` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`email`,`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla wezee.users: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `email`, `password`, `username`, `img`) VALUES
+	(14, 'prueba3@prueba.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User3', NULL),
+	(15, 'prueba5@gmail.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User5', NULL),
+	(16, 'prueba@prueba.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+
+-- Volcando estructura para tabla wezee.videos
+CREATE TABLE IF NOT EXISTS `videos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `likes` int(11) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `thumbnail` varchar(50) NOT NULL,
+  `file` varchar(50) NOT NULL,
+  `trendlevel` double DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `tags`
---
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`video`,`tag`);
-
---
--- Indices de la tabla `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`,`email`,`handle`);
-
---
--- Indices de la tabla `videos`
---
-ALTER TABLE `videos`
-  ADD PRIMARY KEY (`id`,`user`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `videos`
---
-ALTER TABLE `videos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+-- Volcando datos para la tabla wezee.videos: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `videos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `videos` ENABLE KEYS */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
