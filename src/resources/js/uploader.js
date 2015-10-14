@@ -1,4 +1,3 @@
-var circle = '<div class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 function IsJsonString(str) {
     try {
         JSON.parse(str);
@@ -7,22 +6,34 @@ function IsJsonString(str) {
     }
     return true;
 }
+function createPopup(file){
+	$("#popup-background").show("fast");
+	$("#popup-background").on("click", function(){
+		$("#popup-background").hide("fast");
+		//Anadir un aviso de que se va a guardar sin editar
+	});
+	$("#popup").load(file);
+}
 function sendFileToServer(formData,status, id) {
 	var uploadURL ="operaciones.php?op=uploadvideo";
 	var jqXHR=$.ajax({
 		xhr: function() {
 			var xhrobj = $.ajaxSettings.xhr();
 			if (xhrobj.upload) {
-					xhrobj.upload.addEventListener('progress', function(event) {
-						var percent = 0;
-						var position = event.loaded || event.position;
-						var total = event.total;
-						if (event.lengthComputable) {
-							percent = Math.ceil(position / total * 100);
-						}
-						if (percent < 100) status.setProgress(percent);
-					}, false);
-				}
+				xhrobj.upload.addEventListener('progress', function(event) {
+					var percent = 0;
+					var position = event.loaded || event.position;
+					var total = event.total;
+					if (event.lengthComputable) {
+						percent = Math.ceil(position / total * 100);
+					}
+					if (percent < 100) status.setProgress(percent);
+				}, false);
+				xhrobj.upload.addEventListener('loadend', function(e) {
+					status.setProgress(100);
+					status.setBar("i");
+				}, false);
+			}
 			return xhrobj;
 		},
 		url: uploadURL,
@@ -34,8 +45,11 @@ function sendFileToServer(formData,status, id) {
 		success: function(data){
 			if (IsJsonString(data)){
 				data = $.parseJSON(data);
-				if (data.status == "OK") status.setProgress(100);
-				else {
+				if (data.status == "OK") {
+					Materialize.toast('Archivo convertido correctamente!', 3000);
+					restart(id);
+					createPopup("pages/videoconfig.php");
+				} else {
 					Materialize.toast(data.msg, 10000);
 					restart(id);
 				}
@@ -74,6 +88,11 @@ function StatusBar(id) {
 	this.obj.append('<button class="abort">Cancelar</button>');
 	this.abort = $($("#"+id+" > .abort")[0]);
 	
+	this.setBar = function(type) {
+		if (type == "i") this.progressBar.find(">:first-child").removeClass("determinate").addClass("indeterminate");
+		else this.progressBar.find(">:first-child").removeClass("indeterminate").addClass("determinate");
+	}
+	
 	this.setFileNameSize = function(name,size) {
 		var sizeStr="";
 		var sizeKB = size/1024;
@@ -91,11 +110,8 @@ function StatusBar(id) {
 		this.progressBar.find('.determinate').animate({width: progressBarWidth}, 10);
 		this.percent.html(progress + "%");
 		if(parseInt(progress) >= 100) {
-			Materialize.toast('Archivo subido correctamente!', 4000);
-			$("popup").load("pages/test.html");
-			/*this.obj.html("File upload Done");
-			this.obj.hide(5000);*/
-			//Mostrar "popup" de configuracion de video
+			Materialize.toast('Archivo subido correctamente!', 2000);
+			this.percent.html("Convirtiendo...");
 		}
 	}
 	this.setAbort = function(jqxhr) {
@@ -113,12 +129,8 @@ function handleFileUpload(files, id) {
 			var statusBar = new StatusBar(id);
 			statusBar.setFileNameSize(files[0].name, files[0].size);
 			sendFileToServer(fd,statusBar, id);
-		} else {
-			//Mostrar error de el archivo es invalido
-		}
-	} else {
-		//Mostrar error de no se esta subiendo ningun archivo
-	}
+		} else Materialize.toast('El formato del archivo no es valido', 5000);
+	} else Materialize.toast('Debe seleccionar al menos un archivo', 5000);
 }
 function startUploadZone(id) {
 	$("#"+id).on('click', function(e){

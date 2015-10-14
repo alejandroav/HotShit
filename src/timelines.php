@@ -16,38 +16,6 @@ if (!isset($_SESSION['userid']))
 		<link rel="stylesheet" href="resources/css/frontline.css"/>
 	</head>
 	<body style="background-color:#FBFBFB">
-		<?php
-			function Video(){
-				// imprimimos tarjetas con cada video.
-				// hay que pasar por parametro si queremos videos populares o tags populares
-				echo "<ul>";
-				echo "<div>
-						<div class='col s4'>
-						<h2>Titulo columna</h2>
-						<div class='search-wrapper' style='background-color:transparent;'>
-							<input id='search'>
-							<a href='#'> <img src='resources/images/busqueda.png' alt='lupa' width='20'/></a>
-							<div class='search-results'></div>
-						</div>";
-							for ($x = 0; $x <= 9; $x++) {
-									echo 
-										'<div class="card green-white lighten-0" style="background-color: rgb(255, 255, '.round($x*(255/9)).')">
-											<div class="card-content black-text">
-												<span class="card-title black-text">Titulo tarjeta</span>
-												<p>Descripcion</p>
-											</div>
-											<div class="card-action">
-												<div class="chip">
-													<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
-												</div>
-												<a href="#"><img class="responsive-img" src="resources/images/guiño.png" alt="favoritos" width="25"/></a>
-												<a href="#">ZeeIt</a>
-											</div>
-										</div>';
-								}
-				echo "</div></div></ul>";
-			}
-		?>
 		<?php include("pages/header.php"); ?>
 		<div style="padding:10px">
 			<?php include("pages/uploader.php"); ?>
@@ -59,17 +27,31 @@ if (!isset($_SESSION['userid']))
 					<?php include("pages/sidebar.php");?>
 				</div>
 			</div>
-			<div class="col s9">
-				<div class="align-center">
-					<?php Video();?>
-					<?php Video();?>
-					<?php Video();?>
-				</div>
+			<div id="timelines" class="col s9 align-center">
+				<?php include("pages/timelines.php"); ?>
 			</div>
 		</div>
-		<div class="popup-background">
+		<div id="popup-background" class="popup-background">
 			<div id="popup" class="popup"></div>
 		</div>
+		<script>
+			function loadMore(){
+				//Materialize.toast("This is our ScrollFire Demo!", 1500 )
+				var circle = '<div id="loadmore" class="preloader-wrapper active" style="margin-left: '+($("#timelines").width()/2)+'px;"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+				$("#timelines").append(circle);
+				$.ajax({
+					url: 'pages/timelines.php', 
+					success: function(res) {
+						$("#timelines").append(res);
+						$("#loadmore").remove();
+					}
+				});
+			}
+			var options = [
+				{selector: '#timelines', offset: $('#timelines').height(), callback: 'loadMore()' }
+			];
+			Materialize.scrollFire(options);
+		</script>
 		<script src="resources/js/uploader.js"></script>
 	</body>
 </html>
