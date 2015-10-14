@@ -37,12 +37,19 @@ function StatusBar(id) {
 	this.obj = $("#"+id);
 	this.obj.unbind("click");
 	this.obj.removeClass("uploader");
-	this.obj.html('<div class="progress"><div class="determinate" style="width: 0%"></div></div>');
+	this.obj.html('<div class="progress"><div class="determinate" style="width: 0%; background-color: rgb(0, 255, 255);"></div></div>');
 	this.progressBar = $($("#"+id+" > .progress")[0]);
-	this.obj.append('<div class="percent">0%</div>');
-	this.percent = $($("#"+id+" > .percent")[0]);
-	this.obj.append('<button class="abort">X</button>');
+	
+	this.obj.prepend('<div class="percent">0%</div>');
+	this.percent = $($("#"+id+" .percent")[0]);
+	
+	this.obj.append('<div class="center-align"><span class="name"></span> - <span class="size"></span></div>');
+	this.name = $($("#"+id+" .name")[0]);
+	this.size = $($("#"+id+" .size")[0]);
+	
+	this.obj.append('<button class="abort">Cancelar</button>');
 	this.abort = $($("#"+id+" > .abort")[0]);
+	
 	this.setFileNameSize = function(name,size) {
 		var sizeStr="";
 		var sizeKB = size/1024;
@@ -52,16 +59,17 @@ function StatusBar(id) {
 		} else {
 			sizeStr = sizeKB.toFixed(2)+" KB";
 		}
-		//this.filename.html(name);
-		//this.size.html(sizeStr);
+		this.name.html(name);
+		this.size.html(sizeStr);
+		console.log(name+ " "+sizeStr);
 	}
 	this.setProgress = function(progress) {	  
 		var progressBarWidth = progress*this.progressBar.width()/ 100;  
 		this.progressBar.find('.determinate').animate({width: progressBarWidth}, 10);
 		this.percent.html(progress + "%");
 		if(parseInt(progress) >= 100) {
-			this.obj.html("File upload Done");
-			this.obj.hide(5000);
+			/*this.obj.html("File upload Done");
+			this.obj.hide(5000);*/
 			//Mostrar "popup" de configuracion de video
 		}
 	}
@@ -78,7 +86,7 @@ function handleFileUpload(files, id) {
 			var fd = new FormData();
 			fd.append('file', files[0]);
 			var statusBar = new StatusBar(id);
-			//statusBar.setFileNameSize();
+			statusBar.setFileNameSize(files[0].name, files[0].size);
 			sendFileToServer(fd,statusBar);
 		} else {
 			//Mostrar error de el archivo es invalido

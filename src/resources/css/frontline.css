@@ -18,6 +18,16 @@ div.video2{float:left;margin-left:100px;}
 .uploader.filecharged{
 	border:2px solid red !important;
 }
+/*#uploader .progress{
+}
+#uploader .percent{
+}
+#uploader .abort{
+}
+#uploader .name{
+} 
+#uploader .size{
+}*/
 .profile_pic{
 	border:1px solid grey;
 	margin:10px;
