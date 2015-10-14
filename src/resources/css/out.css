@@ -32,7 +32,7 @@
 	z-index:1;
 	position:fixed;
 	left:50%;
-	margin-top:50px;
+	margin-top:30px;
 	margin-left:-75px;
 	overflow:hidden;
 	width:150px;
@@ -61,7 +61,10 @@
 	position:fixed;
 	width:400px;
 	left:50%;
+	top:50%;
+	height:600px;
 	margin-left: -200px;
+	margin-top:-300px;
 }
 .isotipoPalabra{
 	color:yellow;
