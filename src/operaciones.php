@@ -32,7 +32,7 @@
 					(username = '".$_POST['user']."' OR email = '".$_POST['user']."') AND password = '".hash("sha512", $_POST['password'])."'");
 				$gsent->execute();
 				$result = $gsent->fetch(PDO::FETCH_ASSOC);
-
+				$conn = null;
 				// si existe, cargamos sus datos en sesion y nos vamos al timeline
 				if (count($result)>0) {
 					session_start();
@@ -43,6 +43,8 @@
 						$_SESSION['userimg'] = 'nouser.jpg';
 
 					header("Location: timelines.php");
+				} else {
+					header("Location: index.php?user=error");
 				}
 			break;
 
@@ -67,7 +69,7 @@
 					$_POST['user']."','".
 					$_POST['email']."','".
 					hash("sha512", $_POST['password'])."');");
-
+					$conn = null;
 					if ($res == 1) {
 						header("Location: index.php?user=created");
 					}
@@ -213,6 +215,44 @@
 					}
 					else
 						echo "Your password reset key is invalid.";
+				}
+			break;
+
+			case 'videoconfig':
+			// Connect to MySQL
+				$username = "root";
+				$password = "";
+				$host = "localhost";
+				$dbname = "wezee";
+			try {
+			$conn = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password);
+			}
+			catch(PDOException $ex)
+				{
+						$msg = "Failed to connect to the database";
+				}
+
+				// Check to see if a user exists with this e-mail
+				$query = $conn->prepare('SELECT id FROM videos WHERE id = :id');
+				$query->bindParam(':id', $_POST['videoid']);
+				$query->execute();
+				$videoExists = $query->fetch(PDO::FETCH_ASSOC);
+
+				if ($videoExists['id']) {
+					$tags = new array(preg_split("/[\s,]+/",$_POST['tags']));
+					$query = $conn->prepare('UPDATE videos SET name = :name where id = :id');
+					$query->bindParam(':name', $_POST['title']);
+					$query->bindParam(':id', $_POST['videoid']);
+					$query->execute();
+
+					for ($i = 0; $i < count($tags); $i++) {
+						$query = $conn->prepare('insert into tags values(:id,:tag)');
+						$query->bindParam(':id', $_POST['videoid']);
+						$query->bindParam(':tag', $tags[$i]);
+						$query->execute();
+					}
+					$conn = null;
+					header('Location: timelines.php');
 				}
 			break;
 
