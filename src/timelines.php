@@ -13,6 +13,7 @@ if (!isset($_SESSION['userid']))
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta charset="utf-8"/>
 		<title>Wezee</title>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 		<script src="resources/js/jquery-2.1.4.min"></script>
 		<script src="resources/js/materialize.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -35,10 +36,10 @@ if (!isset($_SESSION['userid']))
 				<?php include("pages/timelines.php"); ?>
 			</div>
 		</div>
-		<div id="bt_top" class="fixed-action-btn" style="bottom:45px; right:24px;">
-			<a href="#">
-			 <i class="waves-effect waves-light btn boton_subir">Subir</i>
-			</a>
+		<div id="bt_top" class="fixed-action-btn boton_subir" style="bottom:45px; right:24px;">
+			 <a class="btn-floating btn-large waves-effect waves-light boton_subir_colores">
+				<i class="material-icons md-36 elblack">keyboard_arrow_up</i>
+			 </a>
 		</div>
 		<div id="popup-background" class="popup-background">
 			<div id="popup" class="popup"></div>
