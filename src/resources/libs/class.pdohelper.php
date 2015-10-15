@@ -3,7 +3,7 @@ class PDOHelper {
 	var $db;
 	function PDOHelper($servername, $username, $password, $db){
 		try{
-			$this->db = new PDO("mysql:host=$servername;dbname=$db", $username, $password);}
+			$this->db = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
 		} catch(PDOException $ex) {
 			die("Failed to connect to the database");
 		}

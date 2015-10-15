@@ -1,5 +1,6 @@
-<script>
+<script type="text/javascript">
 	function like(videoid,userid) {
+		Materialize.toast('YLELELELE video!', 3000);
 			$.ajax({
 			method: "POST",
 			url: "operaciones.php?op=like",
@@ -10,12 +11,13 @@
 					response = $.parseJSON(response);
 					if (response.status == "OK") {
 						$('#like'+videoid).css('font-weight', 'bold');
+							Materialize.toast('You liked this video!', 3000);
+					} else {
+						Materialize.toast('Error: video could not be liked', 3000);
 					}
 				}
 			}
 		});
-
-		if (res)
 	}
 </script>
 <?php
@@ -60,7 +62,7 @@ function Video($id){
 										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
 									</div>
 									<a href="#"><img class="responsive-img" src="resources/images/wink.png" alt="favoritos" width="25"/></a>
-									<a href="javascript:like('.$id.')" id="like'.$id.'">ZeeIt</a>
+									<a onclick="jsfunction()" href="javascript:like('.$id.','.$_SESSION['userid'].');" id="like'.$id.'">ZeeIt</a>
 								</div>
 							</div>';
 					}
@@ -69,7 +71,7 @@ function Video($id){
 <ul>
 	<div>
 		<div class="col s4">
-			<h2>Titulo columna</h2>
+			<h2>Main</h2>
 			<div class="search-wrapper" style="background-color:transparent">
 				<input id="search">
 				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
@@ -79,7 +81,7 @@ function Video($id){
 	</div>
 	<div>
 		<div class="col s4">
-			<h2>Titulo columna</h2>
+			<h2>Users</h2>
 			<div class="search-wrapper" style="background-color:transparent">
 				<input id="search">
 				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
@@ -89,7 +91,7 @@ function Video($id){
 	</div>
 	<div>
 		<div class="col s4">
-			<h2>Titulo columna</h2>
+			<h2>Tags</h2>
 			<div class="search-wrapper" style="background-color:transparent">
 				<input id="search">
 				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
