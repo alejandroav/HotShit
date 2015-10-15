@@ -24,8 +24,25 @@
 						exec("/bin/ffmpeg -i $tempFile -c:v libx264 -c:a aac -strict -2 $targetFile");
 						exec("/bin/ffmpeg -i $tempFile -ss 00:00:01.000 -vframes 1 $thumbsFile");
 						if (file_exists($targetFile) && filesize($targetFile) > 0) {
-							$query = $dbc->query("");
-							die (json_encode(array("status" => "OK", "msg" => "Original: ".$tempFile." Nuevo: ".$targetFile)));
+							// comenzar conexion a bd para almacenar el video
+							date_default_timezone_set('Europe/Berlin');
+							$date = date('m/d/Y h:i:s a', time());
+							$query = "INSERT INTO videos (file,thumbnail,date,user) values (''".
+							$targetFile."','".
+							$thumbsFile."','".
+							$date."','".
+							$_SESSION['userid']"');";
+
+							$res = $dbc->query($query);
+
+							if ($res == 1) {
+								
+							}
+							else {
+								die(json_encode(array("status" => "ERROR", "msg" => "Error al almacenar el video en base de datos.")));
+							}
+
+							//die (json_encode(array("status" => "OK", "msg" => "Original: ".$tempFile." Nuevo: ".$targetFile)));
 						}
 						else die (json_encode(array("status" => "ERROR", "msg" => "Error al copiar el archivo ".$name.".mp4")));
 					} else die (json_encode(array("status" => "ERROR", "msg" => "Error al subir el archivo ".$name.".mp4")));
@@ -71,6 +88,7 @@
 					$_POST['user']."','".
 					$_POST['email']."','".
 					hash("sha512", $_POST['password'])."');");
+
 					if ($res == 1) {
 						header("Location: index.php?user=created");
 					}
