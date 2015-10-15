@@ -48,7 +48,7 @@ function sendFileToServer(formData,status, id) {
 				if (data.status == "OK") {
 					Materialize.toast('Archivo convertido correctamente!', 3000);
 					restart(id);
-					createPopup("pages/videoconfig.php");
+					createPopup("pages/videoconfig.php?id="+data.msg);
 				} else {
 					Materialize.toast(data.msg, 10000);
 					restart(id);
