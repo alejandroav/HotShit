@@ -111,6 +111,11 @@ if (!isset($_SESSION['userid']))
 				{selector: '#timelines', offset: $('#timelines').height(), callback: 'loadMore(<?php echo $contador ?>)' }
 			];
 			Materialize.scrollFire(options);
+			$(window).scroll(function () {
+				if (($(window).height() + $(window).scrollTop()) == $(document).height()) {
+					setTimeout(function(){ loadMore(); }, 300);
+				}
+			});
 		</script>
 		<script src="resources/js/scroll.js"></script>
 		<script src="resources/js/uploader.js"></script>
