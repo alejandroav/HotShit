@@ -13,15 +13,15 @@ if (!isset($_SESSION['userid']))
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta charset="utf-8"/>
 		<title>Wezee</title>
-		<script src="resources/js/jquery-2.1.4.min" type="text/javascript" charset="utf-8"></script>
-		<script src="resources/js/materialize.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="resources/js/jquery.hvideo.js" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" href="resources/css/materialize.min.css" type="text/css" charset="utf-8"/>
-		<link rel="stylesheet" href="resources/css/frontline.css" type="text/css" charset="utf-8"/>
-		<link rel="stylesheet" href="resources/css/hvideo.css" type="text/css" charset="utf-8">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+		<script src="resources/js/jquery-2.1.4.min"></script>
+		<script src="resources/js/materialize.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
+		<link rel="stylesheet" href="resources/css/frontline.css"/>
 	</head>
 	<body style="background-color:#FBFBFB">
-		<a name="top"><?php include("pages/header.php"); ?>
+		<a><?php include("pages/header.php"); ?>
 		<div style="padding:10px">
 			<?php include("pages/uploader.php"); ?>
 		</div>		
@@ -36,10 +36,10 @@ if (!isset($_SESSION['userid']))
 				<?php include("pages/timelines.php"); ?>
 			</div>
 		</div>
-		<div class="fixed-action-btn" style="bottom:45px; right:24px;">
-			<a href="#top">
-			 <i class="waves-effect waves-light btn boton_subir">Subir</i>
-			</a>
+		<div id="bt_top" class="fixed-action-btn boton_subir" style="bottom:45px; right:24px;">
+			 <a class="btn-floating btn-large waves-effect waves-light boton_subir_colores">
+				<i class="material-icons md-36 elblack">keyboard_arrow_up</i>
+			 </a>
 		</div>
 		<div id="popup-background" class="popup-background">
 			<div id="popup" class="popup"></div>
@@ -62,6 +62,7 @@ if (!isset($_SESSION['userid']))
 			];
 			Materialize.scrollFire(options);
 		</script>
+		<script src="resources/js/scroll.js"></script>
 		<script src="resources/js/uploader.js"></script>
 	</body>
 </html>
