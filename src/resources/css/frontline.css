@@ -92,3 +92,9 @@ div.video2{float:left;margin-left:100px;}
 .chip_yellow{
 	background-color:rgb(255,236,50);
 }
+
+h2{
+	margin:-10px;
+	margin-bottom: 0px;
+	text-align:center;
+}

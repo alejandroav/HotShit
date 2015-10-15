@@ -55,25 +55,25 @@ if (!isset($_SESSION['userid']))
 			<div id="timelines" class="col s12 align-center">
 				<div class="col s4">
 					<h2>General</h2>
-					<div class="search-wrapper" style="background-color:transparent">
+					<div class="search-wrapper" style="background-color:transparent;text-align:center;">
 						<input id="search">
-						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20" style="margin-left:-28px;margin-bottom:-5px;"/></a>
 						<div class="search-results"></div>
 					</div>
 				</div>
 				<div class="col s4">
 					<h2>Usuarios</h2>
-					<div class="search-wrapper" style="background-color:transparent">
+					<div class="search-wrapper" style="background-color:transparent;text-align:center;">
 						<input id="search">
-						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20" style="margin-left:-28px;margin-bottom:-5px;"/></a>
 						<div class="search-results"></div>
 					</div>
 				</div>
 				<div class="col s4">
 					<h2>Tags</h2>
-					<div class="search-wrapper" style="background-color:transparent">
+					<div class="search-wrapper" style="background-color:transparent;text-align:center;">
 						<input id="search">
-						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20" style="margin-left:-28px;margin-bottom:-5px;"/></a>
 						<div class="search-results"></div>
 					</div>
 				</div>
