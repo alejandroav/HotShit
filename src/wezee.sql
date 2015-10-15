@@ -11,15 +11,17 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Volcando estructura de base de datos para wezee
+DROP DATABASE IF EXISTS `wezee`;
 CREATE DATABASE IF NOT EXISTS `wezee` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `wezee`;
 
 
 -- Volcando estructura para tabla wezee.follows
+DROP TABLE IF EXISTS `follows`;
 CREATE TABLE IF NOT EXISTS `follows` (
   `follower` int(11) NOT NULL DEFAULT '0',
   `followed` int(11) NOT NULL DEFAULT '0',
-  `date` date DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
   PRIMARY KEY (`follower`,`followed`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -30,6 +32,7 @@ DELETE FROM `follows`;
 
 
 -- Volcando estructura para tabla wezee.likes
+DROP TABLE IF EXISTS `likes`;
 CREATE TABLE IF NOT EXISTS `likes` (
   `user` int(11) NOT NULL,
   `video` int(11) NOT NULL,
@@ -37,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `likes` (
   PRIMARY KEY (`user`,`video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla wezee.likes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla wezee.likes: ~1 rows (aproximadamente)
 DELETE FROM `likes`;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
 INSERT INTO `likes` (`user`, `video`, `date`) VALUES
@@ -46,6 +49,7 @@ INSERT INTO `likes` (`user`, `video`, `date`) VALUES
 
 
 -- Volcando estructura para tabla wezee.tags
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `video` int(11) NOT NULL,
   `tag` varchar(50) NOT NULL,
@@ -59,6 +63,7 @@ DELETE FROM `tags`;
 
 
 -- Volcando estructura para tabla wezee.users
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL,
@@ -82,6 +87,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `username`, `img`, `displayname`
 
 
 -- Volcando estructura para tabla wezee.videos
+DROP TABLE IF EXISTS `videos`;
 CREATE TABLE IF NOT EXISTS `videos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
