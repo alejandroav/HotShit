@@ -1,6 +1,7 @@
 <?php
 class PDOHelper {
 	var $db;
+	var $lastquery;
 	function PDOHelper($servername, $username, $password, $db){
 		try{
 			$this->db = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
@@ -10,7 +11,7 @@ class PDOHelper {
 	}
 	function query($query){
 		$query = $this->db->prepare($query);
-		$query->execute();
+		$lastquery = $query->execute();
 		return $query;
 	}
 	function fetch($resource){
@@ -18,5 +19,8 @@ class PDOHelper {
 	}
 	function insertId(){
 		return $db->lastInsertId();
+	}
+	function queryDone(){
+		return $lastquery;
 	}
 }
