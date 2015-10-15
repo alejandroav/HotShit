@@ -26,7 +26,7 @@
 						if (file_exists($targetFile) && filesize($targetFile) > 0) {
 							// comenzar conexion a bd para almacenar el video
 							date_default_timezone_set('Europe/Berlin');
-							$date = date('m/d/Y h:i:s a', time());
+							$date = date('Y-m-d h:i:s', time());
 							$query = "INSERT INTO videos (file,thumbnail,date,user) values (''".
 							$targetFile."','".
 							$thumbsFile."','".
@@ -222,10 +222,10 @@
 
 			case 'like':
 				date_default_timezone_set('Europe/Berlin');
-				$date = date('m/d/Y h:i:s a', time());
+				$date = date('Y-m-d h:i:s', time());
 				$res = $dbc->query("INSERT INTO likes values ('".$_POST['user_id']."','".$_POST['video_id']."','".$date."')");
 
-				if($res!==false) {
+				if($dbc->queryDone()!==false) {
 					die (json_encode(array("status" => "OK", "msg" => "Like")));
 				}
 				else {

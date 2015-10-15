@@ -4,7 +4,7 @@ function Video($id){
 	// imprimimos tarjetas con cada video.
 	// hay que pasar por parametro si queremos videos populares o tags populares
 				for ($x = 0; $x <= 9; $x++) {
-						$videoid=0;
+						$videoid=3;
 						echo
 							'<div class="card green-white lighten-0" style="background-color: rgb(255, 255, '.round($x*(255/9)).')">
 								<div class="card-content black-text">
