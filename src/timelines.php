@@ -52,12 +52,7 @@ if (!isset($_SESSION['userid']))
 		</div>
 
 		<div class="row">
-			<div class="col s3">
-				<div class="align-center" style="padding:20px;">
-					<?php include("pages/sidebar.php");?>
-				</div>
-			</div>
-			<div id="timelines" class="col s9 align-center">
+			<div id="timelines" class="col s12 align-center">
 				<div class="col s4">
 					<h2>General</h2>
 					<div class="search-wrapper" style="background-color:transparent">

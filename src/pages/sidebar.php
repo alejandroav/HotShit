@@ -1,5 +1,4 @@
 <sidebar>
-
 	<?php
 		function suscriptores(){
 			for ($x = 0; $x <= 9; $x++) {
@@ -18,7 +17,7 @@
 			}
 		}
 	?>
-	<div class="z-depth-2" style="padding:5px;border:1px solid light-grey;margin:10px;border-radius:10px;">
+	<div>
 		<div>
 			<p style="font-size:120%;margin-bottom:-1px;text-align:center;"><b> <?php echo $_SESSION['username'];?></b></p>
 		</div>
