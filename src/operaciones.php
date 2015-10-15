@@ -221,16 +221,22 @@
 			break;
 
 			case 'like':
+				// zona horaria
 				date_default_timezone_set('Europe/Berlin');
 				$date = date('Y-m-d h:i:s', time());
-				$res = $dbc->query("INSERT INTO likes values ('".$_POST['user_id']."','".$_POST['video_id']."','".$date."')");
+				// insertar el like
+				$res = $dbc->query("INSERT INTO likes values (".$_POST['user_id'].",".$_POST['video_id'].",'".$date."')");
 
-				if($dbc->queryDone()!==false) {
-					die (json_encode(array("status" => "OK", "msg" => "Like")));
-				}
-				else {
-					die (json_encode(array("status" => "ERROR", "msg" => "Error")));
-				}
+				if ($dbc->queryDone()!==false) {
+					// actualizar likes del video
+					$res = $dbc->query("UPDATE videos set likes = (select likes+1 from videos where id = ".$_POST['video_id'].") where id = ".$_POST['video_id']);
+					if($dbc->queryDone()!==false) {
+						die (json_encode(array("status" => "OK", "msg" => "Like")));
+					} else {
+						// si al actualizar los likes falla, borramos el like para no alterar la bd (se puede arreglar con transaction tambien)
+						$res = $dbc->query("DELETE FROM likes where video = ".$_POST['video_id']);
+					}
+				} die (json_encode(array("status" => "ERROR", "msg" => "Error")));
 			break;
 
 			default:
