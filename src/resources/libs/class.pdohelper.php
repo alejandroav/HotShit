@@ -11,7 +11,7 @@ class PDOHelper {
 	}
 	function query($query){
 		$query = $this->db->prepare($query);
-		$lastquery = $query->execute();
+		$this->lastquery = $query->execute();
 		return $query;
 	}
 	function fetch($resource){
@@ -21,6 +21,6 @@ class PDOHelper {
 		return $db->lastInsertId();
 	}
 	function queryDone(){
-		return $lastquery;
+		return $this->lastquery;
 	}
 }
