@@ -54,7 +54,6 @@
 				$query = $dbc->query("SELECT id,username,img from users where
 					(username = '".$_POST['user']."' OR email = '".$_POST['user']."') AND password = '".hash("sha512", $_POST['password'])."'");
 				$result = $dbc->fetch($query);
-				$conn = null;
 				// si existe, cargamos sus datos en sesion y nos vamos al timeline
 				if (count($result)>0) {
 					session_start();
@@ -218,6 +217,18 @@
 						$query = $dbc->query("insert into tags values('".$_POST['videoid']."','".$tags[$i]."')");
 					}
 					header('Location: timelines.php');
+				}
+			break;
+
+			case 'like':
+				date_default_timezone_set('Europe/Berlin');
+				$date = date('m/d/Y h:i:s a', time());
+				$res = $dbc->query("INSERT INTO likes values ('".$_POST['user_id']."','".$_POST['video_id']."','".$date."')");
+				if($res==1) {
+					die (json_encode(array("status" => "OK", "msg" => "Like")));
+				}
+				else {
+					die (json_encode(array("status" => "ERROR", "msg" => "Error")));
 				}
 			break;
 

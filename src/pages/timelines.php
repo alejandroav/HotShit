@@ -1,10 +1,30 @@
+<script>
+	function like(videoid,userid) {
+			$.ajax({
+			method: "POST",
+			url: "operaciones.php?op=like",
+			data: {video_id:videoid,user_id:userid},
+			success: function(response) {
+				// colorear el enlace de like
+				if (IsJsonString(response)){
+					response = $.parseJSON(response);
+					if (response.status == "OK") {
+						$('#like'+videoid).css('font-weight', 'bold');
+					}
+				}
+			}
+		});
+
+		if (res)
+	}
+</script>
 <?php
 if (!isset($_SESSION)) session_start();
 function Video($id){
 	// imprimimos tarjetas con cada video.
 	// hay que pasar por parametro si queremos videos populares o tags populares
 				for ($x = 0; $x <= 9; $x++) {
-						echo 
+						echo
 							'<div class="card green-white lighten-0" style="background-color: rgb(255, 255, '.round($x*(255/9)).')">
 								<div class="card-content black-text">
 									<span class="card-title black-text">Titulo tarjeta</span>
@@ -31,7 +51,7 @@ function Video($id){
 										</div>
 										<script>
 											var video = $("#test-'.$id.$x.'").hvideo();
-											
+
 										</script>
 									</p>
 								</div>
@@ -40,7 +60,7 @@ function Video($id){
 										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
 									</div>
 									<a href="#"><img class="responsive-img" src="resources/images/wink.png" alt="favoritos" width="25"/></a>
-									<a href="#">ZeeIt</a>
+									<a href="javascript:like('.$id.')" id="like'.$id.'">ZeeIt</a>
 								</div>
 							</div>';
 					}
@@ -77,4 +97,4 @@ function Video($id){
 			</div>
 		<?php Video("hashtags");?>
 	</div>
-</ul>	
+</ul>
