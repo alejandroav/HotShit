@@ -78,6 +78,7 @@ if (!isset($_SESSION['userid']))
 						<div class="search-results"></div>
 					</div>
 				</div>
+				<?php include("pages/timelines.php"); ?>
 		</div>
 		<div id="bt_top" class="fixed-action-btn boton_subir" style="bottom:45px; right:24px;">
 			 <a class="btn-floating btn-large waves-effect waves-light boton_subir_colores">
