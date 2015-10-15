@@ -13,10 +13,12 @@ if (!isset($_SESSION['userid']))
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta charset="utf-8"/>
 		<title>Wezee</title>
-		<script src="resources/js/jquery-2.1.4.min"></script>
-		<script src="resources/js/materialize.min.js"></script>
-		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
-		<link rel="stylesheet" href="resources/css/frontline.css"/>
+		<script src="resources/js/jquery-2.1.4.min" type="text/javascript" charset="utf-8"></script>
+		<script src="resources/js/materialize.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="resources/js/jquery.hvideo.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="resources/css/materialize.min.css" type="text/css" charset="utf-8"/>
+		<link rel="stylesheet" href="resources/css/frontline.css" type="text/css" charset="utf-8"/>
+		<link rel="stylesheet" href="resources/css/hvideo.css" type="text/css" charset="utf-8">
 	</head>
 	<body style="background-color:#FBFBFB">
 		<a name="top"><?php include("pages/header.php"); ?>
