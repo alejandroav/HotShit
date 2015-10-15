@@ -31,18 +31,18 @@
 							$targetFile."','".
 							$thumbsFile."','".
 							$date."','".
-							$_SESSION['userid']"');";
+							$_SESSION['userid']."');";
 
 							$res = $dbc->query($query);
 
 							if ($res == 1) {
-								
+								die (json_encode(array("status" => "OK", "msg" => $dbc->insertId())));
 							}
 							else {
 								die(json_encode(array("status" => "ERROR", "msg" => "Error al almacenar el video en base de datos.")));
 							}
 
-							//die (json_encode(array("status" => "OK", "msg" => "Original: ".$tempFile." Nuevo: ".$targetFile)));
+							//
 						}
 						else die (json_encode(array("status" => "ERROR", "msg" => "Error al copiar el archivo ".$name.".mp4")));
 					} else die (json_encode(array("status" => "ERROR", "msg" => "Error al subir el archivo ".$name.".mp4")));
@@ -105,19 +105,6 @@
 			break;
 
 			case 'recover':
-				// Connect to MySQL
-					$username = "root";
-					$password = "";
-					$host = "localhost";
-					$dbname = "wezee";
-				try {
-				$conn = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password);
-				}
-				catch(PDOException $ex)
-					{
-							$msg = "Failed to connect to the database";
-					}
-
 				// Was the form submitted?
 				if (isset($_POST["ForgotPassword"])) {
 
@@ -131,10 +118,8 @@
 					}
 
 					// Check to see if a user exists with this e-mail
-					$query = $conn->prepare('SELECT email FROM users WHERE email = :email');
-					$query->bindParam(':email', $email);
-					$query->execute();
-					$userExists = $query->fetch(PDO::FETCH_ASSOC);
+					$query = $dbc->query("SELECT email FROM users WHERE email = '$email'");
+					$userExists = $dbc->fetch($query);
 					$conn = null;
 
 					if ($userExists["email"])
@@ -184,20 +169,6 @@
 			break;
 
 			case "reset":
-				// Connect to MySQL
-						$username = "root";
-						$password = "";
-						$host = "localhost";
-						$dbname = "wezee";
-				try {
-				$conn = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password);
-				//$conn = new PDO('mysql:host=localhost;dbname=test', 'root', '');
-				}
-				catch(PDOException $ex)
-						{
-								$msg = "Failed to connect to the database";
-						}
-
 				// Was the form submitted?
 				if (isset($_POST["ResetPasswordForm"]))
 				{
@@ -222,11 +193,7 @@
 							$password = hash('sha512', $password);
 
 							// Update the user's password
-								$query = $conn->prepare('UPDATE users SET password = :password WHERE email = :email');
-								$query->bindParam(':password', $password);
-								$query->bindParam(':email', $email);
-								$query->execute();
-								$conn = null;
+								$query = $dbc->query("UPDATE users SET password = '$password' WHERE email = '$email'");
 							echo "Your password has been successfully reset.";
 						}
 						else
@@ -239,38 +206,17 @@
 
 			case 'videoconfig':
 			// Connect to MySQL
-				$username = "root";
-				$password = "";
-				$host = "localhost";
-				$dbname = "wezee";
-			try {
-			$conn = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password);
-			}
-			catch(PDOException $ex)
-				{
-						$msg = "Failed to connect to the database";
-				}
-
 				// Check to see if a user exists with this e-mail
-				$query = $conn->prepare('SELECT id FROM videos WHERE id = :id');
-				$query->bindParam(':id', $_POST['videoid']);
-				$query->execute();
-				$videoExists = $query->fetch(PDO::FETCH_ASSOC);
+				$query = $dbc->query("SELECT id FROM videos WHERE id = ".$_POST["videoid"]);
+				$videoExists = $dbc->fetch($query);
 
 				if ($videoExists['id']) {
 					$tags = array(preg_split("/[\s,]+/",$_POST['tags']));
-					$query = $conn->prepare('UPDATE videos SET name = :name where id = :id');
-					$query->bindParam(':name', $_POST['title']);
-					$query->bindParam(':id', $_POST['videoid']);
-					$query->execute();
+					$query = $dbc->query("UPDATE videos SET name = '".$_POST['title']."' where id = '".$_POST['videoid']."'");
 
 					for ($i = 0; $i < count($tags); $i++) {
-						$query = $conn->prepare('insert into tags values(:id,:tag)');
-						$query->bindParam(':id', $_POST['videoid']);
-						$query->bindParam(':tag', $tags[$i]);
-						$query->execute();
+						$query = $dbc->query("insert into tags values('".$_POST['videoid']."','".$tags[$i]."')");
 					}
-					$conn = null;
 					header('Location: timelines.php');
 				}
 			break;
