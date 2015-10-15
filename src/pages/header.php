@@ -1,10 +1,10 @@
 <header>
 <!-- #f4ff2b -->
 	<nav>
-		<div class="nav-wrapper" style="background-color:#F2FF00">
+		<div class="nav-wrapper" style="background-color:rgb(26,25,18)">
 			<a href="index.php" class="brand-logo" style="color:black;margin-left:15px">
 				<div style="color:yellow;padding:10px">
-					<img src="resources/images/zlogo2_2.png" width="45px">
+					<img src="resources/images/zlogo2_3.png" width="120px" style="margin-top:-13px;">
 				<!--	<img src="resources/images/zlogo.png" width="130px"> -->
 				</div>
 			</a>
