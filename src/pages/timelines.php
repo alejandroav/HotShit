@@ -47,35 +47,12 @@ function Video($id){
 					}
 }
 ?>
-<ul>
-	<div>
-		<div class="col s4">
-			<h2>Main</h2>
-			<div class="search-wrapper" style="background-color:transparent">
-				<input id="search">
-				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
-				<div class="search-results"></div>
-			</div>
+<div class="col s4">
 		<?php Video("principales");?>
-	</div>
-	<div>
-		<div class="col s4">
-			<h2>Users</h2>
-			<div class="search-wrapper" style="background-color:transparent">
-				<input id="search">
-				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
-				<div class="search-results"></div>
-			</div>
+</div>
+<div class="col s4">
 		<?php Video("users");?>
-	</div>
-	<div>
-		<div class="col s4">
-			<h2>Tags</h2>
-			<div class="search-wrapper" style="background-color:transparent">
-				<input id="search">
-				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
-				<div class="search-results"></div>
-			</div>
-		<?php Video("hashtags");?>
-	</div>
-</ul>
+</div>
+<div class="col s4">
+	<?php Video("hashtags");?>
+</div>

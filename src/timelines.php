@@ -54,8 +54,30 @@ if (!isset($_SESSION['userid']))
 				</div>
 			</div>
 			<div id="timelines" class="col s9 align-center">
-				<?php include("pages/timelines.php"); ?>
-			</div>
+				<div class="col s4">
+					<h2>Main</h2>
+					<div class="search-wrapper" style="background-color:transparent">
+						<input id="search">
+						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+						<div class="search-results"></div>
+					</div>
+				</div>
+				<div class="col s4">
+					<h2>Users</h2>
+					<div class="search-wrapper" style="background-color:transparent">
+						<input id="search">
+						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+						<div class="search-results"></div>
+					</div>
+				</div>
+				<div class="col s4">
+					<h2>Tags</h2>
+					<div class="search-wrapper" style="background-color:transparent">
+						<input id="search">
+						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+						<div class="search-results"></div>
+					</div>
+				</div>
 		</div>
 		<div id="bt_top" class="fixed-action-btn boton_subir" style="bottom:45px; right:24px;">
 			 <a class="btn-floating btn-large waves-effect waves-light boton_subir_colores">
