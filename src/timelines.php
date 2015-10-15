@@ -55,7 +55,7 @@ if (!isset($_SESSION['userid']))
 			</div>
 			<div id="timelines" class="col s9 align-center">
 				<div class="col s4">
-					<h2>Main</h2>
+					<h2>General</h2>
 					<div class="search-wrapper" style="background-color:transparent">
 						<input id="search">
 						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
@@ -63,7 +63,7 @@ if (!isset($_SESSION['userid']))
 					</div>
 				</div>
 				<div class="col s4">
-					<h2>Users</h2>
+					<h2>Usuarios</h2>
 					<div class="search-wrapper" style="background-color:transparent">
 						<input id="search">
 						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
