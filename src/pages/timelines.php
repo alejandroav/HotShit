@@ -1,25 +1,3 @@
-<script type="text/javascript">
-	function like(videoid,userid) {
-		Materialize.toast('YLELELELE video!', 3000);
-			$.ajax({
-			method: "POST",
-			url: "operaciones.php?op=like",
-			data: {video_id:videoid,user_id:userid},
-			success: function(response) {
-				// colorear el enlace de like
-				if (IsJsonString(response)){
-					response = $.parseJSON(response);
-					if (response.status == "OK") {
-						$('#like'+videoid).css('font-weight', 'bold');
-							Materialize.toast('You liked this video!', 3000);
-					} else {
-						Materialize.toast('Error: video could not be liked', 3000);
-					}
-				}
-			}
-		});
-	}
-</script>
 <?php
 if (!isset($_SESSION)) session_start();
 function Video($id){
@@ -62,7 +40,7 @@ function Video($id){
 										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
 									</div>
 									<a href="#"><img class="responsive-img" src="resources/images/wink.png" alt="favoritos" width="25"/></a>
-									<a onclick="jsfunction()" href="javascript:like('.$id.','.$_SESSION['userid'].');" id="like'.$id.'">ZeeIt</a>
+									<a href="javascript:like('.$id.','.$_SESSION['userid'].');" id="like'.$id.'">ZeeIt</a>
 								</div>
 							</div>';
 					}
