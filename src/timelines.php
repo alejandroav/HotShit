@@ -2,6 +2,10 @@
 session_start();
 if (!isset($_SESSION['userid']))
 	header('Location: index.php');
+
+		global $contador;
+		global $k;
+		$contador = $k = 0;
 ?>
 
 <!DOCTYPE html>
@@ -89,12 +93,14 @@ if (!isset($_SESSION['userid']))
 			<div id="popup" class="popup"></div>
 		</div>
 		<script>
-			function loadMore(){
+			function loadMore(contador){
 				//Materialize.toast("This is our ScrollFire Demo!", 1500 )
 				var circle = '<div id="loadmore" class="preloader-wrapper active" style="margin-left: '+($("#timelines").width()/2)+'px;"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 				$("#timelines").append(circle);
 				$.ajax({
+					method: "POST",
 					url: 'pages/timelines.php',
+					data: {valor:contador},
 					success: function(res) {
 						$("#timelines").append(res);
 						$("#loadmore").remove();
@@ -102,7 +108,7 @@ if (!isset($_SESSION['userid']))
 				});
 			}
 			var options = [
-				{selector: '#timelines', offset: $('#timelines').height(), callback: 'loadMore()' }
+				{selector: '#timelines', offset: $('#timelines').height(), callback: 'loadMore(<?php echo $contador ?>)' }
 			];
 			Materialize.scrollFire(options);
 		</script>

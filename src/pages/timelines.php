@@ -1,12 +1,20 @@
 <?php
-if (!isset($_SESSION)) session_start();
+if (!isset($_SESSION))
+	session_start();
+
+if (isset($_POST['valor']))
+	$contador = $_POST['valor'];
+
 function Video($id){
+	global $contador, $k;
 	// imprimimos tarjetas con cada video.
 	// hay que pasar por parametro si queremos videos populares o tags populares
+	$color = $contador;
 				for ($x = 0; $x <= 9; $x++) {
+						$color++;
 						$videoid=3;
 						echo
-							'<div class="card green-white lighten-0" style="background-color: rgb(255, 255, '.round($x*(255/9)).')">
+							'<div class="card green-white lighten-0" style="background-color: rgb(235, 235, '.round($color*(255/20)).')">
 								<div class="card-content black-text">
 									<span class="card-title black-text">Titulo tarjeta</span>
 									<p>
@@ -45,14 +53,20 @@ function Video($id){
 								</div>
 							</div>';
 					}
+					$k++;
+					if($k%3==0){
+							$contador+=10;
+					}
+
 }
+
 ?>
 <div class="col s4">
-		<?php Video("principales");?>
+		<?php $k= 0; Video("principales");?>
 </div>
 <div class="col s4">
-		<?php Video("users");?>
+		<?php $k = 1; Video("users");?>
 </div>
 <div class="col s4">
-	<?php Video("hashtags");?>
+	<?php $k = 2; Video("hashtags");?>
 </div>
