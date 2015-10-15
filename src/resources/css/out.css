@@ -44,14 +44,16 @@
 	z-index:1;
 	position:fixed;
 	border:3px;
+	
+	left:36%;
 	overflow:hidden;
 	margin-top:465px;
 	text-shadow: 4px 1px 5px rgba(0, 0, 0, 1);
 	text-align:center;
 	overflow:hidden;
-
+   
 	color:white;
-	font-family:Lobster;
+	font-family:'Lobster',cursive;
 	font-size:200;
 	text-transform:capitalize;
 	font-size:300%;

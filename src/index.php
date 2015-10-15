@@ -11,6 +11,7 @@ if (isset($_SESSION['userid']))
 		<title>Wezee</title>
 		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
 		<link rel="stylesheet" href="resources/css/out.css"/>
+		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 		<script src="resources/js/modernizr-custom.js"></script>
 		<script>
 		if (!Modernizr.json || !Modernizr.video || !Modernizr.filereader || !Modernizr.fullscreen || !Modernizr.eventlistener || !Modernizr.inputtypes.email || !Modernizr.cssanimations || !Modernizr.backgroundsize || !Modernizr.opacity) {

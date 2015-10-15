@@ -3,15 +3,6 @@ if (!isset($_SESSION)) session_start();
 function Video(){
 	// imprimimos tarjetas con cada video.
 	// hay que pasar por parametro si queremos videos populares o tags populares
-	echo "<ul>";
-	echo "<div>
-			<div class='col s4'>
-			<h2>Titulo columna</h2>
-			<div class='search-wrapper' style='background-color:transparent;'>
-				<input id='search'>
-				<a href='#'> <img src='resources/images/busqueda.png' alt='lupa' width='20'/></a>
-				<div class='search-results'></div>
-			</div>";
 				for ($x = 0; $x <= 9; $x++) {
 						echo 
 							'<div class="card green-white lighten-0" style="background-color: rgb(255, 255, '.round($x*(255/9)).')">
@@ -28,9 +19,37 @@ function Video(){
 								</div>
 							</div>';
 					}
-	echo "</div></div></ul>";
 }
 ?>
-<?php Video();?>
-<?php Video();?>
-<?php Video();?>
+<ul>
+	<div>
+		<div class="col s4">
+			<h2>Titulo columna</h2>
+			<div class="search-wrapper" style="background-color:transparent">
+				<input id="search">
+				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+				<div class="search-results"></div>
+			</div>
+		<?php Video();?>
+	</div>
+	<div>
+		<div class="col s4">
+			<h2>Titulo columna</h2>
+			<div class="search-wrapper" style="background-color:transparent">
+				<input id="search">
+				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+				<div class="search-results"></div>
+			</div>
+		<?php Video();?>
+	</div>
+	<div>
+		<div class="col s4">
+			<h2>Titulo columna</h2>
+			<div class="search-wrapper" style="background-color:transparent">
+				<input id="search">
+				<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20"/></a>
+				<div class="search-results"></div>
+			</div>
+		<?php Video();?>
+	</div>
+</ul>	
