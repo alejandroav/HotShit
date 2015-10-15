@@ -95,7 +95,9 @@ if (!isset($_SESSION['userid']))
 		<script>
 			function loadMore(contador){
 				//Materialize.toast("This is our ScrollFire Demo!", 1500 )
-				var circle = '<div id="loadmore" class="preloader-wrapper active" style="margin-left: '+($("#timelines").width()/2)+'px;"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+				var circle = '<div id="loadmore" class="preloader-wrapper active" style="margin-left: '+
+				($("#timelines").width()/2)
+				+'px;"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 				$("#timelines").append(circle);
 				$.ajax({
 					method: "POST",
@@ -107,13 +109,12 @@ if (!isset($_SESSION['userid']))
 					}
 				});
 			}
-			var options = [
-				{selector: '#timelines', offset: $('#timelines').height(), callback: 'loadMore(<?php echo $contador ?>)' }
-			];
-			Materialize.scrollFire(options);
+
+			var contador=0;
 			$(window).scroll(function () {
 				if (($(window).height() + $(window).scrollTop()) == $(document).height()) {
-					setTimeout(function(){ loadMore(); }, 300);
+					contador+=10;
+					setTimeout(function(){ loadMore(contador); }, 300);
 				}
 			});
 		</script>

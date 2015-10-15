@@ -2,8 +2,9 @@
 if (!isset($_SESSION))
 	session_start();
 
-if (isset($_POST['valor']))
+if (isset($_POST['valor'])) {
 	$contador = $_POST['valor'];
+}
 
 function Video($id){
 	global $contador, $k;
@@ -13,8 +14,12 @@ function Video($id){
 				for ($x = 0; $x <= 9; $x++) {
 						$color++;
 						$videoid=3;
+
+						if ($color>31)
+							$color = 30;
+
 						echo
-							'<div class="card green-white lighten-0" style="background-color: rgb(235, 235, '.round($color*(255/20)).')">
+							'<div class="card green-white lighten-0" style="background-color: rgb(235, 235, '.round($color*(255/30)).')">
 								<div class="card-content black-text">
 									<span class="card-title black-text">Titulo tarjeta</span>
 									<p>
@@ -62,11 +67,11 @@ function Video($id){
 
 ?>
 <div class="col s4">
-		<?php $k= 0; Video("principales");?>
+		<?php Video("principales");?>
 </div>
 <div class="col s4">
-		<?php $k = 1; Video("users");?>
+		<?php Video("users");?>
 </div>
 <div class="col s4">
-	<?php $k = 2; Video("hashtags");?>
+	<?php Video("hashtags");?>
 </div>
