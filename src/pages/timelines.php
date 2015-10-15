@@ -1,3 +1,23 @@
+<script>
+	function like(videoid,userid) {
+			$.ajax({
+			method: "POST",
+			url: "operaciones.php?op=like",
+			data: {video_id:videoid,user_id:userid},
+			success: function(response) {
+				// colorear el enlace de like
+				if (IsJsonString(response)){
+					response = $.parseJSON(response);
+					if (response.status == "OK") {
+						$('#like'+videoid).css('font-weight', 'bold');
+					}
+				}
+			}
+		});
+
+		if (res)
+	}
+</script>
 <?php
 if (!isset($_SESSION)) session_start();
 function Video($id){
@@ -40,7 +60,7 @@ function Video($id){
 										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
 									</div>
 									<a href="#"><img class="responsive-img" src="resources/images/wink.png" alt="favoritos" width="25"/></a>
-									<a href="#">ZeeIt</a>
+									<a href="javascript:like('.$id.')" id="like'.$id.'">ZeeIt</a>
 								</div>
 							</div>';
 					}

@@ -1,8 +1,5 @@
 <?php
 session_start();
-   $_SESSION['userid'] = 0;
-     $_SESSION['username'] = "caca";
-     $_SESSION['userimg'] = "";
 if (!isset($_SESSION['userid']))
 	header('Location: index.php');
 ?>

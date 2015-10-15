@@ -20,7 +20,7 @@
 	?>
 	<div class="z-depth-2" style="padding:5px;border:1px solid light-grey;margin:10px;border-radius:10px;">
 		<div>
-			<p style="font-size:120%;margin-bottom:-1px;"><b>Perfil de <?php echo $_SESSION['username'];?></b></p>
+			<p style="font-size:120%;margin-bottom:-1px;text-align:center;"><b> <?php echo $_SESSION['username'];?></b></p>
 		</div>
 		<div class="profile_pic">
 			<img src="uploads/userimg/<?php echo $_SESSION['userimg']; ?>" alt="Usuario" height="150px">
