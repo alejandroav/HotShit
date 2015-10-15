@@ -33,13 +33,15 @@ DELETE FROM `follows`;
 CREATE TABLE IF NOT EXISTS `likes` (
   `user` int(11) NOT NULL,
   `video` int(11) NOT NULL,
-  `date` date DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
   PRIMARY KEY (`user`,`video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla wezee.likes: ~0 rows (aproximadamente)
 DELETE FROM `likes`;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+INSERT INTO `likes` (`user`, `video`, `date`) VALUES
+	(17, 0, '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 
 
@@ -63,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(200) NOT NULL,
   `username` varchar(50) NOT NULL,
   `img` varchar(50) DEFAULT NULL,
+  `displayname` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`email`,`id`),
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
@@ -70,11 +73,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Volcando datos para la tabla wezee.users: ~4 rows (aproximadamente)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `email`, `password`, `username`, `img`) VALUES
-	(17, 'alejandroalarcon93@gmail.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'Jandor', NULL),
-	(14, 'prueba3@prueba.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User3', NULL),
-	(15, 'prueba5@gmail.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User5', NULL),
-	(16, 'prueba@prueba.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', NULL);
+INSERT INTO `users` (`id`, `email`, `password`, `username`, `img`, `displayname`) VALUES
+	(17, 'alejandroalarcon93@gmail.com', '5dff8adeea2d2eb0f4f39c291e1f0888c50e5cdc1bf06aa0d7bccbc5b9f3e6612c4a1aff02c35969bc249330acfdedac6d6ac263794524fc86a7f31ffca2d3d5', 'Jandor', NULL, NULL),
+	(14, 'prueba3@prueba.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User3', NULL, NULL),
+	(15, 'prueba5@gmail.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User5', NULL, NULL),
+	(16, 'prueba@prueba.com', '99adc231b045331e514a516b4b7680f588e3823213abe901738bc3ad67b2f6fcb3c64efb93d18002588d3ccc1a49efbae1ce20cb43df36b38651f11fa75678e8', 'User', NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 

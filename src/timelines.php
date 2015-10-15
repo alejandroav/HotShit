@@ -19,20 +19,21 @@ if (!isset($_SESSION['userid']))
 		<script src="resources/js/jquery.hvideo.js" type="text/javascript" charset="utf-8"></script>
 			<script type="text/javascript">
 				function like(videoid,userid) {
-					Materialize.toast('YLELELELE video!', 3000);
 						$.ajax({
 						method: "POST",
 						url: "operaciones.php?op=like",
 						data: {video_id:videoid,user_id:userid},
 						success: function(response) {
+							console.log("Respuesta: " + response);
 							// colorear el enlace de like
-							if (IsJsonString(response)){
-								response = $.parseJSON(response);
-								if (response.status == "OK") {
+							if (IsJsonString(response)) {
+								var res = $.parseJSON(response);
+								if (res.status == "OK") {
 									$('#like'+videoid).css('font-weight', 'bold');
-										Materialize.toast('You liked this video!', 3000);
-								} else {
-									Materialize.toast('Error: video could not be liked', 3000);
+									Materialize.toast('You liked this video!', 1000);
+								}
+								if (res.status == "ERROR") {
+									Materialize.toast('Error: video could not be liked', 1000);
 								}
 							}
 						}

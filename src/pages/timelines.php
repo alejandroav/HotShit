@@ -4,6 +4,7 @@ function Video($id){
 	// imprimimos tarjetas con cada video.
 	// hay que pasar por parametro si queremos videos populares o tags populares
 				for ($x = 0; $x <= 9; $x++) {
+						$videoid=0;
 						echo
 							'<div class="card green-white lighten-0" style="background-color: rgb(255, 255, '.round($x*(255/9)).')">
 								<div class="card-content black-text">
@@ -40,7 +41,7 @@ function Video($id){
 										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
 									</div>
 									<a href="#"><img class="responsive-img" src="resources/images/wink.png" alt="favoritos" width="25"/></a>
-									<a href="javascript:like('.$id.','.$_SESSION['userid'].');" id="like'.$id.'">ZeeIt</a>
+									<a href="javascript:like('.$videoid.','.$_SESSION['userid'].');" id="like'.$id.'">ZeeIt</a>
 								</div>
 							</div>';
 					}

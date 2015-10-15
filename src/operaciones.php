@@ -224,7 +224,8 @@
 				date_default_timezone_set('Europe/Berlin');
 				$date = date('m/d/Y h:i:s a', time());
 				$res = $dbc->query("INSERT INTO likes values ('".$_POST['user_id']."','".$_POST['video_id']."','".$date."')");
-				if($res==1) {
+
+				if($res!==false) {
 					die (json_encode(array("status" => "OK", "msg" => "Like")));
 				}
 				else {
