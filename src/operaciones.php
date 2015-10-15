@@ -3,35 +3,40 @@
 	include("config.php");
 	require("resources/libs/class.phpmailer.php");
 	require("resources/libs/class.smtp.php");
+	require("resources/libs/class.pdohelper.php");
 	if (isset($_GET["op"]) && $_GET["op"]) {
+		$dbc = new PDOHelper($servername, $username, $password, $db);
 		switch($_GET["op"]) {
-
 			case "uploadvideo":
 				if (!isset($_SESSION['userid'])) die (json_encode(array("status" => "ERROR", "msg" => "No esta logueado")));
-				$storeFolder = 'uploads';
+				$targetFolder = 'uploads/video';
+				$thumbsFolder = 'uploads/videothumb';
 				if (!empty($_FILES)) {
 					$tempFile = $_FILES['file']['tmp_name'];
 					$extension = pathinfo($tempFile, PATHINFO_EXTENSION);
 					$name = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);
-					$targetPath = dirname(__FILE__)."/".$storeFolder."/";
-					$targetFile = $targetPath.$name.".mp4";
+					$newname = $_SESSION["userid"].time();
+					$targetPath = dirname(__FILE__)."/".$targetFolder."/";
+					$thumbsPath = dirname(__FILE__)."/".$thumbsFolder."/";
+					$targetFile = $targetPath.$newname.".mp4";
+					$thumbsFile = $thumbsPath.$newname.".png";
 					if (file_exists($tempFile)) {
 						exec("/bin/ffmpeg -i $tempFile -c:v libx264 -c:a aac -strict -2 $targetFile");
-						if (file_exists($targetFile) && filesize($targetFile) > 0) die (json_encode(array("status" => "OK", "msg" => "Original: ".$tempFile." Nuevo: ".$targetFile)));
+						exec("/bin/ffmpeg -i $tempFile -ss 00:00:01.000 -vframes 1 $thumbsFile");
+						if (file_exists($targetFile) && filesize($targetFile) > 0) {
+							$query = $dbc->query("");
+							die (json_encode(array("status" => "OK", "msg" => "Original: ".$tempFile." Nuevo: ".$targetFile)));
+						}
 						else die (json_encode(array("status" => "ERROR", "msg" => "Error al copiar el archivo ".$name.".mp4")));
 					} else die (json_encode(array("status" => "ERROR", "msg" => "Error al subir el archivo ".$name.".mp4")));
 				} else die (json_encode(array("status" => "ERROR", "msg" => "Debe seleccionar algun archivo")));
 			break;
 
 			case 'login':
-				// conectar a bd
-				$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-
 				// consultamos si existe un usuario con ese nombre/email y esa contraseña
-				$gsent = $conn->prepare("SELECT id,username,img from users where
+				$query = $dbc->query("SELECT id,username,img from users where
 					(username = '".$_POST['user']."' OR email = '".$_POST['user']."') AND password = '".hash("sha512", $_POST['password'])."'");
-				$gsent->execute();
-				$result = $gsent->fetch(PDO::FETCH_ASSOC);
+				$result = $dbc->fetch($query);
 				$conn = null;
 				// si existe, cargamos sus datos en sesion y nos vamos al timeline
 				if (count($result)>0) {
@@ -49,14 +54,11 @@
 			break;
 
 			case 'register':
-				$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
-
-				// comprobar que no se repite el email ni el usuario
-
 				$query = "SELECT count(id) as c from users where email = '".$_POST['email']."' or username='".$_POST['user']."';";
 				$resul = 0;
+				//$query = $dbc->query($query);
 
-				foreach($conn->query($query) as $row)
+				foreach($dbc->query($query) as $row)
 					$resul = $row['c'];
 
 				if ($resul > 0) {
@@ -65,11 +67,10 @@
 
 				else {
 					// crear el usuario
-					$res = $conn-> exec("INSERT INTO users(username,email,password) VALUES ('".
+					$res = $dbc->query("INSERT INTO users(username,email,password) VALUES ('".
 					$_POST['user']."','".
 					$_POST['email']."','".
 					hash("sha512", $_POST['password'])."');");
-					$conn = null;
 					if ($res == 1) {
 						header("Location: index.php?user=created");
 					}
@@ -260,4 +261,5 @@
 				die (json_encode(array("status" => "ERROR", "msg" => "Operacion no permitida")));
 			break;
 		}
+		$conn = null;
 	} else die (json_encode(array("status" => "ERROR", "msg" => "Operacion no permitida")));
