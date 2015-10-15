@@ -45,9 +45,10 @@
 	position:fixed;
 	border:3px;
 	
-	left:36%;
+	left:50%;
 	overflow:hidden;
 	margin-top:465px;
+	margin-left:-185px;
 	text-shadow: 4px 1px 5px rgba(0, 0, 0, 1);
 	text-align:center;
 	overflow:hidden;
@@ -61,7 +62,7 @@
 .frente{
 	z-index:1;
 	position:fixed;
-	width:400px;
+	width:500px;
 	left:50%;
 	top:50%;
 	height:600px;
