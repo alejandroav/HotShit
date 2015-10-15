@@ -3,11 +3,13 @@
 	<nav>
 		<div class="nav-wrapper" style="background-color:rgb(26,25,18)">
 			<a href="index.php" class="brand-logo" style="color:black;margin-left:15px">
-				<div style="color:yellow;padding:10px">
-					<img src="resources/images/zlogo2_3.png" width="120px" style="margin-top:-13px;">
-				<!--	<img src="resources/images/zlogo.png" width="130px"> -->
-				</div>
+				<img src="resources/images/logofinal.png" width="55px" style="margin-top:5px;">
+				
 			</a>
+			<div class="brand-logo center">
+				<img src="resources/images/zlogo2_3.png" width="120px">
+				<!--	<img src="resources/images/zlogo.png" width="130px"> -->
+			</div>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li>
 					<a href="#">
