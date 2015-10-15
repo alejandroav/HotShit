@@ -82,8 +82,9 @@ div.video2{float:left;margin-left:100px;}
 	color:black;
 }
 .isotipo{
-	background-color:yellow;
-	padding:10px;
+	background-color:rgb(255,236,50);
+	border-radius:10px;
 	width:110px;
-	height:60px;
+	margin-top:5px;
+	height:55px;
 }

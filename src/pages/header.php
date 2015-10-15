@@ -7,8 +7,10 @@
 				
 			</a>
 			<div class="brand-logo center">
-				<img src="resources/images/zlogo2_3.png" width="120px">
-				<!--	<img src="resources/images/zlogo.png" width="130px"> -->
+				<div class="isotipo">
+					<img src="resources/images/zlogo2_3.png" width="120px" style="margin-top:-7px;">
+					<!--	<img src="resources/images/zlogo.png" width="130px"> -->
+				</div>
 			</div>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
 				<li>
