@@ -47,6 +47,7 @@ jQuery.fn.hvideo = function(options){
 		// update progress bar
 		var prevBarRect = hvideo.barRect;
 		hvideo.barRect = totbarq.rect();
+		//console.log(hvideo.barRect.width+" - "+prevBarRect.width+" - "+posbarq.width());
 		unbbarq.width(hvideo.barRect.width);
 		bufbarq.width((bufbarq.width()/prevBarRect.width)*hvideo.barRect.width);
 		posbarq.width((posbarq.width()/prevBarRect.width)*hvideo.barRect.width);
@@ -310,8 +311,32 @@ jQuery.fn.hvideo = function(options){
 			});
 		}
 	});
-	
+	var showControls = function() {
+		rootq.find('.play-pause').css("visibility", "visible");
+		rootq.find('extended').css("visibility", "visible");
+	};
+	var hideControls = function() {
+		rootq.find('.play-pause').css("visibility", "hidden");
+		rootq.find('extended').css("visibility", "hidden");
+	};
 	// video events
+	rootq.find('.play').click(function(){
+		rootq.find('.play').unbind();
+		rootq.find(".play").css("visibility", "hidden");
+		setTimeout(function(){
+			hideControls();
+		}, 2000);
+		rootq.find('controls').on("mouseover", function(){
+			showControls();
+		});
+		rootq.find('controls').on("mouseout", function(){
+			hideControls();
+		});
+		hvideo.togglePlay();
+		/*rootq.find('video').click(function(){
+			hvideo.togglePlay();
+		});*/
+	});
 	vq.mouseover(function(ev){
 		if (!this.paused)
 			ctrlq.fadeIn(100);

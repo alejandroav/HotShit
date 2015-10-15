@@ -239,7 +239,7 @@
 				$videoExists = $query->fetch(PDO::FETCH_ASSOC);
 
 				if ($videoExists['id']) {
-					$tags = new array(preg_split("/[\s,]+/",$_POST['tags']));
+					$tags = array(preg_split("/[\s,]+/",$_POST['tags']));
 					$query = $conn->prepare('UPDATE videos SET name = :name where id = :id');
 					$query->bindParam(':name', $_POST['title']);
 					$query->bindParam(':id', $_POST['videoid']);

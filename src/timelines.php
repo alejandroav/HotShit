@@ -14,11 +14,12 @@ if (!isset($_SESSION['userid']))
 		<meta charset="utf-8"/>
 		<title>Wezee</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-		<script src="resources/js/jquery-2.1.4.min"></script>
-		<script src="resources/js/materialize.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
 		<link rel="stylesheet" href="resources/css/frontline.css"/>
+		<link rel="stylesheet" href="resources/css/hvideo.css" type="text/css" charset="utf-8">
+		<script src="resources/js/jquery-2.1.4.min"></script>
+		<script src="resources/js/materialize.min.js"></script>
+		<script src="resources/js/jquery.hvideo.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body style="background-color:#FBFBFB">
 		<a><?php include("pages/header.php"); ?>
