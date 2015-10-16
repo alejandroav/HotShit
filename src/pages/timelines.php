@@ -23,7 +23,7 @@ function Video($id){
 								<div class="card-content black-text">
 									<span class="card-title black-text">Titulo tarjeta</span>
 									<p>
-										<div id="test-'.$id.$x.'" class="hvideo">
+										<div id="test-'.$id.$x.$contador.'" class="hvideo">
 											<controls>
 												<button class="play" title="Toggle playback"></button>
 												<button class="play-pause paused" title="Toggle playback"></button>
@@ -39,12 +39,12 @@ function Video($id){
 													<button class="zoom" title="Zoom in/out"></button>
 												</extended>
 											</controls>
-											<video width="640" height="480" poster="uploads/videothumb/poster.jpg" autobuffer>
+											<video width="640" height="480" poster="uploads/videothumb/poster.png" autobuffer>
 												<source src="uploads/video/movie.mp4" type="video/mp4">
 											</video>
 										</div>
 										<script>
-											var video = $("#test-'.$id.$x.'").hvideo();
+											var video = $("#test-'.$id.$x.$contador.'").hvideo();
 
 										</script>
 									</p>
