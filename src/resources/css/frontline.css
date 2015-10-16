@@ -18,16 +18,22 @@ div.video2{float:left;margin-left:100px;}
 .uploader.filecharged{
 	border:2px solid red !important;
 }
-/*#uploader .progress{
+#uploader .progress{
 }
 #uploader .percent{
+	font-family:'Lobster';
+	color:rgb(255,236,50);
 }
 #uploader .abort{
 }
 #uploader .name{
+	font-family:'Lobster';
+	color:black;
 }
 #uploader .size{
-}*/
+	font-family:'Lobster';
+	color:black;
+}
 .profile_pic{
 	border:1px solid grey;
 	margin:10px;
