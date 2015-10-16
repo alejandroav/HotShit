@@ -1,6 +1,4 @@
 <sidebar>
-
-	<link rel='stylesheet' href='dist/css/perfect-scrollbar.css' />
 	<?php
 		function suscriptores(){
 			for ($x = 0; $x <= 9; $x++) {
@@ -48,10 +46,7 @@
 			</div>
 		</div>
 	</div>
-	<script src='dist/js/perfect-scrollbar.js'></script>
 	<script type="text/javascript">
 	var container = document.getElementById('container');
-	Ps.destroy(container);
-	Ps.initialize(container);
 	</script>
 </sidebar>
