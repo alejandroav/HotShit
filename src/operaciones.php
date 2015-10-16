@@ -30,12 +30,12 @@
 							$query = "INSERT INTO videos (file,thumbnail,date,user) values (''".
 							$targetFile."','".
 							$thumbsFile."','".
-							$date."','".
-							$_SESSION['userid']."');";
+							$date."',".
+							$_SESSION['userid'].");";
 
 							$res = $dbc->query($query);
 
-							if ($dbc->queryDone() == true) {
+							if ($dbc->queryDone()!==false) {
 								die (json_encode(array("status" => "OK", "msg" => $dbc->insertId())));
 							}
 							else {
@@ -89,7 +89,34 @@
 					hash("sha512", $_POST['password'])."');");
 
 					if ($dbc->queryDone() == true) {
-						header("Location: index.php?user=created");
+						// Mail them their key
+						$mailbody = "¡Gracias por registrarte en www.wezee.es! Bienvenido a nuestra comunidad. Ya puedes iniciar sesión con tu usuario ".$_POST['user']." o con tu correo electrónico.";
+
+						$mail = new PHPMailer;
+
+						//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+						$mail->isSMTP();                                      // Set mailer to use SMTP
+						$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+						$mail->SMTPAuth = true;                               // Enable SMTP authentication
+						$mail->Username = 'wezeevideo@gmail.com';                 // SMTP username
+						$mail->Password = 'sisisitotalmente';                           // SMTP password
+						$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+						$mail->Port = 465;                                    // TCP port to connect to
+
+						$mail->setFrom('hola@wezee.es', 'WeZee Welcome Center');
+						$mail->addAddress($userExists["email"]);     // Add a recipient
+						$mail->isHTML(true);                                  // Set email format to HTML
+
+						$mail->Subject = 'Bienvenido a WeZee';
+						$mail->Body    = $mailbody;
+
+						if(!$mail->send()) {
+						    echo 'Message could not be sent.';
+						    echo 'Mailer Error: ' . $mail->ErrorInfo;
+						} else {
+							header("Location: index.php?user=created");
+						}
 					}
 					else {
 						header("Location: index.php?user=error");
