@@ -12,7 +12,7 @@
 				$targetFolder = 'uploads/video';
 				$thumbsFolder = 'uploads/videothumb';
 				if (!empty($_FILES)) {
-					if ($_FILES["file"]["size"] > 104857600) die (json_encode(array("status" => "ERROR", "msg" => "Lo sentimos, WeZee esta en beta y no admite videos de mas de 100MB")))
+					if ($_FILES["file"]["size"] > 104857600) die (json_encode(array("status" => "ERROR", "msg" => "Lo sentimos, WeZee esta en beta y no admite videos de mas de 100MB")));
 					$tempFile = $_FILES['file']['tmp_name'];
 					$extension = pathinfo($tempFile, PATHINFO_EXTENSION);
 					$name = pathinfo($_FILES['file']['name'], PATHINFO_FILENAME);
