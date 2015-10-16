@@ -2,10 +2,6 @@
 session_start();
 if (!isset($_SESSION['userid']))
 	header('Location: index.php');
-
-		global $contador;
-		global $k;
-		$contador = $k = 0;
 ?>
 
 <!DOCTYPE html>

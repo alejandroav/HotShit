@@ -25,6 +25,7 @@ jQuery.fn.hvideo = function(options){
 	var totbarq = ctrlq.find('bar.total');
 	var bufbarq = ctrlq.find('bar.buffered');
 	var unbbarq = ctrlq.find('bar.unbuffered');
+	var play = ctrlq.find('.play');
 	
 	posbarq.width(0);
 	bufbarq.width(0);
@@ -35,6 +36,7 @@ jQuery.fn.hvideo = function(options){
 	hvideo.zoomed = false;
 	hvideo.animatedZoom = true;
 	hvideo.layout = function() {
+		vq.height(vq.width()*0.5625);
 		var vr = vq.rect();
 		var margin = 10;
 		
@@ -47,10 +49,10 @@ jQuery.fn.hvideo = function(options){
 		// update progress bar
 		var prevBarRect = hvideo.barRect;
 		hvideo.barRect = totbarq.rect();
-		//console.log(hvideo.barRect.width+" - "+prevBarRect.width+" - "+posbarq.width());
 		unbbarq.width(hvideo.barRect.width);
 		bufbarq.width((bufbarq.width()/prevBarRect.width)*hvideo.barRect.width);
 		posbarq.width((posbarq.width()/prevBarRect.width)*hvideo.barRect.width);
+		play.show();
 	}
 	hvideo.togglePlay = function() {
 		if (hvideo.video.paused)
@@ -91,22 +93,8 @@ jQuery.fn.hvideo = function(options){
 			bufbarq.css('z-index', z+3);
 			totbarq.css('z-index', z+4);
 			posbarq.css('z-index', z+5);
-			
-			/* CURRENTLY BROKEN
-			if (animate === true && hvideo.animatedZoom) {
-				vq.animate({
-					left: hvideo.zoomOriginalRect.x+'px',
-					top: hvideo.zoomOriginalRect.y+'px',
-					width: hvideo.zoomOriginalRect.width+'px',
-					height: hvideo.zoomOriginalRect.height+'px'
-				}, 120, 'swing', function(){
-					vq.trigger('resize');
-				});
-			}
-			else {*/
 				vq.rect(hvideo.zoomOriginalRect);
 				vq.trigger('resize');
-			//}
 		}
 	}
 	hvideo.formatTime = function(seconds) {
