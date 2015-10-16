@@ -16,7 +16,7 @@ jQuery.fn.hvideo = function(options){
 		for (var k in options)
 			hvideo[k] = options[k];
 	}
-	
+
 	var rootq = this;
 	var vq = rootq.find('video');
 	var ctrlq = rootq.find('controls');
@@ -26,10 +26,10 @@ jQuery.fn.hvideo = function(options){
 	var bufbarq = ctrlq.find('bar.buffered');
 	var unbbarq = ctrlq.find('bar.unbuffered');
 	var play = ctrlq.find('.play');
-	
+
 	posbarq.width(0);
 	bufbarq.width(0);
-	
+
 	// hvideo functions
 	hvideo.video = vq.get(0);
 	hvideo.barRect = totbarq.rect();
@@ -39,13 +39,13 @@ jQuery.fn.hvideo = function(options){
 		vq.height(vq.width()*0.5625);
 		var vr = vq.rect();
 		var margin = 10;
-		
+
 		// set control rect to video rect
 		ctrlq.rect(vr);
-		
+
 		// extended controls
 		exctrlq.width(vr.width - parseInt(exctrlq.css('left')) - margin);
-		
+
 		// update progress bar
 		var prevBarRect = hvideo.barRect;
 		hvideo.barRect = totbarq.rect();
@@ -65,7 +65,7 @@ jQuery.fn.hvideo = function(options){
 	    return hvideo.video.webkitEnterFullScreen();
 	  }
 		if (!hvideo.zoomed) {
-			// todo: in zoomed mode, hide mouse after N time of 
+			// todo: in zoomed mode, hide mouse after N time of
 			//       inactivity (track movement when playing).
 			hvideo.zoomed = true;
 			hvideo.zoomOriginalRect = vq.rect();
@@ -196,10 +196,10 @@ jQuery.fn.hvideo = function(options){
 		rootq.css('cursor', name);
 		ctrlq.css('cursor', name);
 	}
-	
+
 	// save ref to hvideo struct in root element
 	rootq.data('hvideo', hvideo);
-	
+
 	// controls events
 	ctrlq.mouseover(function(ev){
 		clearInterval(ctrlq.data('hvideo_fadeout_timer'));
@@ -207,17 +207,17 @@ jQuery.fn.hvideo = function(options){
 		if (!hvideo.video.paused)
 			hvideo.scheduleCtrlFadeOut();
 	});
-	
+
 	// play/pause button
 	ctrlq.find('button.play-pause').click(function(ev){
 		hvideo.togglePlay();
 	});
-	
+
 	// mute audio button
 	ctrlq.find('button.mute-audio').click(function(ev){
 		hvideo.video.muted = !hvideo.video.muted;
 	});
-	
+
 	// zoom control
 	ctrlq.bind('dblclick', function(ev) {
 		// skip if double-clicked in controls rect
@@ -229,7 +229,7 @@ jQuery.fn.hvideo = function(options){
 			hvideo.toggleZoomed();
 	});
 	ctrlq.find('button.zoom').click(hvideo.toggleZoomed);
-	
+
 	// progress seek
 	var seekfunc = function(ev){
 		hvideo.seek(hvideo.ev2pos(ev));
@@ -237,7 +237,7 @@ jQuery.fn.hvideo = function(options){
 	}
 	posbarq.click(seekfunc);
 	totbarq.click(seekfunc);
-	
+
 	// progress scrubbing
 	var scrubSeekDelay = 20;
 	var scrubSeekDelayTimer = null;
@@ -252,7 +252,7 @@ jQuery.fn.hvideo = function(options){
 			clearInterval(scrubSeekDelayTimer);
 			scrubSeekDelayTimer = setTimeout(function(){ hvideo.seek(pos) }, scrubSeekDelay);
 		}
-		
+
 		hvideo.updatePosition(hvideo.video.duration * pos);
 	}
 	var stopscrubfunc = function(ev) {
@@ -275,7 +275,7 @@ jQuery.fn.hvideo = function(options){
 	posbarq.mousedown(startscrubfunc);
 	totbarq.mouseup(stopscrubfunc);
 	posbarq.mouseup(stopscrubfunc);
-	
+
 	// todo: better solution
 	// keypress is not emmitted on the ctrl, video or any other element.
 	$(window).keypress(function(ev){
@@ -319,6 +319,15 @@ jQuery.fn.hvideo = function(options){
 		});
 		rootq.find('controls').on("mouseout", function(){
 			hideControls();
+		});
+		// aumentar reproducciones del video
+		$.ajax({
+			method: "POST",
+			url: "operaciones.php?op=view",
+			data: {video_id:videoid},
+			success: function(response) {
+				console.log("Respuesta: " + response);
+			}
 		});
 		hvideo.togglePlay();
 		/*rootq.find('video').click(function(){
@@ -380,9 +389,9 @@ jQuery.fn.hvideo = function(options){
 	}).bind('playing', function(ev){
 		ctrlq.find('button.play-pause').css('cursor', 'auto');
 	})*/;
-	
+
 	hvideo.layout();
-	
+
 	return this;
 }
 
@@ -429,4 +438,3 @@ if(jQuery.fn.origin===undefined)jQuery.fn.origin = function(setpoint){
 		return {x:p.left, y:p.top};
 	}
 }
-

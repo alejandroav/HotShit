@@ -292,6 +292,14 @@
 
 			break;
 
+			case 'view':
+				$dbc->query("update videos set views = (select views+1 from videos where id=".$_POST['video_id'].") where id=".$_POST['video_id']);
+				if ($dbc->queryDone()) {
+					die (json_enconde(array("status" => "OK")));
+				}
+				die (json_enconde(array("status" => "ERROR")));
+			break;
+
 			default:
 				die (json_encode(array("status" => "ERROR", "msg" => "Operacion no permitida")));
 			break;
