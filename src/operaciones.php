@@ -30,12 +30,12 @@
 							$query = "INSERT INTO videos (file,thumbnail,date,user) values (''".
 							$targetFile."','".
 							$thumbsFile."','".
-							$date."','".
-							$_SESSION['userid']."');";
+							$date."',".
+							$_SESSION['userid'].");";
 
 							$res = $dbc->query($query);
 
-							if ($res == 1) {
+							if ($dbc->queryDone()!==false) {
 								die (json_encode(array("status" => "OK", "msg" => $dbc->insertId())));
 							}
 							else {
