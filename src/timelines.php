@@ -44,6 +44,30 @@ if (!isset($_SESSION['userid']))
 						}
 					});
 				}
+				function follow-user(follower,followed) {
+						$.ajax({
+						method: "POST",
+						url: "operaciones.php?op=follow-user",
+						data: {user_id:follower,target_id:followed},
+						success: function(response) {
+							console.log("Respuesta: " + response);
+							// colorear el enlace de like
+							if (IsJsonString(response)) {
+								var res = $.parseJSON(response);
+								if (res.status == "OK") {
+									if (res.msg == "Followed") {
+										Materialize.toast('¡Sigues a este usuario!', 2000);
+									} else if (res.msg == "Unfollowed") {
+										Materialize.toast('Ya no sigues a este usuario.', 2000)
+									}
+								}
+								if (res.status == "ERROR") {
+									Materialize.toast(res.message, 2000);
+								}
+							}
+						}
+					});
+				}
 			</script>
 	</head>
 	<body style="background-color:#35352D">

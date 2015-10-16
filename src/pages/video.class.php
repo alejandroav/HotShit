@@ -62,7 +62,7 @@ class Video{
 			</div>
 			<div class="divider" style="background-color:#CCCC00"></div>
 			<div class="card-action">
-				<a href="">
+				<a href="javascript:follow-user('.$_SESSION['userid'].','.$this->user.');">
 					<div class="chip">
 						<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#"><span ><span style="text-transform:none">'.$_SESSION["username"].'</span>
 					</div>
