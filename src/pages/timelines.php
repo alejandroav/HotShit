@@ -16,7 +16,7 @@ function Timeline($type, $contador) {
 	// hay que pasar por parametro si queremos videos populares o tags populares
 	global $servername, $username, $password, $db;
 	$dbc = new PDOHelper($servername, $username, $password, $db);
-	$res = $dbc->query("SELECT id FROM videos");
+	$res = $dbc->query("SELECT id FROM videos ORDER BY date DESC LIMIT ".$contador.", 10");
 	$color = $contador;
 	while ($row = $dbc->fetch($res)){
 		$color++;

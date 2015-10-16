@@ -35,4 +35,7 @@ class PDOHelper {
 	function rollback() {
 		return $this->db->rollback();
 	}
+	function numRows($resource){
+		return $resource->rowCount(); 
+	}
 }

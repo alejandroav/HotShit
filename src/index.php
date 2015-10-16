@@ -21,7 +21,7 @@ if (isset($_SESSION['userid']))
 	</head>
 	<body>
 		<div class="chg_button">
-			<button class="btn waves-effect waves-light" type="submit" name="action" id="chg_button">Sign in/Sign up</button>
+			<button class="btn waves-effect waves-light" type="submit" name="action" id="chg_button">Entrar/Registro</button>
 		</div>
 		<div class="frente">
 			<div class="logo-arriba">
@@ -30,7 +30,7 @@ if (isset($_SESSION['userid']))
 			<div class="fondo">
 				<div class="entrada" id="formcontent">
 					<?php include("pages/login.php"); ?>
-					<a href="pages/recover.php">Have you lost your password?</a>
+					<a href="pages/recover.php">Has olvidado tu contrase&ntilde;a?</a>
 				</div>
 			</div>
 			<div class="isotipo">

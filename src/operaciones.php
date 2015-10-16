@@ -240,7 +240,7 @@
 				$videoExists = $dbc->fetch($query);
 
 				if ($videoExists['id']) {
-					$tags = array(preg_split("/[\s,]+/",$_POST['tags']));
+					$tags = preg_split("/[\s,]+/",$_POST['tags']);
 					$query = $dbc->query("UPDATE videos SET name = '".$_POST['title']."' where id = '".$_POST['videoid']."'");
 
 					for ($i = 0; $i < count($tags); $i++) {
@@ -296,7 +296,7 @@
 			break;
 
 			case 'view':
-				$dbc->query("update videos set views = (select views+1 from videos where id=".$_POST['video_id'].") where id=".$_POST['video_id']);
+				$dbc->query("update videos set views = views+1 where id=".$_POST['video_id']);
 				if ($dbc->queryDone()) {
 					die (json_encode(array("status" => "OK")));
 				}

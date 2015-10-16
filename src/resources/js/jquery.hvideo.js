@@ -326,7 +326,12 @@ jQuery.fn.hvideo = function(id, options){
 			url: "operaciones.php?op=view",
 			data: {video_id:videoid},
 			success: function(response) {
-				console.log("Respuesta: " + response);
+				if (IsJsonString(response)){
+					response = $.parseJSON(response);
+					if (response.status == "OK") {
+						$(".views-"+videoid).html(parseInt($(".views-"+videoid).html())+1);
+					} else Materialize.toast(data.msg, 10000);
+				}
 			}
 		});
 		hvideo.togglePlay();

@@ -15,18 +15,22 @@ class Video{
 		$this->videoinfo = $this->dbc->fetch($res);
 	}
 	function hashtags(){
-		//$res = $dbc->query("SELECT FROM tags WHERE video=".$this->id);
-		$tags = "<p>";
-		for($x = 0; $x <= 9; $x++) {
-			$tags .= "<div class='chip chip_tag'><a href='#'> #Tag$x </a></div>";
+		$res = $this->dbc->query("SELECT * FROM tags WHERE video=".$this->id);
+		$tags = "";
+		if ($this->dbc->numRows($res)){
+			$tags .= "<p>";
+			while ($row = $this->dbc->fetch($res)){
+				$tags .= "<div class='chip chip_tag'><a href='#'> #".$row["tag"]." </a></div>";
+			}
+			$tags .= "</p>";
 		}
-		$tags .= "</p>";
 		return $tags;
 	}
 	function showVideo() {
+		if ($this->videoinfo["user"] == NULL) $this->videoinfo["user"] = 'nouser.jpg';
 		echo '<div class="card green-white lighten-0" style="background-color: rgb(235, 235, '.round($this->color*(255/30)).')">
 			<div class="card-content black-text">
-				<span class="card-title black-text">Titulo tarjeta</span>
+				<span class="card-title black-text">'.$this->videoinfo["name"].'</span>
 				<div class="divider" style="background-color:#CCCC00"></div>
 				<p>
 					<div id="'.$this->type.'-'.$this->id.'" class="hvideo" style="margin-top:10px;margin-bot:10px">
@@ -45,8 +49,8 @@ class Video{
 								<button class="zoom" title="Zoom in/out"></button>
 							</extended>
 						</controls>
-						<video width="640" height="480" poster="'.$this->videoinfo["thumbnail"].'" autobuffer>
-							<source src="'.$this->videoinfo["file"].'" type="video/mp4">
+						<video width="640" height="480" poster="uploads/videothumb/'.$this->videoinfo["thumbnail"].'" autobuffer>
+							<source src="uploads/video/'.$this->videoinfo["file"].'" type="video/mp4">
 						</video>
 					</div>
 					<script>
@@ -57,8 +61,8 @@ class Video{
 				<div>'.
 					$this->hashtags($this->id).
 				'</div>
-				<div>
-					<p style="float:right">1000 <img class="responsive-img ojo_imagen" src="resources/css/eye.png" alt="favoritos" width="25"/></p>
+				<div style="margin-bottom: 3px;">
+					<p style="float:right"><span class="views-'.$this->id.'">'.$this->videoinfo["views"].'</span> <img class="responsive-img ojo_imagen" src="resources/css/eye.png" alt="favoritos" width="25"/></p>
 				</div>
 			</div>
 			<div class="divider" style="background-color:#CCCC00"></div>

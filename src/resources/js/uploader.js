@@ -8,10 +8,11 @@ function IsJsonString(str) {
 }
 function createPopup(file){
 	$("#popup-background").show("fast");
-	$("#popup-background").on("click", function(){
+	$("#popup-background").on("click", function(e){
 		$("#popup-background").hide("fast");
 		//Anadir un aviso de que se va a guardar sin editar
 	});
+	$("#popup-background #popup").click(function(e){e.stopPropagation();});
 	$("#popup").load(file);
 }
 function sendFileToServer(formData,status, id) {
