@@ -35,11 +35,11 @@
 
 							$res = $dbc->query($query);
 
-							if ($res == 1) {
+							if ($dbc->queryDone() == true) {
 								die (json_encode(array("status" => "OK", "msg" => $dbc->insertId())));
 							}
 							else {
-								die(json_encode(array("status" => "ERROR", "msg" => "Error al almacenar el video en base de datos.")));
+								die(json_encode(array("status" => "ERROR", "msg" => "Error al almacenar el video en base de datos.", "extra" => $dbc->getLastError())));
 							}
 
 							//
@@ -88,7 +88,7 @@
 					$_POST['email']."','".
 					hash("sha512", $_POST['password'])."');");
 
-					if ($res == 1) {
+					if ($dbc->queryDone() == true) {
 						header("Location: index.php?user=created");
 					}
 					else {
@@ -119,7 +119,6 @@
 					// Check to see if a user exists with this e-mail
 					$query = $dbc->query("SELECT email FROM users WHERE email = '$email'");
 					$userExists = $dbc->fetch($query);
-					$conn = null;
 
 					if ($userExists["email"])
 					{

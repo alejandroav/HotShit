@@ -18,9 +18,12 @@ class PDOHelper {
 		return $resource->fetch(PDO::FETCH_ASSOC);
 	}
 	function insertId(){
-		return $db->lastInsertId();
+		return $this->db->lastInsertId();
 	}
 	function queryDone(){
 		return $this->lastquery;
+	}
+	function getLastError(){
+		return $this->db->errorInfo();
 	}
 }
