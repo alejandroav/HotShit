@@ -103,7 +103,24 @@ div.video2{float:left;margin-left:100px;}
 }
 
 h2{
+	color:white;
 	margin:-10px;
-	margin-bottom: 0px;
+	margin-bottom: 2px;
 	text-align:center;
+}
+
+.Zeeit{
+	float:right;
+	color:rgb(26,25,18);
+	font-family:'Impact';
+	font-size:150%;
+}
+.Zeeit:hover{
+	float:right;
+	color:rgb(130,130,130);
+}
+
+.ojo_imagen{
+	margin:-8px;
+	margin-left:2px;
 }

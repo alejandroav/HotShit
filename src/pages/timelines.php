@@ -6,6 +6,16 @@ if (isset($_POST['valor'])) {
 	$contador = $_POST['valor'];
 }
 
+
+function hastags(){
+ echo	"<p>";
+	for($x = 0; $x <= 9; $x++) {
+		echo " <a href='#'> #Tag$x </a> ";
+	}
+	echo  "</p>";
+}
+
+
 function Video($id){
 	global $contador, $k;
 	// imprimimos tarjetas con cada video.
@@ -22,8 +32,9 @@ function Video($id){
 							'<div class="card green-white lighten-0" style="background-color: rgb(235, 235, '.round($color*(255/30)).')">
 								<div class="card-content black-text">
 									<span class="card-title black-text">Titulo tarjeta</span>
+									<div class="divider" style="background-color:#CCCC00"></div>
 									<p>
-										<div id="test-'.$id.$x.'" class="hvideo">
+										<div id="test-'.$id.$x.'" class="hvideo" style="margin-top:10px;margin-bot:10px">
 											<controls>
 												<button class="play" title="Toggle playback"></button>
 												<button class="play-pause paused" title="Toggle playback"></button>
@@ -47,14 +58,19 @@ function Video($id){
 											var video = $("#test-'.$id.$x.'").hvideo();
 
 										</script>
+										<div class="divider" style="background-color:#CCCC00"></div>
 									</p>
+									<div>';
+										hastags();
+									echo '</div>
 								</div>
+								<div class="divider" style="background-color:#CCCC00"></div>
 								<div class="card-action">
 									<div class="chip">
 										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
 									</div>
-									<a href="#"><img class="responsive-img" src="resources/images/wink.png" alt="favoritos" width="25"/></a>
-									<a href="javascript:like('.$videoid.','.$_SESSION['userid'].');" id="like'.$id.'">ZeeIt</a>
+									<a href="#"><img class="responsive-img ojo_imagen" src="resources/css/eye.png" alt="favoritos" width="25"/></a>
+									<a href="javascript:like('.$videoid.','.$_SESSION['userid'].');" id="like'.$id.'"><span class="Zeeit">ZeeIt</span></a>
 								</div>
 							</div>';
 					}
