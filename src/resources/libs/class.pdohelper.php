@@ -26,4 +26,13 @@ class PDOHelper {
 	function getLastError(){
 		return $this->db->errorInfo();
 	}
+	function startTransaction() {
+		return $this->db->beginTransaction();
+	}
+	function commit() {
+		return $this->db->commit();
+	}
+	function rollback() {
+		return $this->db->rollback();
+	}
 }

@@ -35,9 +35,9 @@
 							$_SESSION['userid'].");";
 
 							$res = $dbc->query($query);
-							
-							
-							
+
+
+
 							if ($dbc->queryDone()!==false) {
 								die (json_encode(array("status" => "OK", "msg" => $dbc->insertId())));
 							}
@@ -254,18 +254,36 @@
 				date_default_timezone_set('Europe/Berlin');
 				$date = date('Y-m-d h:i:s', time());
 				// insertar el like
+				$dbc->startTransaction();
 				$res = $dbc->query("INSERT INTO likes values (".$_POST['user_id'].",".$_POST['video_id'].",'".$date."')");
 
 				if ($dbc->queryDone()!==false) {
 					// actualizar likes del video
 					$res = $dbc->query("UPDATE videos set likes = (select likes+1 from videos where id = ".$_POST['video_id'].") where id = ".$_POST['video_id']);
 					if($dbc->queryDone()!==false) {
+						$dbc->commit();
 						die (json_encode(array("status" => "OK", "msg" => "Like")));
-					} else {
-						// si al actualizar los likes falla, borramos el like para no alterar la bd (se puede arreglar con transaction tambien)
-						$res = $dbc->query("DELETE FROM likes where video = ".$_POST['video_id']);
 					}
-				} die (json_encode(array("status" => "ERROR", "msg" => "Error")));
+				}
+				else {
+					$dbc->rollback();
+					// si llegamos aqui, comprobamos si es un dislike
+					$dbc->startTransaction();
+					$res = $dbc->query("DELETE FROM likes where video = ".$_POST['video_id']." and user = ".$_POST['user_id']);
+
+					// si lo es, disminuimos los likes
+					if ($dbc->queryDone()!==false) {
+						$res = $dbc->query("UPDATE videos set likes = (select likes+1 from videos where id = ".$_POST['video_id'].") where id = ".$_POST['video_id']);
+
+						if ($dbc->queryDone()!==false) {
+							$dbc->commit();
+							die (json_encode(array("status" => "OK", "msg" => "Dislike")));
+						} else {
+							$dbc->rollback();
+						}
+					}
+				}
+					die (json_encode(array("status" => "ERROR", "msg" => $dbc->getLastError())));
 			break;
 
 			default:

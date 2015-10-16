@@ -31,11 +31,14 @@ if (!isset($_SESSION['userid']))
 							if (IsJsonString(response)) {
 								var res = $.parseJSON(response);
 								if (res.status == "OK") {
-									$('#like'+videoid).css('font-weight', 'bold');
-									Materialize.toast('You liked this video!', 1000);
+									if (res.message == "Like") {
+										Materialize.toast('You liked this video!', 2000);
+									} else {
+										Materialize.toast('You disliked this video :(', 2000)
+									}
 								}
 								if (res.status == "ERROR") {
-									Materialize.toast('Error: video could not be liked', 1000);
+									Materialize.toast(res.message, 2000);
 								}
 							}
 						}
