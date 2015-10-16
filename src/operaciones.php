@@ -276,7 +276,6 @@
 				date_default_timezone_set('Europe/Berlin');
 				$date = date('Y-m-d h:i:s', time());
 				// insertar el follow
-				$dbc->startTransaction();
 				$res = $dbc->query("INSERT INTO follows values (".$_POST['user_id'].",".$_POST['target_id'].",'".$date."')");
 
 				if ($dbc->queryDone()!==false) {
