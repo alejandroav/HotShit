@@ -64,7 +64,7 @@ function Video($id){
 										hastags();
 									echo '</div>
 									<div>
-									<p style="float:right">1000</p>
+									<p style="float:right">1000 <img class="responsive-img ojo_imagen" src="resources/css/eye.png" alt="favoritos" width="25"/></p>
 									</div>
 								</div>
 								<div class="divider" style="background-color:#CCCC00"></div>
@@ -72,7 +72,6 @@ function Video($id){
 									<div class="chip">
 										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
 									</div>
-									<a href="#"><img class="responsive-img ojo_imagen" src="resources/css/eye.png" alt="favoritos" width="25"/></a>
 									<a href="javascript:like('.$videoid.','.$_SESSION['userid'].');" id="like'.$id.'"><span class="Zeeit">ZeeIt</span></a>
 								</div>
 							</div>';
