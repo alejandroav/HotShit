@@ -8,11 +8,17 @@
 			<a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
 			<script> $(".button-collapse").sideNav();</script>
 			<a href="#" class="brand-logo" style="color:black;margin-left:15px">
-				<div style="margin-top:-6px">
-					<div class="chip chip_yellow">
-						<img src="uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="#"><?php echo $_SESSION['username']; ?>
-					</div>
-			</div>
+			<ul class="left">
+				<li>
+					<a><i class="material-icons">settings</i></a>
+				</li>
+				<li>
+				<div class="chip chip_yellow">
+					<img src="uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="#"><?php echo $_SESSION['username']; ?>
+				</div>
+				</li>
+				
+			</ul>
 			</a>
 			<div class="brand-logo center">
 			<a href="index.php">
