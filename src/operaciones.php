@@ -273,7 +273,7 @@
 
 					// si lo es, disminuimos los likes
 					if ($dbc->queryDone()!==false) {
-						$res = $dbc->query("UPDATE videos set likes = (select likes+1 from videos where id = ".$_POST['video_id'].") where id = ".$_POST['video_id']);
+						$res = $dbc->query("UPDATE videos set likes = (select likes-1 from videos where id = ".$_POST['video_id'].") where id = ".$_POST['video_id']);
 
 						if ($dbc->queryDone()!==false) {
 							$dbc->commit();
@@ -284,6 +284,10 @@
 					}
 				}
 					die (json_encode(array("status" => "ERROR", "msg" => $dbc->getLastError())));
+			break;
+
+			case 'follow':
+
 			break;
 
 			default:
