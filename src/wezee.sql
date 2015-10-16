@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `likes` (
   PRIMARY KEY (`user`,`video`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla wezee.likes: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla wezee.likes: ~0 rows (aproximadamente)
 DELETE FROM `likes`;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
 INSERT INTO `likes` (`user`, `video`, `date`) VALUES
@@ -92,7 +92,6 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
   `name` varchar(50) NOT NULL,
-  `likes` int(11) NOT NULL,
   `user` varchar(50) NOT NULL,
   `thumbnail` varchar(50) NOT NULL,
   `file` varchar(50) NOT NULL,

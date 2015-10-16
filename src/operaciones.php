@@ -254,39 +254,44 @@
 				date_default_timezone_set('Europe/Berlin');
 				$date = date('Y-m-d h:i:s', time());
 				// insertar el like
-				$dbc->startTransaction();
 				$res = $dbc->query("INSERT INTO likes values (".$_POST['user_id'].",".$_POST['video_id'].",'".$date."')");
 
 				if ($dbc->queryDone()!==false) {
-					// actualizar likes del video
-					$res = $dbc->query("UPDATE videos set likes = (select likes+1 from videos where id = ".$_POST['video_id'].") where id = ".$_POST['video_id']);
-					if($dbc->queryDone()!==false) {
-						$dbc->commit();
 						die (json_encode(array("status" => "OK", "msg" => "Like")));
 					}
 				}
 				else {
-					$dbc->rollback();
 					// si llegamos aqui, comprobamos si es un dislike
-					$dbc->startTransaction();
 					$res = $dbc->query("DELETE FROM likes where video = ".$_POST['video_id']." and user = ".$_POST['user_id']);
 
 					// si lo es, disminuimos los likes
 					if ($dbc->queryDone()!==false) {
-						$res = $dbc->query("UPDATE videos set likes = (select likes-1 from videos where id = ".$_POST['video_id'].") where id = ".$_POST['video_id']);
-
-						if ($dbc->queryDone()!==false) {
-							$dbc->commit();
 							die (json_encode(array("status" => "OK", "msg" => "Dislike")));
-						} else {
-							$dbc->rollback();
 						}
 					}
-				}
 					die (json_encode(array("status" => "ERROR", "msg" => $dbc->getLastError())));
 			break;
 
-			case 'follow':
+			case 'follow-user':
+				// zona horaria
+				date_default_timezone_set('Europe/Berlin');
+				$date = date('Y-m-d h:i:s', time());
+				// insertar el follow
+				$dbc->startTransaction();
+				$res = $dbc->query("INSERT INTO follows values (".$_POST['user_id'].",".$_POST['target_id'].",'".$date."')");
+
+				if ($dbc->queryDone()!==false) {
+						die (json_encode(array("status" => "OK", "msg" => "Followed")));
+					}
+				}
+				else {
+					$res = $dbc->query("DELETE FROM follows where follower = ".$_POST['user_id']." and followed = ".$_POST['target_id']);
+
+					if ($dbc->queryDone()!==false) {
+							die (json_encode(array("status" => "OK", "msg" => "Unfollowed")));
+						}
+					}
+				die (json_encode(array("status" => "ERROR", "msg" => $dbc->getLastError())));
 
 			break;
 
