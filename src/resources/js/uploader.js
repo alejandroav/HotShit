@@ -112,6 +112,7 @@ function StatusBar(id) {
 		this.progressBar.find('.determinate').animate({width: progressBarWidth}, 10);
 		this.percent.html(progress + "%");
 		if(parseInt(progress) >= 100) {
+			this.abort.hide();
 			Materialize.toast('Archivo subido correctamente!', 2000);
 			this.percent.html("Convirtiendo...");
 		}

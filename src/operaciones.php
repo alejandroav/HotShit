@@ -27,19 +27,21 @@
 							// comenzar conexion a bd para almacenar el video
 							date_default_timezone_set('Europe/Berlin');
 							$date = date('Y-m-d h:i:s', time());
-							$query = "INSERT INTO videos (file,thumbnail,date,user) values (''".
+							$query = "INSERT INTO videos (file,thumbnail,date,user) values ('".
 							$targetFile."','".
 							$thumbsFile."','".
 							$date."',".
 							$_SESSION['userid'].");";
 
 							$res = $dbc->query($query);
-
+							
+							
+							
 							if ($dbc->queryDone()!==false) {
 								die (json_encode(array("status" => "OK", "msg" => $dbc->insertId())));
 							}
 							else {
-								die(json_encode(array("status" => "ERROR", "msg" => "Error al almacenar el video en base de datos.", "extra" => $dbc->getLastError())));
+								die(json_encode(array("status" => "ERROR", "msg" => "Error al almacenar el video en base de datos.", "extra" => "")));
 							}
 
 							//
@@ -105,7 +107,7 @@
 						$mail->Port = 465;                                    // TCP port to connect to
 
 						$mail->setFrom('hola@wezee.es', 'WeZee Welcome Center');
-						$mail->addAddress($userExists["email"]);     // Add a recipient
+						$mail->addAddress($_POST["email"]);     // Add a recipient
 						$mail->isHTML(true);                                  // Set email format to HTML
 
 						$mail->Subject = 'Bienvenido a WeZee';
