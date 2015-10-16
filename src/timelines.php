@@ -46,7 +46,7 @@ if (!isset($_SESSION['userid']))
 				}
 			</script>
 	</head>
-	<body style="background-color:#FBFBFB">
+	<body style="background-color:#35352D">
 		<a><?php include("pages/header.php"); ?>
 		<div style="padding:10px">
 			<?php include("pages/uploader.php"); ?>
