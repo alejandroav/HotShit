@@ -70,21 +70,20 @@ function Timeline($type, $contador) {
 	for ($x = 0; $x <= 9; $x++) {
 		$color++;
 		$videoid=3;
-		if ($color>31) $color = 30;
-		Video($type, $contador, $contador);
-		$k++;
-		if($k%3==0){
-			$contador+=10;
+		if ($color>31){
+			$color = 30;
 		}
+		Video($type, $contador+$k, $color);
+		$k++;
 	}
 }
 ?>
 <div class="col s4">
-	<?php $contador = Timeline("principales", $contador);?>
+	<?php Timeline("principales", $contador);?>
 </div>
 <div class="col s4">
-	<?php $contador = Timeline("users", $contador);?>
+	<?php Timeline("users", $contador);?>
 </div>
 <div class="col s4">
-	<?php $contador = Timeline("hashtags", $contador);?>
+	<?php Timeline("hashtags", $contador);?>
 </div>
