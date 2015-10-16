@@ -28,9 +28,10 @@
 							// comenzar conexion a bd para almacenar el video
 							date_default_timezone_set('Europe/Berlin');
 							$date = date('Y-m-d h:i:s', time());
-							$query = "INSERT INTO videos (file,thumbnail,date,user) values ('".
-							$targetFile."','".
-							$thumbsFile."','".
+							$query = "INSERT INTO videos (name, file,thumbnail,date,user) values ('".
+							$name."','".
+							$newname.".mp4','".
+							$newname.".png','".
 							$date."',".
 							$_SESSION['userid'].");";
 
@@ -295,9 +296,9 @@
 			case 'view':
 				$dbc->query("update videos set views = (select views+1 from videos where id=".$_POST['video_id'].") where id=".$_POST['video_id']);
 				if ($dbc->queryDone()) {
-					die (json_enconde(array("status" => "OK")));
+					die (json_encode(array("status" => "OK")));
 				}
-				die (json_enconde(array("status" => "ERROR")));
+				die (json_encode(array("status" => "ERROR")));
 			break;
 
 			default:

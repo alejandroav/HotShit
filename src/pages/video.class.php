@@ -4,14 +4,15 @@ class Video{
 	var $type;
 	var $color;
 	var $dbc;
+	var $videoinfo;
 	function Video($type, $id, $color){
 		global $servername, $username, $password, $db;
 		$this->id = $id;
 		$this->type = $type;
 		$this->color = $color;
 		$this->dbc = new PDOHelper($servername, $username, $password, $db);
-		$res = $this->dbc->query("SELECT * FROM video WHERE id=".$this->id);
-		print_r($this->dbc->fetch($res));
+		$res = $this->dbc->query("SELECT * FROM videos WHERE id=".$this->id);
+		$this->videoinfo = $this->dbc->fetch($res);
 	}
 	function hashtags(){
 		//$res = $dbc->query("SELECT FROM tags WHERE video=".$this->id);
@@ -44,12 +45,12 @@ class Video{
 								<button class="zoom" title="Zoom in/out"></button>
 							</extended>
 						</controls>
-						<video width="640" height="480" poster="uploads/videothumb/poster.png" autobuffer>
-							<source src="uploads/video/movie.mp4" type="video/mp4">
+						<video width="640" height="480" poster="'.$this->videoinfo["thumbnail"].'" autobuffer>
+							<source src="'.$this->videoinfo["file"].'" type="video/mp4">
 						</video>
 					</div>
 					<script>
-						var video = $("#'.$this->type.'-'.$this->id.'").hvideo();
+						var video = $("#'.$this->type.'-'.$this->id.'").hvideo('.$this->id.');
 					</script>
 					<div class="divider" style="background-color:#CCCC00"></div>
 				</p>
@@ -62,7 +63,7 @@ class Video{
 			</div>
 			<div class="divider" style="background-color:#CCCC00"></div>
 			<div class="card-action">
-				<a href="javascript:follow-user('.$_SESSION['userid'].','.$this->user.');">
+				<a href="javascript:followuser('.$_SESSION['userid'].','.$this->videoinfo["user"].');">
 					<div class="chip">
 						<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#"><span ><span style="text-transform:none">'.$_SESSION["username"].'</span>
 					</div>

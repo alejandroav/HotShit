@@ -44,7 +44,7 @@ if (!isset($_SESSION['userid']))
 						}
 					});
 				}
-				function follow-user(follower,followed) {
+				function followuser(follower,followed) {
 						$.ajax({
 						method: "POST",
 						url: "operaciones.php?op=follow-user",

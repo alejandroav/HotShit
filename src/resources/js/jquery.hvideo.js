@@ -7,7 +7,7 @@
 if (window.console === undefined)window.console={log:function(){}};
 
 
-jQuery.fn.hvideo = function(options){
+jQuery.fn.hvideo = function(id, options){
 	var hvideo = {
 		/** if <this> should be resized to fit the actual video size */
 		autoresize: false
@@ -16,7 +16,7 @@ jQuery.fn.hvideo = function(options){
 		for (var k in options)
 			hvideo[k] = options[k];
 	}
-
+	var videoid = id;
 	var rootq = this;
 	var vq = rootq.find('video');
 	var ctrlq = rootq.find('controls');

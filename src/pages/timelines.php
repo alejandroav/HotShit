@@ -9,25 +9,24 @@ include("video.class.php");
 if (!file_exists("resources/libs/class.pdohelper.php")) $extra = "../";
 else $extra = ""; 
 include($extra."resources/libs/class.pdohelper.php");
+include($extra."config.php");
 
 function Timeline($type, $contador) {
 	// imprimimos tarjetas con cada video.
 	// hay que pasar por parametro si queremos videos populares o tags populares
 	global $servername, $username, $password, $db;
 	$dbc = new PDOHelper($servername, $username, $password, $db);
-	$res = $dbc->query("SELECT * FROM video");
-	print_r($dbc->fetch($res));
-	$k = 0;
+	$res = $dbc->query("SELECT id FROM videos");
 	$color = $contador;
-	for ($x = 0; $x <= 9; $x++) {
+	while ($row = $dbc->fetch($res)){
 		$color++;
 		$videoid=3;
 		if ($color>31){
 			$color = 30;
 		}
-		$video = new Video($type, $contador+$k, $color);
+		$video = new Video($type, $row["id"], $color);
 		$video->showVideo();
-		$k++;
+		//echo "<script>console.log('".$row["id"]."');</script>";
 	}
 }
 ?>
