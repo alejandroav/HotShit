@@ -21,10 +21,12 @@ div.video2{float:left;margin-left:100px;}
 #uploader .progress{
 }
 #uploader .percent{
-	font-family:'Lobster';
-	color:rgb(255,236,50);
+	font-family:'Lobster',cursive;
+	color:black;
 }
 #uploader .abort{
+	border-radius:5px;
+	background-color:rgb(255,236,50);
 }
 #uploader .name{
 	font-family:'Lobster';
@@ -49,6 +51,7 @@ div.video2{float:left;margin-left:100px;}
 	margin-left:5px;
 }
 .popup-background{
+	z-index:5;
 	position: fixed;
 	top: 0px;
 	left: 0px;

@@ -87,7 +87,7 @@ function StatusBar(id) {
 	this.name = $($("#"+id+" .name")[0]);
 	this.size = $($("#"+id+" .size")[0]);
 	
-	this.obj.append('<button class="abort">Cancelar</button>');
+	this.obj.append('<button class="abort waves-effect waves-light btn">Cancelar</button>');
 	this.abort = $($("#"+id+" > .abort")[0]);
 	
 	this.setBar = function(type) {
