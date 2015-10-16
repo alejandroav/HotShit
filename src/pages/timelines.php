@@ -63,6 +63,9 @@ function Video($id){
 									<div>';
 										hastags();
 									echo '</div>
+									<div>
+									<p style="float:right">1000</p>
+									</div>
 								</div>
 								<div class="divider" style="background-color:#CCCC00"></div>
 								<div class="card-action">
