@@ -43,8 +43,6 @@ CREATE TABLE IF NOT EXISTS `likes` (
 -- Volcando datos para la tabla wezee.likes: ~0 rows (aproximadamente)
 DELETE FROM `likes`;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` (`user`, `video`, `date`) VALUES
-	(17, 0, '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 
 
@@ -96,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `videos` (
   `thumbnail` varchar(50) NOT NULL,
   `file` varchar(50) NOT NULL,
   `trendlevel` double DEFAULT NULL,
+  `views` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

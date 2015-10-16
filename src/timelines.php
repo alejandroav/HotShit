@@ -31,10 +31,10 @@ if (!isset($_SESSION['userid']))
 							if (IsJsonString(response)) {
 								var res = $.parseJSON(response);
 								if (res.status == "OK") {
-									if (res.message == "Like") {
-										Materialize.toast('You liked this video!', 2000);
-									} else {
-										Materialize.toast('You disliked this video :(', 2000)
+									if (res.msg == "Like") {
+										Materialize.toast('¡Te gusta!', 2000);
+									} else if (res.msg == "Dislike") {
+										Materialize.toast('No te gusta :(', 2000)
 									}
 								}
 								if (res.status == "ERROR") {

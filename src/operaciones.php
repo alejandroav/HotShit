@@ -258,18 +258,16 @@
 
 				if ($dbc->queryDone()!==false) {
 						die (json_encode(array("status" => "OK", "msg" => "Like")));
-					}
 				}
 				else {
 					// si llegamos aqui, comprobamos si es un dislike
 					$res = $dbc->query("DELETE FROM likes where video = ".$_POST['video_id']." and user = ".$_POST['user_id']);
 
-					// si lo es, disminuimos los likes
-					if ($dbc->queryDone()!==false) {
+					if ($dbc->queryDone()) {
 							die (json_encode(array("status" => "OK", "msg" => "Dislike")));
-						}
 					}
-					die (json_encode(array("status" => "ERROR", "msg" => $dbc->getLastError())));
+				}
+				die (json_encode(array("status" => "ERROR", "msg" => $dbc->getLastError())));
 			break;
 
 			case 'follow-user':
@@ -283,7 +281,6 @@
 				if ($dbc->queryDone()!==false) {
 						die (json_encode(array("status" => "OK", "msg" => "Followed")));
 					}
-				}
 				else {
 					$res = $dbc->query("DELETE FROM follows where follower = ".$_POST['user_id']." and followed = ".$_POST['target_id']);
 
