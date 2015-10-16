@@ -124,3 +124,10 @@ h2{
 	margin:-8px;
 	margin-left:2px;
 }
+
+.chip_tag{
+	margin-left:5px;
+	margin-top:3px;
+	border-radius:7px;
+	
+}

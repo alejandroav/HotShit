@@ -10,7 +10,7 @@ if (isset($_POST['valor'])) {
 function hastags(){
  echo	"<p>";
 	for($x = 0; $x <= 9; $x++) {
-		echo " <a href='#'> #Tag$x </a> ";
+		echo " <div class='chip chip_tag'><a href='#'> #Tag$x </a></div> ";
 	}
 	echo  "</p>";
 }
