@@ -69,9 +69,10 @@ function Video($id){
 								</div>
 								<div class="divider" style="background-color:#CCCC00"></div>
 								<div class="card-action">
-									<div class="chip">
-										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#">'.$_SESSION["username"].'
-									</div>
+									<a>
+									<div class="chip" >
+										<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#"><span ><span style="text-transform:none">'.$_SESSION["username"].'</span>
+									</div></a>
 									<a href="javascript:like('.$videoid.','.$_SESSION['userid'].');" id="like'.$id.'"><span class="Zeeit">ZeeIt</span></a>
 								</div>
 							</div>';
