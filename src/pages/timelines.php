@@ -39,7 +39,7 @@ function Video($id){
 													<button class="zoom" title="Zoom in/out"></button>
 												</extended>
 											</controls>
-											<video width="330" height="205" poster="uploads/videothumb/poster.jpg" autobuffer>
+											<video width="640" height="480" poster="uploads/videothumb/poster.jpg" autobuffer>
 												<source src="uploads/video/movie.mp4" type="video/mp4">
 											</video>
 										</div>

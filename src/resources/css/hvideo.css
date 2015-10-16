@@ -1,7 +1,7 @@
 .hvideo, .hvideo * { padding:0; margin:0; }
-.hvideo { display:inline-block; }
+.hvideo { /*display:inline-block;*/ }
 .hvideo video {
-	background-color:rgb(127, 137, 147);
+	background-color:rgb(26, 25, 17);
 	width:100%;
 	height:205px;
 }
