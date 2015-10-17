@@ -1,5 +1,8 @@
 <?php
 session_start();
+include("resources/libs/class.pdohelper.php");
+include("config.php");
+$dbc = new PDOHelper($servername, $username, $password, $db);
 if (!isset($_SESSION['userid']))
 	header('Location: index.php');
 ?>
@@ -41,27 +44,59 @@ if (!isset($_SESSION['userid']))
 				</div>
 				<div class="col s4">
 					<h2>Usuarios</h2>
-					<div class="search-wrapper" style="background-color:transparent;text-align:center;">
-						<input id="search">
-						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20" style="margin-left:-28px;margin-bottom:-5px;"/></a>
-						<div class="search-results"></div>
+					<div style="text-align: center;">
+						<select id="combobox-users">
+							<option value=''>Todos</option>
+							<?php 
+								$query = $dbc->query("SELECT followed FROM follows where follower = ".$_SESSION['userid']);
+								while ($result = $dbc->fetch($query)){
+									$res = $dbc->query("SELECT id, username FROM users WHERE id=".$result["followed"]);
+									$info = $dbc->fetch($res);
+									echo "<option value='".$info["id"]."'>@".$info["username"]."</option>";
+								}
+							?>
+						</select>
 					</div>
 					<script>
 						$(function() {
-							$( "#combobox" ).combobox();
-							$( "#toggle" ).click(function() {
-								$( "#combobox" ).toggle();
+							$("#combobox-users").combobox();
+							$("#toggle").click(function() {
+								$("#combobox-users").toggle();
 							});
 						});
 					</script>
-				</div>
-				<div class="col s4">
-					<h2>Tags</h2>
-					<div class="search-wrapper" style="background-color:transparent;text-align:center;">
+					<!--<div class="search-wrapper" style="background-color:transparent;text-align:center;">
 						<input id="search">
 						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20" style="margin-left:-28px;margin-bottom:-5px;"/></a>
 						<div class="search-results"></div>
+					</div>-->
+				</div>
+				<div class="col s4">
+					<h2>Tags</h2>
+					<div style="text-align: center;">
+						<select id="combobox-tags">
+							<option value=''>Todos</option>
+							<?php
+								$query = $dbc->query("SELECT tag FROM tags");
+								while ($result = $dbc->fetch($query)){
+									echo "<option value='".$result["tag"]."'>".$result["tag"]."</option>";
+								}
+							?>
+						</select>
 					</div>
+					<script>
+						$(function() {
+							$("#combobox-tags").combobox();
+							$("#toggle").click(function() {
+								$("#combobox-tags").toggle();
+							});
+						});
+					</script>
+					<!--<div class="search-wrapper" style="background-color:transparent;text-align:center;">
+						<input id="search">
+						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20" style="margin-left:-28px;margin-bottom:-5px;"/></a>
+						<div class="search-results"></div>
+					</div>-->
 				</div>
 				<?php include("pages/timelines.php"); ?>
 			</div>
@@ -81,6 +116,17 @@ if (!isset($_SESSION['userid']))
 					contador+=10;
 					setTimeout(function(){ loadMore(contador, 'general'); loadMore(contador, 'users'); loadMore(contador, 'tags'); }, 300);
 				}
+			});
+			$(document).ready(function(){
+				$('#general_actualizar').click(function(){
+					loadRow('general');
+				});
+				$("#combobox-users").on("change", function(){
+					loadRow('users');
+				});
+				$("#combobox-tags").on("change", function(){
+					loadRow('tags');
+				});
 			});
 		</script>
 		<script src="resources/js/timelines.js"></script>

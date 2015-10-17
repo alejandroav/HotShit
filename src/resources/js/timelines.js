@@ -46,11 +46,15 @@ function followuser(follower,followed) {
 		}
 	});
 }
-function loadMore(contador, tipo){
-	//Materialize.toast("This is our ScrollFire Demo!", 1500 )
-	var circle = '<div id="loadmore" class="preloader-wrapper active" style="margin-left: '+
+var circle = '<div id="loadmore" class="preloader-wrapper active" style="margin-left: '+
 	($("#timelines").width()/2)
 	+'px;"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+function loadRow(tipo){
+	$("#col-"+tipo).html(circle);
+	$("#col-"+tipo).load('pages/timelines.php?tipo='+tipo);
+}
+function loadMore(contador, tipo){
+	//Materialize.toast("This is our ScrollFire Demo!", 1500 )
 	$("#timelines").append(circle);
 	$("#"+tipo).load('pages/timelines.php?c='+contador+'&tipo='+tipo);
 	$("#loadmore").remove();
