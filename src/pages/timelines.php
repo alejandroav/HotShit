@@ -1,8 +1,8 @@
 <?php
 if (!isset($_SESSION)) session_start();
 
-if (isset($_POST['valor'])) {
-	$contador = $_POST['valor'];
+if (isset($_GET['c'])) {
+	$contador = $_GET['c'];
 } else $contador = 0;
 
 include("video.class.php");
@@ -16,6 +16,7 @@ function Timeline($type, $contador) {
 	// hay que pasar por parametro si queremos videos populares o tags populares
 	global $servername, $username, $password, $db;
 	$dbc = new PDOHelper($servername, $username, $password, $db);
+	//if ($type == "general") {
 	$res = $dbc->query("SELECT id FROM videos ORDER BY date DESC LIMIT ".$contador.", 10");
 	$color = $contador;
 	while ($row = $dbc->fetch($res)){
@@ -26,16 +27,19 @@ function Timeline($type, $contador) {
 		}
 		$video = new Video($type, $row["id"], $color);
 		$video->showVideo();
-		//echo "<script>console.log('".$row["id"]."');</script>";
 	}
 }
+if (isset($_GET['tipo'])) {
+	Timeline($_GET['tipo'], $contador);
+} else {
 ?>
-<div class="col s4">
-	<?php Timeline("principales", $contador);?>
-</div>
-<div class="col s4">
-	<?php Timeline("users", $contador);?>
-</div>
-<div class="col s4">
-	<?php Timeline("hashtags", $contador);?>
-</div>
+	<div class="col s4" id="col-general">
+		<?php Timeline("general", $contador);?>
+	</div>
+	<div class="col s4" id="col-usuarios">
+		<?php Timeline("users", $contador);?>
+	</div>
+	<div class="col s4" id="col-tags">
+		<?php Timeline("tags", $contador);?>
+	</div>
+<?php } ?>

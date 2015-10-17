@@ -273,7 +273,7 @@
 
 			case 'follow-user':
 				if ($_POST['user_id'] == $_POST['target_id'])
-					die(json_encode(array("status" => "ERROR", "msg" => "¡No puedes seguirte a ti mismo! >:(")))
+					die(json_encode(array("status" => "ERROR", "msg" => "¡No puedes seguirte a ti mismo! >:(")));
 					
 				// zona horaria
 				date_default_timezone_set('Europe/Berlin');
