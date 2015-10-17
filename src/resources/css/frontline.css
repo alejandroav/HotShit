@@ -131,3 +131,22 @@ h2{
 	border-radius:7px;
 	
 }
+.actualizar{
+	background-color:rgb(255,236,50);
+	border-radius:30px;
+	border-color:rgb(255,236,120);
+	text-align:center;
+	font-family:'Impact',cursive;
+	font-stretch:-30px;
+	
+}
+.actualizar:hover{
+	background-color:rgb(200,200,50);
+	border-radius:30px;
+	border-color:rgb(200,200,120);
+	text-align:center;
+	font-family:'Impact',cursive;
+	font-style:bold;
+	font-stretch:-50px;
+	
+}
