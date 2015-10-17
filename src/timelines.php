@@ -11,14 +11,17 @@ if (!isset($_SESSION['userid']))
 		<meta charset="utf-8"/>
 		<title>Wezee</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
-		<link rel="stylesheet" href="resources/css/frontline.css"/>
-		<link rel="stylesheet" href="resources/css/hvideo.css" type="text/css" charset="utf-8">
 		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<script src="resources/js/jquery-2.1.4.min.js"></script>
-		<script src="resources/js/materialize.min.js"></script>
+		<link rel="stylesheet" href="resources/css/materialize.min.css" type="text/css" charset="utf-8"/>
+		<link rel="stylesheet" href="resources/css/frontline.css" type="text/css" charset="utf-8"/>
+		<link rel="stylesheet" href="resources/css/hvideo.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="resources/css/jquery-combobox.css" type="text/css" charset="utf-8">
+		<script src="resources/js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="resources/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="resources/js/materialize.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="resources/js/jquery.hvideo.js" type="text/javascript" charset="utf-8"></script>
+		<script src="resources/js/jquery-combobox.js" type="text/javascript" charset="utf-8"></script>
 			<script type="text/javascript">
 				function like(videoid,userid) {
 						$.ajax({
@@ -93,6 +96,14 @@ if (!isset($_SESSION['userid']))
 						<a href="#"> <img src="resources/images/busqueda.png" alt="lupa" width="20" style="margin-left:-28px;margin-bottom:-5px;"/></a>
 						<div class="search-results"></div>
 					</div>
+					<script>
+						$(function() {
+							$( "#combobox" ).combobox();
+							$( "#toggle" ).click(function() {
+								$( "#combobox" ).toggle();
+							});
+						});
+					</script>
 				</div>
 				<div class="col s4">
 					<h2>Tags</h2>
