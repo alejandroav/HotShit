@@ -36,7 +36,7 @@ if (!isset($_SESSION['userid']))
 				<div class="col s4">
 					<h2>General</h2>
 					<div style="text-align:center">
-						<button id="general_actualizar" class="actualizar">Actualizar</button>
+						<input type="button" id="general_actualizar" class="actualizar" value="Actualizar"/>
 					</div>
 				</div>
 				<div class="col s4">

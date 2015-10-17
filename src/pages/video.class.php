@@ -5,6 +5,7 @@ class Video{
 	var $color;
 	var $dbc;
 	var $videoinfo;
+	var $userinfo;
 	function Video($type, $id, $color){
 		global $servername, $username, $password, $db;
 		$this->id = $id;
@@ -13,6 +14,8 @@ class Video{
 		$this->dbc = new PDOHelper($servername, $username, $password, $db);
 		$res = $this->dbc->query("SELECT * FROM videos WHERE id=".$this->id);
 		$this->videoinfo = $this->dbc->fetch($res);
+		$res = $this->dbc->query("SELECT * FROM users WHERE id=".$this->videoinfo["user"]);
+		$this->userinfo = $this->dbc->fetch($res);
 	}
 	function hashtags(){
 		$res = $this->dbc->query("SELECT * FROM tags WHERE video=".$this->id);
@@ -27,7 +30,7 @@ class Video{
 		return $tags;
 	}
 	function showVideo() {
-		if ($this->videoinfo["user"] == NULL) $this->videoinfo["user"] = 'nouser.jpg';
+		if ($this->userinfo["img"] == NULL) $this->userinfo["img"] = 'nouser.jpg';
 		echo '<div class="card green-white lighten-0" style="background-color: rgb(235, 235, '.round($this->color*(255/30)).')">
 			<div class="card-content black-text">
 				<span class="card-title black-text">'.$this->videoinfo["name"].'</span>
@@ -69,7 +72,7 @@ class Video{
 			<div class="card-action">
 				<a href="javascript:followuser('.$_SESSION['userid'].','.$this->videoinfo["user"].');">
 					<div class="chip">
-						<img src="uploads/userimg/'.$_SESSION["userimg"].'" alt="#"><span ><span style="text-transform:none">'.$_SESSION["username"].'</span>
+						<img src="uploads/userimg/'.$this->userinfo["img"].'" alt="#"><span ><span style="text-transform:none">@'.$this->userinfo["username"].'</span>
 					</div>
 				</a>
 				<a href="javascript:like('.$this->id.','.$_SESSION['userid'].');" id="like'.$this->id.'"><span class="Zeeit">ZeeIt</span></a>
