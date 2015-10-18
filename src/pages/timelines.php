@@ -55,4 +55,3 @@ if (isset($_GET['tipo'])) {
 	<div class="col s4" id="col-tags">
 		<?php Timeline("tags", $contador);?>
 	</div>
-<?php } ?>
