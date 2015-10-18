@@ -120,10 +120,10 @@ if (!isset($_SESSION['userid']))
 					loadRow('general');
 				});
 				$("#combobox-users").on("change", function(){
-					loadRow('users');
+					loadRow('users', $("#combobox-users").val());
 				});
 				$("#combobox-tags").on("change", function(){
-					loadRow('tags');
+					loadRow('tags', $("#combobox-users").val());
 				});
 			});
 		</script>
