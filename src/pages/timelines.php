@@ -15,12 +15,19 @@ function Timeline($type, $contador) {
 	// hay que pasar por parametro si queremos videos populares o tags populares
 	global $servername, $username, $password, $db;
 	$dbc = new PDOHelper($servername, $username, $password, $db);
-	if ($type == "general") {
-		$res = $dbc->query("SELECT id FROM videos ORDER BY trendlevel DESC LIMIT ".$contador.", 10");
-	} else if ($type == "users") {
-		$res = $dbc->query("SELECT id FROM videos where user in (select followed from follows where follower = ".$_SESSION['userid'].") ORDER BY date DESC LIMIT ".$contador.", 10");
-	} else if ($type == "tags") {
-		$res = $dbc->query("SELECT id FROM videos where id in (select video from tags where tag in (select tag from follows where follower = ".$_SESSION['userid'].") ORDER BY date DESC LIMIT ".$contador.", 10");
+	if (!isset($_GET['extra'])) {
+		if ($type == "general") {
+			$res = $dbc->query("SELECT id FROM videos ORDER BY trendlevel DESC LIMIT ".$contador.", 10");
+		} else if ($type == "users") {
+			$res = $dbc->query("SELECT id FROM videos where user in (select followed from follows where follower = ".$_SESSION['userid'].") ORDER BY date DESC LIMIT ".$contador.", 10");
+		} else if ($type == "tags") {
+			$res = $dbc->query("SELECT id FROM videos where id in (select video from tags where tag in (select tag from follows where follower = ".$_SESSION['userid'].") ORDER BY date DESC LIMIT ".$contador.", 10");
+		}
+	} else {
+		if ($type == "users") {
+			$res = $dbc->query("SELECT id FROM videos where user = (select id from users where username like ".$_GET['extra'].") ORDER BY date DESC LIMIT ".$contador.", 10");
+		} else if ($type == "tags") {
+			$res = $dbc->query("SELECT id FROM videos where id in (select video from tags where tag like ".$_GET['extra'].") ORDER BY date DESC LIMIT ".$contador.", 10");
 	}
 
 	$color = $contador;
