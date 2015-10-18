@@ -47,7 +47,7 @@ function sendFileToServer(formData,status, id) {
 				}
 			} else Materialize.toast(data, 10000);
 		}
-	}); 
+	});
 
 	status.setAbort(jqXHR);
 }
@@ -56,7 +56,7 @@ function restart(id){
 	var objmanual = $("#"+id+"-input");
 	objmanual.val("");
 	obj.addClass("uploader");
-	obj.html("Arrastra aqui o haz click para subir un video");
+	obj.html("Arrastra aqui o haz click para subir un video (límite provisional de 100MB)");
 	startUploadZone(id);
 }
 var rowCount=0;
@@ -68,25 +68,25 @@ function StatusBar(id) {
 	this.obj.removeClass("uploader");
 	this.obj.html('<div class="progress"><div class="determinate" style="width: 0%; background-color: rgb(255, 255, 0);"></div></div>');
 	this.progressBar = $($("#"+id+" > .progress")[0]);
-	
+
 	this.manualupload = $("#"+id+"-input");
 	this.manualupload.unbind();
-	
+
 	this.obj.prepend('<div class="percent">0%</div>');
 	this.percent = $($("#"+id+" .percent")[0]);
-	
+
 	this.obj.append('<div class="center-align"><span class="name"></span> - <span class="size"></span></div>');
 	this.name = $($("#"+id+" .name")[0]);
 	this.size = $($("#"+id+" .size")[0]);
-	
+
 	this.obj.append('<button class="abort waves-effect waves-light btn">Cancelar</button>');
 	this.abort = $($("#"+id+" > .abort")[0]);
-	
+
 	this.setBar = function(type) {
 		if (type == "i") this.progressBar.find(">:first-child").removeClass("determinate").addClass("indeterminate");
 		else this.progressBar.find(">:first-child").removeClass("indeterminate").addClass("determinate");
 	}
-	
+
 	this.setFileNameSize = function(name,size) {
 		var sizeStr="";
 		var sizeKB = size/1024;
@@ -99,8 +99,8 @@ function StatusBar(id) {
 		this.name.html(name);
 		this.size.html(sizeStr);
 	}
-	this.setProgress = function(progress) {	  
-		var progressBarWidth = progress*this.progressBar.width()/ 100;  
+	this.setProgress = function(progress) {
+		var progressBarWidth = progress*this.progressBar.width()/ 100;
 		this.progressBar.find('.determinate').animate({width: progressBarWidth}, 10);
 		this.percent.html(progress + "%");
 		if(parseInt(progress) >= 100) {
