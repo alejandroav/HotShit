@@ -15,7 +15,7 @@
 				<li>
 				<a href="javascript:createPopup('<?php echo $rutaAbsoluta; ?>pages/profile.php');">
 					<div class="chip chip_yellow">
-						<img src="<?php echo $rutaAbsoluta; ?>uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="#"><?php echo $_SESSION['username']; ?>
+						<img src="<?php echo $rutaAbsoluta; ?>uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="#">@<?php echo $_SESSION['username']; ?>
 					</div>
 				</a>
 				</li>

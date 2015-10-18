@@ -274,12 +274,12 @@
 			case 'follow-user':
 				if ($_POST['user_id'] == $_POST['target_id'])
 					die(json_encode(array("status" => "ERROR", "msg" => "¡No puedes seguirte a ti mismo! >:(")));
-					
+
 				// zona horaria
 				date_default_timezone_set('Europe/Berlin');
 				$date = date('Y-m-d h:i:s', time());
 				// insertar el follow
-				$res = $dbc->query("INSERT INTO follows values (".$_POST['user_id'].",".$_POST['target_id'].",'".$date."')");
+				$res = $dbc->query("INSERT INTO follows(follower,followed,date) values (".$_POST['user_id'].",".$_POST['target_id'].",'".$date."')");
 
 				if ($dbc->queryDone()!==false) {
 						die (json_encode(array("status" => "OK", "msg" => "Followed")));
