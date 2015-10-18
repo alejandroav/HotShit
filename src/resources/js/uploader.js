@@ -6,15 +6,6 @@ function IsJsonString(str) {
     }
     return true;
 }
-function createPopup(file){
-	$("#popup-background").show("fast");
-	$("#popup-background").on("click", function(e){
-		$("#popup-background").hide("fast");
-		//Anadir un aviso de que se va a guardar sin editar
-	});
-	$("#popup-background #popup").click(function(e){e.stopPropagation();});
-	$("#popup").load(file);
-}
 function sendFileToServer(formData,status, id) {
 	var uploadURL ="operaciones.php?op=uploadvideo";
 	var jqXHR=$.ajax({

@@ -4,7 +4,7 @@ include("resources/libs/class.pdohelper.php");
 include("config.php");
 $dbc = new PDOHelper($servername, $username, $password, $db);
 if (!isset($_SESSION['userid']))
-	header('Location: index.php');
+	header('Location: '.$rutaAbsoluta.'index');
 ?>
 
 <!DOCTYPE html>
@@ -15,18 +15,16 @@ if (!isset($_SESSION['userid']))
 		<title>Wezee</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="resources/css/materialize.min.css" type="text/css" charset="utf-8"/>
-		<link rel="stylesheet" href="resources/css/frontline.css" type="text/css" charset="utf-8"/>
-		<link rel="stylesheet" href="resources/css/hvideo.css" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="resources/css/jquery-ui.min.css" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="resources/css/jquery-combobox.css" type="text/css" charset="utf-8">
-		<script src="resources/js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="resources/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="resources/js/materialize.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="resources/js/jquery.hvideo.js" type="text/javascript" charset="utf-8"></script>
-		<script src="resources/js/jquery-combobox.js" type="text/javascript" charset="utf-8"></script>
-			<script type="text/javascript">
-			</script>
+		<link rel="stylesheet" href="<?php echo $rutaAbsoluta; ?>resources/css/materialize.min.css" type="text/css" charset="utf-8"/>
+		<link rel="stylesheet" href="<?php echo $rutaAbsoluta; ?>resources/css/frontline.css" type="text/css" charset="utf-8"/>
+		<link rel="stylesheet" href="<?php echo $rutaAbsoluta; ?>resources/css/hvideo.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="<?php echo $rutaAbsoluta; ?>resources/css/jquery-ui.min.css" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="<?php echo $rutaAbsoluta; ?>resources/css/jquery-combobox.css" type="text/css" charset="utf-8">
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/materialize.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/jquery.hvideo.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/jquery-combobox.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body style="background-color:#35352D">
 		<a><?php include("pages/header.php"); ?>
@@ -129,8 +127,8 @@ if (!isset($_SESSION['userid']))
 				});
 			});
 		</script>
-		<script src="resources/js/timelines.js"></script>
-		<script src="resources/js/scroll.js"></script>
-		<script src="resources/js/uploader.js"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/timelines.js"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/scroll.js"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/uploader.js"></script>
 	</body>
 </html>

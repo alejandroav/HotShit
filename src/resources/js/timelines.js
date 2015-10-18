@@ -4,7 +4,7 @@ function like(videoid,userid) {
 		url: "operaciones.php?op=like",
 		data: {video_id:videoid,user_id:userid},
 		success: function(response) {
-			console.log("Respuesta: " + response);
+			//console.log("Respuesta: " + response);
 			// colorear el enlace de like
 			if (IsJsonString(response)) {
 				var res = $.parseJSON(response);
@@ -16,7 +16,7 @@ function like(videoid,userid) {
 					}
 				}
 				if (res.status == "ERROR") {
-					Materialize.toast(res.message, 2000);
+					Materialize.toast(res.msg, 2000);
 				}
 			}
 		}
@@ -28,7 +28,7 @@ function followuser(follower,followed) {
 		url: "operaciones.php?op=follow-user",
 		data: {user_id:follower,target_id:followed},
 		success: function(response) {
-			console.log("Respuesta: " + response);
+			//console.log("Respuesta: " + response);
 			// colorear el enlace de like
 			if (IsJsonString(response)) {
 				var res = $.parseJSON(response);
@@ -40,7 +40,7 @@ function followuser(follower,followed) {
 					}
 				}
 				if (res.status == "ERROR") {
-					Materialize.toast(res.message, 2000);
+					Materialize.toast(res.msg, 2000);
 				}
 			}
 		}
@@ -58,4 +58,13 @@ function loadMore(contador, tipo){
 	$("#timelines").append(circle);
 	$("#"+tipo).load('pages/timelines.php?c='+contador+'&tipo='+tipo);
 	$("#loadmore").remove();
+}
+function createPopup(file){
+	$("#popup-background").show("fast");
+	$("#popup-background").on("click", function(e){
+		$("#popup-background").hide("fast");
+		//Anadir un aviso de que se va a guardar sin editar
+	});
+	$("#popup-background #popup").click(function(e){e.stopPropagation();});
+	$("#popup").load(file);
 }

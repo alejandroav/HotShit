@@ -67,9 +67,9 @@
 					if ($_SESSION['userimg'] == "")
 						$_SESSION['userimg'] = 'nouser.jpg';
 
-					header("Location: timelines.php");
+					header("Location: ".$rutaAbsoluta."timelines");
 				} else {
-					header("Location: index.php?user=error");
+					header("Location: ".$rutaAbsoluta."index?user=error");
 				}
 			break;
 
@@ -82,7 +82,7 @@
 					$resul = $row['c'];
 
 				if ($resul > 0) {
-					header("Location: index.php?user=error");
+					header("Location: ".$rutaAbsoluta."index?user=error");
 				}
 
 				else {
@@ -119,11 +119,11 @@
 						    echo 'Message could not be sent.';
 						    echo 'Mailer Error: ' . $mail->ErrorInfo;
 						} else {
-							header("Location: index.php?user=created");
+							header("Location: ".$rutaAbsoluta."index?user=created");
 						}
 					}
 					else {
-						header("Location: index.php?user=error");
+						header("Location: ".$rutaAbsoluta."index?user=error");
 					}
 				}
 			break;
@@ -131,7 +131,7 @@
 			case 'logout':
 				// nos cargamos la sesion y volvemos al login
 				session_unset();
-				header('Location: index.php');
+				header('Location: index');
 			break;
 
 			case 'recover':
@@ -160,7 +160,7 @@
 						$password = hash('sha512', $salt.$userExists["email"]);
 
 						// Create a url which we will direct them to reset their password
-						$pwrurl = "www.wezee.es/reset_password.php?q=".$password;
+						$pwrurl = "http://www.wezee.es/reset_password.php?q=".$password;
 
 						// Mail them their key
 						$mailbody = "Dear user,\n\nIf this e-mail does not apply to you please ignore it. It appears that you have requested a password reset at our website www.wezee.es\n\n".
@@ -246,7 +246,7 @@
 					for ($i = 0; $i < count($tags); $i++) {
 						$query = $dbc->query("insert into tags values('".$_POST['videoid']."','".$tags[$i]."')");
 					}
-					header('Location: timelines.php');
+					header('Location: '.$rutaAbsoluta.'timelines');
 				}
 			break;
 

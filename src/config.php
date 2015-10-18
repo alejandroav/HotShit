@@ -1,5 +1,5 @@
 <?php
-	global $servername, $username, $password, $db;
+	global $servername, $username, $password, $db, $rutaAbsoluta;
 	//Local
 	$servername = "localhost";
 	$username = "root";
@@ -10,4 +10,5 @@
 	$username = "wezee";
 	$password = "";
 	$db = "wezee";*/
+	$rutaAbsoluta = "/"
 ?>

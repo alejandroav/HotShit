@@ -1,7 +1,8 @@
 <?php
 session_start();
+include("config.php");
 if (isset($_SESSION['userid']))
-	header('Location: timelines.php');
+	header('Location: '.$rutaAbsoluta.'timelines.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,10 +10,10 @@ if (isset($_SESSION['userid']))
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta charset="utf-8"/>
 		<title>Wezee</title>
-		<link rel="stylesheet" href="resources/css/materialize.min.css"/>
-		<link rel="stylesheet" href="resources/css/out.css"/>
+		<link rel="stylesheet" href="<?php echo $rutaAbsoluta; ?>resources/css/materialize.min.css"/>
+		<link rel="stylesheet" href="<?php echo $rutaAbsoluta; ?>resources/css/out.css"/>
 		<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-		<script src="resources/js/modernizr-custom.js"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/modernizr-custom.js"></script>
 		<script>
 		if (!Modernizr.json || !Modernizr.video || !Modernizr.filereader || !Modernizr.fullscreen || !Modernizr.eventlistener || !Modernizr.inputtypes.email || !Modernizr.cssanimations || !Modernizr.backgroundsize || !Modernizr.opacity) {
 			location.href="http://outdatedbrowser.com";
@@ -25,12 +26,12 @@ if (isset($_SESSION['userid']))
 		</div>
 		<div class="frente">
 			<div class="logo-arriba">
-				<img src="resources/images/logofinal.png" width="143px" height="143px">
+				<img src="<?php echo $rutaAbsoluta; ?>resources/images/logofinal.png" width="143px" height="143px">
 			</div>
 			<div class="fondo">
 				<div class="entrada" id="formcontent">
 					<?php include("pages/login.php"); ?>
-					<a href="pages/recover.php">Has olvidado tu contrase&ntilde;a?</a>
+					<a href="<?php echo $rutaAbsoluta; ?>pages/recover.php">Has olvidado tu contrase&ntilde;a?</a>
 				</div>
 			</div>
 			<div class="isotipo">
@@ -49,8 +50,8 @@ if (isset($_SESSION['userid']))
 				?>
 			</ul>
 		</div>
-		<script src="resources/js/jquery-2.1.4.min.js"></script>
-		<script src="resources/js/materialize.min.js"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/jquery-2.1.4.min.js"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/materialize.min.js"></script>
 		<script>
 		$(document).ready(function(){
 			var page = "login";
