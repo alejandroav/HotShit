@@ -1,15 +1,13 @@
 <?php
 class Video{
 	var $id;
-	var $type;
 	var $color;
 	var $dbc;
 	var $videoinfo;
 	var $userinfo;
-	function Video($type, $id, $color){
+	function Video($id, $color){
 		global $servername, $username, $password, $db;
 		$this->id = $id;
-		$this->type = $type;
 		$this->color = $color;
 		$this->dbc = new PDOHelper($servername, $username, $password, $db);
 		$res = $this->dbc->query("SELECT * FROM videos WHERE id=".$this->id);
