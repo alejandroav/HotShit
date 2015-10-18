@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS `follows` (
   `follower` int(11) NOT NULL DEFAULT '0',
   `followed` int(11) NOT NULL DEFAULT '0',
   `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`follower`,`followed`)
+  `tag` varchar(50) NOT NULL DEFAULT '""',
+  PRIMARY KEY (`follower`,`followed`,`tag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla wezee.follows: ~0 rows (aproximadamente)
