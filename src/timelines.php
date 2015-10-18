@@ -70,7 +70,12 @@ if (!isset($_SESSION['userid']))
 					</div>-->
 				</div>
 				<div class="col s4">
-					<h2>Tags</h2>
+					<h2>Tags 
+					<span style="font-size:15px">
+						<input style="color:black;" size="15">
+							<a class="btn-floating waves-effect waves-light red" style="background-color:rgb(255,236,50)"><i class="material-icons" style="background-color:rgb(255,236,50);color:black">add</i></a>
+						</input>
+					</span></h2>
 					<div style="text-align: center;">
 						<select id="combobox-tags">
 							<option value=''>Todos</option>
