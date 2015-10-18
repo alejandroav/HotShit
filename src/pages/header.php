@@ -2,7 +2,7 @@
 <div class="navbar-fixed">
 	<nav>
 		<div class="nav-wrapper" style="background-color:rgb(26,25,18)">
-			 <ul id="slide-out" class="side-nav">
+			 <ul id="slide-out" class="side-nav" style="background-color:rgb(26,25,18)">
 				 <?php include("pages/sidebar.php");?>
 			</ul>
 			<a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>

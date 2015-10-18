@@ -10,5 +10,5 @@
 	$username = "wezee";
 	$password = "";
 	$db = "wezee";*/
-	$rutaAbsoluta = "/"
+	$rutaAbsoluta = "/HotShit/src/"
 ?>
