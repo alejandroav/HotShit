@@ -30,7 +30,7 @@ function Timeline($type, $contador) {
 		if ($color>31){
 			$color = 30;
 		}
-		$video = new Video($row["id"], $color);
+		$video = new Video($type,$row["id"], $color);
 		$video->showVideo();
 	}
 }

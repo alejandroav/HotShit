@@ -13,11 +13,13 @@
 					<a href><i class="material-icons">settings</i></a>
 				</li>-->
 				<li>
-				<div class="chip chip_yellow">
-					<a href="javascript:createPopup('<?php echo $rutaAbsoluta; ?>pages/profile.php');"><img src="<?php echo $rutaAbsoluta; ?>uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="#"><?php echo $_SESSION['username']; ?>
-				</div>
+				<a href="javascript:createPopup('<?php echo $rutaAbsoluta; ?>pages/profile.php');">
+					<div class="chip chip_yellow">
+						<img src="<?php echo $rutaAbsoluta; ?>uploads/userimg/<?php echo $_SESSION['userimg'];?>" alt="#"><?php echo $_SESSION['username']; ?>
+					</div>
+				</a>
 				</li>
-				
+
 			</ul>
 			</a>
 			<div class="brand-logo center">
