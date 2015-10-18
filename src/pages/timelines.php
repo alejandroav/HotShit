@@ -25,9 +25,9 @@ function Timeline($type, $contador) {
 		}
 	} else {
 		if ($type == "users") {
-			$res = $dbc->query("SELECT id FROM videos where user = (select id from users where username like ".$_GET['extra'].") ORDER BY date DESC LIMIT ".$contador.", 10");
+			$res = $dbc->query("SELECT id FROM videos where user = ".$_GET['extra']." ORDER BY date DESC LIMIT ".$contador.", 10");
 		} else if ($type == "tags") {
-			$res = $dbc->query("SELECT id FROM videos where id in (select video from tags where tag like ".$_GET['extra'].") ORDER BY date DESC LIMIT ".$contador.", 10");
+			$res = $dbc->query("SELECT id FROM videos where id in (select video from tags where tag = '".$_GET['extra']."') ORDER BY date DESC LIMIT ".$contador.", 10");
 		}
 	}
 
