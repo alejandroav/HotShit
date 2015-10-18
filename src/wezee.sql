@@ -90,7 +90,7 @@ DROP TABLE IF EXISTS `videos`;
 CREATE TABLE IF NOT EXISTS `videos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(500) NOT NULL,
   `user` varchar(50) NOT NULL,
   `thumbnail` varchar(50) NOT NULL,
   `file` varchar(50) NOT NULL,
