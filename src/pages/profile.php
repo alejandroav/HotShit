@@ -3,7 +3,7 @@
 		<div>
 			<span style="font-family:verdana;font-size:120%;">Cambia tu foto: </span><a><button class="btn waves-effect waves-light" type="submit" name="subirFoto">Examinar</button></a>
 		</div>
-		<div style="font-family:verdana;font-size:120%;text-align:center;">
+		<div style="font-family:verdana;font-size:120%;text-align:center;padding:40px;">
 			Borra uno de tus videos:
 		</div>
 		<div style="text-align:center">
