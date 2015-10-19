@@ -7,6 +7,6 @@ Confirm Password: <input type="password" name="confirmpassword" size="20" /><br 
 if (isset($_GET["q"])) {
 	echo $_GET["q"];
 }
-	echo '" /><input type="submit" name="ResetPasswordForm" value=" Reset Password " />
+	echo '" /><input type="submit" name="ResetPasswordForm" value=" Reset Password " style="top:50%;left:50%;border-radius:20px;" />
 </form>';
 ?>
