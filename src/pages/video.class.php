@@ -76,7 +76,7 @@ class Video{
 						<img src="'.$rutaAbsoluta.'uploads/userimg/'.$this->userinfo["img"].'" alt="#"><span ><span style="text-transform:none">@'.$this->userinfo["username"].'</span>
 					</div>
 				</a>
-				<a href="javascript:like('.$this->id.','.$_SESSION['userid'].');" id="like'.$this->id.'"><span class="Zeeit">ZeeIt</span></a>
+				<a href="javascript:like('.$this->id.');" id="like'.$this->id.'"><span class="Zeeit">ZeeIt</span></a>
 			</div>
 		</div>';
 	}
