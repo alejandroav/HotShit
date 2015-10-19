@@ -74,9 +74,7 @@ function followTag(tag){
 		}
 	});
 }
-var circle = '<div id="loadmore" class="preloader-wrapper active" style="margin-left: '+
-	($("#timelines").width()/2)
-	+'px;"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
+var circle = '<div class="preloader-wrapper active loadmore"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>';
 function loadRow(tipo, extra){
 	var extraparam = "";
 	if (typeof extra != 'undefined') extraparam = "&extra="+extra;
@@ -86,9 +84,14 @@ function loadRow(tipo, extra){
 }
 function loadMore(contador, tipo){
 	//Materialize.toast("This is our ScrollFire Demo!", 1500 )
-	$("#timelines").append(circle);
-	$("#"+tipo).load('pages/timelines.php?c='+contador+'&tipo='+tipo);
-	$("#loadmore").remove();
+	$("#col-"+tipo).append(circle);
+	$.ajax({
+		url:'pages/timelines.php?c='+contador+'&tipo='+tipo,
+		success: function(res){
+			$("#col-"+tipo).append(res);
+			$("#col-"+tipo+" .loadmore").remove();
+		}
+	});
 }
 function createPopup(file){
 	$("#popup-background").show("fast");
