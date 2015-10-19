@@ -40,7 +40,7 @@ if (!isset($_SESSION['userid']))
 						<input type="button" id="general_actualizar" class="actualizar" value="Actualizar"/>
 					</div>
 				</div>
-				<div class="col s4">
+				<div class="col s4" id="users-container">
 					<h2>Usuarios</h2>
 					<div style="text-align: center;">
 						<select id="combobox-users">
@@ -67,10 +67,10 @@ if (!isset($_SESSION['userid']))
 						<div class="search-results"></div>
 					</div>-->
 				</div>
-				<div class="col s4">
+				<div class="col s4" id="tags-container">
 					<h2>Tags 
 					<span style="font-size:15px">
-							<a class="btn-floating waves-effect waves-light red" style="background-color:rgb(255,236,50);margin-top:-20px"><i class="material-icons" style="background-color:rgb(255,236,50);color:black">add</i></a>
+							<a href="javascript:followTag($('#tags-container').find('.custom-combobox-input').val())" class="btn-floating waves-effect waves-light red" style="background-color:rgb(255,236,50);margin-top:-20px"><i class="material-icons" style="background-color:rgb(255,236,50);color:black">add</i></a>
 					</span></h2>
 					<div style="text-align: center;">
 						<select id="combobox-tags">
@@ -125,6 +125,18 @@ if (!isset($_SESSION['userid']))
 				});
 				$("#combobox-tags").on("change", function(){
 					loadRow('tags', $("#combobox-tags").val());
+				});
+				$('#users-container').find('.custom-combobox-input').keypress(function(e) {
+					if ( e.which == 13 ) {
+						e.preventDefault();
+						//loadRow('users', $('#users-container').find('.custom-combobox-input').val());
+					}
+				});
+				$('#tags-container').find('.custom-combobox-input').keypress(function(e) {
+					if ( e.which == 13 ) {
+						e.preventDefault();
+						loadRow('tags', $('#tags-container').find('.custom-combobox-input').val());
+					}
 				});
 			});
 		</script>

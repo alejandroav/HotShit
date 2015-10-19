@@ -37,9 +37,9 @@
 					this._trigger( "select", event, {
 						item: ui.item.option
 					});
-				},
+				}/*,
 
-				autocompletechange: "_removeIfInvalid"
+				autocompletechange: "_removeIfInvalid"*/
 			});
 		},
 

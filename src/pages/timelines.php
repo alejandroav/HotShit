@@ -21,7 +21,7 @@ function Timeline($type, $contador) {
 		} else if ($type == "users") {
 			$res = $dbc->query("SELECT id FROM videos where user in (select followed from follows where follower = ".$_SESSION['userid'].") ORDER BY date DESC LIMIT ".$contador.", 10");
 		} else if ($type == "tags") {
-			$res = $dbc->query("SELECT id FROM videos where id in (select video from tags where tag in (select tag from followtags where follower = ".$_SESSION['userid'].") ORDER BY date DESC LIMIT ".$contador.", 10");
+			$res = $dbc->query("SELECT id FROM videos where id in (select video from tags where tag in (select tag from followtags where follower = ".$_SESSION['userid'].")) ORDER BY date DESC LIMIT ".$contador.", 10");
 		}
 	} else {
 		if ($type == "users") {
