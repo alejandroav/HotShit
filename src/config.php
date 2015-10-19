@@ -6,9 +6,9 @@
 	$password = "";
 	$db = "wezee";
 	//Servidor
-	/*$servername = "localhost";
+	/*$servername = "localhost/";
 	$username = "wezee";
 	$password = "";
 	$db = "wezee";*/
-	$rutaAbsoluta = "/"
+	$rutaAbsoluta = "/HotShit/src/"
 ?>
