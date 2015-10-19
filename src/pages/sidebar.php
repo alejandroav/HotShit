@@ -17,7 +17,7 @@
 
 		function tags(){
 			global $dbc, $rutaAbsoluta;
-			$query = $dbc->query("SELECT tag FROM tags");
+			$query = $dbc->query("SELECT tag FROM followtags where follower = ".$_SESSION['userid']. " ORDER BY tag asc");
 			while ($result = $dbc->fetch($query)){
 				echo "<div>
 				<p>".$result["tag"]."</p>
