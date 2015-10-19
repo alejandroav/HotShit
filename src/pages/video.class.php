@@ -23,7 +23,7 @@ class Video{
 		if ($this->dbc->numRows($res)){
 			$tags .= "<p>";
 			while ($row = $this->dbc->fetch($res)){
-				$tags .= "<div class='chip chip_tag'><a href='#'> #".$row["tag"]." </a></div>";
+				$tags .= "<div class='chip chip_tag'><a href='javascript:followTag(\"".$row["tag"]."\")'> #".$row["tag"]." </a></div>";
 			}
 			$tags .= "</p>";
 		}
@@ -53,7 +53,7 @@ class Video{
 								<button class="zoom" title="Zoom in/out"></button>
 							</extended>
 						</controls>
-						<video width="640" height="480" poster="'.$rutaAbsoluta.'uploads/videothumb/'.$this->videoinfo["thumbnail"].'" autobuffer>
+						<video width="640" height="480" poster="'.$rutaAbsoluta.'uploads/videothumb/'.$this->videoinfo["thumbnail"].'" preload="none">
 							<source src="'.$rutaAbsoluta.'uploads/video/'.$this->videoinfo["file"].'" type="video/mp4">
 						</video>
 					</div>
@@ -71,7 +71,7 @@ class Video{
 			</div>
 			<div class="divider" style="background-color:#CCCC00"></div>
 			<div class="card-action">
-				<a href="javascript:followuser('.$_SESSION['userid'].','.$this->videoinfo["user"].');">
+				<a href="javascript:followuser('.$this->videoinfo["user"].');">
 					<div class="chip">
 						<img src="'.$rutaAbsoluta.'uploads/userimg/'.$this->userinfo["img"].'" alt="#"><span ><span style="text-transform:none">@'.$this->userinfo["username"].'</span>
 					</div>

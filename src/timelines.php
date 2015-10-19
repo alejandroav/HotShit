@@ -46,10 +46,8 @@ if (!isset($_SESSION['userid']))
 						<select id="combobox-users">
 							<option value=''>Todos</option>
 							<?php 
-								$query = $dbc->query("SELECT followed FROM follows where follower = ".$_SESSION['userid']);
-								while ($result = $dbc->fetch($query)){
-									$res = $dbc->query("SELECT id, username FROM users WHERE id=".$result["followed"]);
-									$info = $dbc->fetch($res);
+								$query = $dbc->query("SELECT id, username FROM users WHERE id in (SELECT followed FROM follows where follower = ".$_SESSION['userid'].")");
+								while ($info = $dbc->fetch($query)){
 									echo "<option value='".$info["id"]."'>@".$info["username"]."</option>";
 								}
 							?>
@@ -78,7 +76,7 @@ if (!isset($_SESSION['userid']))
 						<select id="combobox-tags">
 							<option value=''>Todos</option>
 							<?php
-								$query = $dbc->query("SELECT tag FROM tags");
+								$query = $dbc->query("select tag from followtags where follower = ".$_SESSION['userid']."");
 								while ($result = $dbc->fetch($query)){
 									echo "<option value='".$result["tag"]."'>".$result["tag"]."</option>";
 								}
@@ -126,7 +124,7 @@ if (!isset($_SESSION['userid']))
 					loadRow('users', $("#combobox-users").val());
 				});
 				$("#combobox-tags").on("change", function(){
-					loadRow('tags', $("#combobox-users").val());
+					loadRow('tags', $("#combobox-tags").val());
 				});
 			});
 		</script>

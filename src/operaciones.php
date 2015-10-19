@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	date_default_timezone_set('Europe/Berlin');
 	include("config.php");
 	require("resources/libs/class.phpmailer.php");
 	require("resources/libs/class.smtp.php");
@@ -252,7 +253,6 @@
 
 			case 'like':
 				// zona horaria
-				date_default_timezone_set('Europe/Berlin');
 				$date = date('Y-m-d h:i:s', time());
 				// insertar el like
 				$res = $dbc->query("INSERT INTO likes values (".$_POST['user_id'].",".$_POST['video_id'].",'".$date."')");
@@ -272,27 +272,45 @@
 			break;
 
 			case 'follow-user':
-				if ($_POST['user_id'] == $_POST['target_id'])
+				if ($_SESSION['userid'] == $_POST['target_id'])
 					die(json_encode(array("status" => "ERROR", "msg" => "¡No puedes seguirte a ti mismo! >:(")));
 
 				// zona horaria
-				date_default_timezone_set('Europe/Berlin');
 				$date = date('Y-m-d h:i:s', time());
 				// insertar el follow
-				$res = $dbc->query("INSERT INTO follows(follower,followed,date) values (".$_POST['user_id'].",".$_POST['target_id'].",'".$date."')");
+				$res = $dbc->query("INSERT INTO follows(follower,followed,date) values (".$_SESSION['userid'].",".$_POST['target_id'].",'".$date."')");
 
 				if ($dbc->queryDone()!==false) {
 						die (json_encode(array("status" => "OK", "msg" => "Followed")));
 					}
 				else {
-					$res = $dbc->query("DELETE FROM follows where follower = ".$_POST['user_id']." and followed = ".$_POST['target_id']);
+					$res = $dbc->query("DELETE FROM follows where follower = ".$_SESSION['userid']." and followed = ".$_POST['target_id']);
 
 					if ($dbc->queryDone()!==false) {
 							die (json_encode(array("status" => "OK", "msg" => "Unfollowed")));
 						}
 					}
 				die (json_encode(array("status" => "ERROR", "msg" => $dbc->getLastError())));
+			break;
+			case 'follow-tag':
+				if ($_SESSION['userid'] == $_POST['target_id'])
+					die(json_encode(array("status" => "ERROR", "msg" => "¡No puedes seguirte a ti mismo! >:(")));
 
+				// zona horaria
+				$date = date('Y-m-d h:i:s', time());
+				// insertar el follow
+				$res = $dbc->query("INSERT INTO followtags(follower,tag,date) values (".$_SESSION['userid'].",'".$_POST['target_id']."','".$date."')");
+
+				if ($dbc->queryDone()!==false) {
+					die (json_encode(array("status" => "OK", "msg" => "Followed")));
+				} else {
+					$res = $dbc->query("DELETE FROM followtags where follower = ".$_SESSION['userid']." and tag = '".$_POST['target_id']."'");
+
+					if ($dbc->queryDone()!==false) {
+						die (json_encode(array("status" => "OK", "msg" => "Unfollowed")));
+					}
+				}
+				die (json_encode(array("status" => "ERROR", "msg" => $dbc->getLastError())));
 			break;
 
 			case 'view':

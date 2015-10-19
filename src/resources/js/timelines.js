@@ -11,8 +11,10 @@ function like(videoid,userid) {
 				if (res.status == "OK") {
 					if (res.msg == "Like") {
 						Materialize.toast('¡Te gusta!', 2000);
+						setTimeout(function(){location.href=location.href}, 2000);
 					} else if (res.msg == "Dislike") {
-						Materialize.toast('No te gusta :(', 2000)
+						Materialize.toast('No te gusta :(', 2000);
+						setTimeout(function(){location.href=location.href}, 2000);
 					}
 				}
 				if (res.status == "ERROR") {
@@ -22,11 +24,11 @@ function like(videoid,userid) {
 		}
 	});
 }
-function followuser(follower,followed) {
+function followuser(followed) {
 	$.ajax({
 		method: "POST",
 		url: "operaciones.php?op=follow-user",
-		data: {user_id:follower,target_id:followed},
+		data: {target_id:followed},
 		success: function(response) {
 			//console.log("Respuesta: " + response);
 			// colorear el enlace de like
@@ -35,8 +37,34 @@ function followuser(follower,followed) {
 				if (res.status == "OK") {
 					if (res.msg == "Followed") {
 						Materialize.toast('¡Sigues a este usuario!', 2000);
+						setTimeout(function(){location.href=location.href}, 2000);
 					} else if (res.msg == "Unfollowed") {
-						Materialize.toast('Ya no sigues a este usuario.', 2000)
+						Materialize.toast('Ya no sigues a este usuario.', 2000);
+						setTimeout(function(){location.href=location.href}, 2000);
+					}
+				}
+				if (res.status == "ERROR") {
+					Materialize.toast(res.msg, 2000);
+				}
+			}
+		}
+	});
+}
+function followTag(tag){
+	$.ajax({
+		method: "POST",
+		url: "operaciones.php?op=follow-tag",
+		data: {target_id:tag},
+		success: function(response) {
+			if (IsJsonString(response)) {
+				var res = $.parseJSON(response);
+				if (res.status == "OK") {
+					if (res.msg == "Followed") {
+						Materialize.toast('¡Sigues a este tag!', 2000);
+						setTimeout(function(){location.href=location.href}, 2000);
+					} else if (res.msg == "Unfollowed") {
+						Materialize.toast('Ya no sigues a este tag.', 2000);
+						setTimeout(function(){location.href=location.href}, 2000);
 					}
 				}
 				if (res.status == "ERROR") {
@@ -53,6 +81,7 @@ function loadRow(tipo, extra){
 	var extraparam = "";
 	if (typeof extra != 'undefined') extraparam = "&extra="+extra;
 	$("#col-"+tipo).html(circle);
+	//console.log("#col-"+tipo+" "+'pages/timelines.php?tipo='+tipo+extraparam);
 	$("#col-"+tipo).load('pages/timelines.php?tipo='+tipo+extraparam);
 }
 function loadMore(contador, tipo){
