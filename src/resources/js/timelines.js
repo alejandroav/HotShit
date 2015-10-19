@@ -1,8 +1,8 @@
-function like(videoid,userid) {
+function like(videoid) {
 	$.ajax({
 		method: "POST",
 		url: "operaciones.php?op=like",
-		data: {video_id:videoid,user_id:userid},
+		data: {video_id:videoid},
 		success: function(response) {
 			//console.log("Respuesta: " + response);
 			// colorear el enlace de like

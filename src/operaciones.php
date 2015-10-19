@@ -255,14 +255,14 @@
 				// zona horaria
 				$date = date('Y-m-d h:i:s', time());
 				// insertar el like
-				$res = $dbc->query("INSERT INTO likes values (".$_POST['user_id'].",".$_POST['video_id'].",'".$date."')");
+				$res = $dbc->query("INSERT INTO likes values (".$_SESSION['userid'].",".$_POST['video_id'].",'".$date."')");
 
 				if ($dbc->queryDone()!==false) {
 						die (json_encode(array("status" => "OK", "msg" => "Like")));
 				}
 				else {
 					// si llegamos aqui, comprobamos si es un dislike
-					$res = $dbc->query("DELETE FROM likes where video = ".$_POST['video_id']." and user = ".$_POST['user_id']);
+					$res = $dbc->query("DELETE FROM likes where video = ".$_POST['video_id']." and user = ".$_SESSION['userid']);
 
 					if ($dbc->queryDone()) {
 							die (json_encode(array("status" => "OK", "msg" => "Dislike")));
