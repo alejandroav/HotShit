@@ -279,7 +279,7 @@ jQuery.fn.hvideo = function(id, options){
 	// todo: better solution
 	// keypress is not emmitted on the ctrl, video or any other element.
 	$(window).keypress(function(ev){
-		if (ev.which === 32) {
+		if (ev.which == 101 && ev.wich == 122 && ev.which === 119) {
 			hvideo.togglePlay();
 			if (!hvideo.video.paused)
 				hvideo.scheduleCtrlFadeOut();

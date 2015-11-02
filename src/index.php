@@ -30,7 +30,10 @@ if (isset($_SESSION['userid']))
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="<?php echo $rutaAbsoluta; ?>resources/images/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/jquery-2.1.4.min.js"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/materialize.min.js"></script>
 		<script src="<?php echo $rutaAbsoluta; ?>resources/js/modernizr-custom.js"></script>
+		<script src="<?php echo $rutaAbsoluta; ?>resources/js/jquery.form.min.js"></script>
 		<script>
 		if (!Modernizr.json || !Modernizr.video || !Modernizr.filereader || !Modernizr.fullscreen || !Modernizr.eventlistener || !Modernizr.inputtypes.email || !Modernizr.cssanimations || !Modernizr.backgroundsize || !Modernizr.opacity) {
 			location.href="http://outdatedbrowser.com";
@@ -67,8 +70,6 @@ if (isset($_SESSION['userid']))
 				?>
 			</ul>
 		</div>
-		<script src="<?php echo $rutaAbsoluta; ?>resources/js/jquery-2.1.4.min.js"></script>
-		<script src="<?php echo $rutaAbsoluta; ?>resources/js/materialize.min.js"></script>
 		<script>
 		$(document).ready(function(){
 			var page = "login";

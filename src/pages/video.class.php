@@ -34,7 +34,7 @@ class Video{
 		if ($this->userinfo["img"] == NULL) $this->userinfo["img"] = 'nouser.jpg';
 		echo '<div class="card green-white lighten-0" style="background-color: rgb(235, 235, '.round($this->color*(255/30)).')">
 			<div class="card-content black-text">
-				<span class="card-title black-text"><a href="video/'.$this->id.'">'.$this->videoinfo["name"].'</a></span>
+				<span class="card-title black-text"><a href="'.$rutaAbsoluta.'video/'.$this->id.'">'.$this->videoinfo["name"].'</a></span>
 				<div class="divider" style="background-color:#CCCC00"></div>
 				<p>
 					<div id="'.$this->type.'-'.$this->id.'" class="hvideo" style="margin-top:10px;margin-bot:10px">

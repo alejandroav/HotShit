@@ -61,16 +61,17 @@
 				$result = $dbc->fetch($query);
 				// si existe, cargamos sus datos en sesion y nos vamos al timeline
 				if (count($result)>0) {
-					session_start();
 					$_SESSION['userid'] = $result['id'];
 					$_SESSION['username'] = $result['username'];
 					$_SESSION['userimg'] = $result['img'];
 					if ($_SESSION['userimg'] == "")
 						$_SESSION['userimg'] = 'nouser.jpg';
-
-					header("Location: ".$rutaAbsoluta."timelines");
+					die("ok");
+					exit;
 				} else {
-					header("Location: ".$rutaAbsoluta."index?user=error");
+					die ("error");
+					//header("Location: ".$rutaAbsoluta."index?user=error");
+					exit;
 				}
 			break;
 

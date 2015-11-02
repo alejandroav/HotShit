@@ -17,7 +17,7 @@ function Timeline($type, $contador) {
 	$dbc = new PDOHelper($servername, $username, $password, $db);
 	if (!isset($_GET['extra'])) {
 		if ($type == "general") {
-			$res = $dbc->query("SELECT id FROM videos ORDER BY trendlevel DESC LIMIT ".$contador.", 10");
+			$res = $dbc->query("SELECT id FROM videos ORDER BY date DESC LIMIT ".$contador.", 10");
 		} else if ($type == "users") {
 			$res = $dbc->query("SELECT id FROM videos where user in (select followed from follows where follower = ".$_SESSION['userid'].") ORDER BY date DESC LIMIT ".$contador.", 10");
 		} else if ($type == "tags") {
